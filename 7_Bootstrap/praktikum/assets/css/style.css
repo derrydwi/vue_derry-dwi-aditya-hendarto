@@ -1,0 +1,34 @@
+.navbar-brand > span {
+  color: #71c55d !important;
+}
+
+.navbar-link:hover {
+  color: #71c55d !important;
+}
+
+.navbar-link-active {
+  color: #71c55d !important;
+}
+
+.card > img {
+  width: 15%;
+}
+
+.video {
+  background: url(../img/video-bg.jpg) center center;
+  height: 400px;
+}
+
+.video-overlay {
+  background: rgba(0, 0, 0, 0.85);
+  height: 100%;
+}
+
+.video-overlay > .row > a {
+  position: relative;
+  margin-top: 190px;
+}
+
+.video-overlay > .row > a > i {
+  color: white;
+}
