@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Form MyBook</title>
+</head>
+
+<body>
+  <h1>Buat Account Baru!</h1>
+  <h2>Sign Up Form</h2>
+  <form action="welcome.html" method="post">
+    <!-- First Name -->
+    <div>
+      <label for="first_name">First name:</label><br>
+      <input type="text" name="first_name">
+    </div>
+    <br>
+
+    <!-- Last Name -->
+    <div>
+      <label for="last_name">Last name:</label><br>
+      <input type="text" name="last_name">
+    </div>
+    <br>
+
+    <!-- Gender -->
+    <div>
+      <label for="gender">Gender:</label><br>
+      <input type="radio" name="gender" id="radio_male" value="Male">
+      <label for="radio_male">Male</label><br>
+      <input type="radio" name="gender" id="radio_female" value="Female">
+      <label for="radio_female">Female</label><br>
+      <input type="radio" name="gender" id="radio_other" value="Other">
+      <label for="radio_other">Other</label><br>
+    </div>
+    <br>
+
+    <!-- Nasionality -->
+    <div>
+      <label for="nasionality">Nasionality:</label><br>
+      <select id="nasionality" name="nasionality">
+        <option value="Indonesian">Indonesian</option>
+        <option value="Malaysia">Malaysian</option>
+        <option value="Singaporean">Singaporean</option>
+        <option value="Vietnamese">Vietnamese</option>
+      </select>
+    </div>
+    <br>
+
+    <!-- Language Spoken -->
+    <div>
+      <label for="language_spoken">Language Spoken:</label><br>
+      <input type="checkbox" name="language_spoken" id="checkbox_bahasa_indonesia" value="Bahasa Indonesia">
+      <label for="checkbox_bahasa_indonesia">Bahasa Indonesia</label><br>
+      <input type="checkbox" name="language_spoken" id="checkbox_english" value="English">
+      <label for="checkbox_english">English</label><br>
+      <input type="checkbox" name="language_spoken" id="checkbox_other" value="Other">
+      <label for="checkbox_other">Other</label><br>
+    </div>
+    <br>
+
+    <!-- Bio -->
+    <div>
+      <label for="bio">Bio</label><br>
+      <textarea name="bio" id="bio" cols="40" rows="10"></textarea>
+    </div>
+
+    <!-- Signup Button -->
+    <div>
+      <button type="submit">Sign Up</button>
+    </div>
+  </form>
+</body>
+
+</html>
