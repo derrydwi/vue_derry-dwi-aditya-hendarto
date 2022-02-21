@@ -7,11 +7,7 @@ const store = createStore({
     title: 'Vuex Store',
     todos: [],
   },
-  getters: {
-    totalTodos(state) {
-      return state.todos.length;
-    },
-  },
+  getters: {},
   mutations: {
     SAVE_TODO(state, title) {
       state.todos.push(title);
