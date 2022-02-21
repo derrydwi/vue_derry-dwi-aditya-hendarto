@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vue Fundamental</title>
+</head>
+
+<body>
+  <div id="app">
+    <ol>
+      <li v-for="todo in todos">{{ todo }}</li>
+    </ol>
+    <input type="text" v-model="todo" @keyup.enter="addTodo(todo)">
+    <button @click="addTodo(todo)" type="submit">Tambahkan</button>
+    <p v-if="todos.length >= 4">{{ message }}</p>
+  </div>
+
+  <script type="importmap">
+    {
+      "imports": {
+        "vue": "https://unpkg.com/vue@3/dist/vue.esm-browser.js"
+      }
+    }
+  </script>
+
+  <script type="module">
+    import { createApp, ref } from 'vue'
+
+    createApp({
+      setup() {
+        const todo = ref('');
+        const todos = ref([]);
+        const message = ref('Hebat!');
+        const addTodo = (activity) => {
+          todos.value.push(activity);
+          todo.value = '';
+        }
+        return {
+          todo, todos, message, addTodo
+        }
+      }
+    }).mount('#app')
+  </script>
+</body>
+
+</html>
