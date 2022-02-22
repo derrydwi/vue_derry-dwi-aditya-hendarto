@@ -68,7 +68,7 @@
                 "
               >
                 <img
-                  src="https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=334&q=80"
+                  src="https://images.unsplash.com/photo-1539125530496-3ca408f9c2d9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=334&q=80"
                   class="object-cover w-full h-full"
                   alt="avatar"
                 />
@@ -93,10 +93,3 @@
     </div>
   </nav>
 </template>
-
-<script>
-export default {};
-</script>
-
-<style>
-</style>

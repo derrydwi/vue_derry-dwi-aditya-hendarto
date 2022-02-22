@@ -1,45 +1,44 @@
 <template>
   <div class="detail dark:text-white mx-14 md:mx-0 lg:mx-14 sm:mx-0 pb-6">
     <Heading :title="news.title" class="mx-auto" />
-    <router-link :to="{ name: 'home' }"
-      ><button
-        class="
-          flex
-          items-center
-          px-2
-          py-2
-          font-medium
-          tracking-wide
-          capitalize
-          duration-200
-          transform
-          text-gray-700
-          transition-colors
-          bg-white
-          border border-gray-200
-          rounded-lg
-          dark:bg-gray-900 dark:border-gray-700
-          hover:bg-gray-100
-          dark:text-white
-          sm:w-auto
-          dark:hover:bg-gray-800 dark:ring-gray-700
-          focus:ring focus:ring-gray-200 focus:ring-opacity-80
-        "
+    <router-link
+      :to="{ name: 'home' }"
+      class="
+        items-center
+        inline-flex
+        px-2
+        py-2
+        font-medium
+        tracking-wide
+        capitalize
+        duration-200
+        transform
+        text-gray-700
+        transition-colors
+        bg-white
+        border border-gray-200
+        rounded-lg
+        dark:bg-gray-900 dark:border-gray-700
+        hover:bg-gray-100
+        dark:text-white
+        sm:w-auto
+        dark:hover:bg-gray-800 dark:ring-gray-700
+        focus:ring focus:ring-gray-200 focus:ring-opacity-80
+      "
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="16"
+        height="16"
+        fill="currentColor"
+        class="bi bi-caret-left"
+        viewBox="0 0 16 16"
       >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="16"
-          height="16"
-          fill="currentColor"
-          class="bi bi-caret-left"
-          viewBox="0 0 16 16"
-        >
-          <path
-            d="M10 12.796V3.204L4.519 8 10 12.796zm-.659.753-5.48-4.796a1 1 0 0 1 0-1.506l5.48-4.796A1 1 0 0 1 11 3.204v9.592a1 1 0 0 1-1.659.753z"
-          />
-        </svg>
-        <span class="mx-1">Back</span>
-      </button></router-link
+        <path
+          d="M10 12.796V3.204L4.519 8 10 12.796zm-.659.753-5.48-4.796a1 1 0 0 1 0-1.506l5.48-4.796A1 1 0 0 1 11 3.204v9.592a1 1 0 0 1-1.659.753z"
+        />
+      </svg>
+      <span class="mx-1">Back</span></router-link
     >
     <img
       class="mx-auto rounded-lg shadow-lg w-auto lg:w-3/4 my-5"
@@ -49,13 +48,15 @@
     <p class="py-2">
       {{ new Date(news.publishedAt).toUTCString().substring(0, 22) }}
     </p>
-    <p class="py-2">{{ news.description }}</p>
     <p class="py-2">{{ news.content }}</p>
-    <a :href="news.url" target="_blank" rel="noopener noreferrer">
-      <button
+    <div class="flex">
+      <a
+        :href="news.url"
+        target="_blank"
+        rel="noopener noreferrer"
         class="
           mx-auto
-          flex
+          inline-flex
           items-center
           px-2
           py-2
@@ -96,8 +97,8 @@
           />
         </svg>
         <span class="mx-1">Read More</span>
-      </button>
-    </a>
+      </a>
+    </div>
   </div>
 </template>
 

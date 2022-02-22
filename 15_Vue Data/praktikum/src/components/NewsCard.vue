@@ -74,6 +74,13 @@
           </div>
         </router-link>
       </div>
+      <VueTailwindPagination
+        :current="currentPage"
+        :total="total"
+        :per-page="perPage"
+        @page-changed="currentPage = $event"
+        class="mt-4 mb-8"
+      />
     </div>
     <div v-else class="flex min-h-screen">
       <svg
@@ -111,13 +118,22 @@ import axios from "axios";
 import { ref, watchEffect } from "vue";
 import { useStore } from "vuex";
 
+import "@ocrv/vue-tailwind-pagination/styles";
+import VueTailwindPagination from "@ocrv/vue-tailwind-pagination";
+
+const currentPage = ref(1);
+const perPage = ref(1);
+const total = 7;
+
+const apiKey = "e07e54fe47cb42ec808ae277b6b5f79d";
+
 const store = useStore();
 const newsList = ref([]);
 
 const loadNews = async () => {
   await axios
     .get(
-      "https://newsapi.org/v2/top-headlines?country=us&category=technology&apiKey=eb0a5d20fea149669a829a8ae47c7c6a"
+      `https://newsapi.org/v2/top-headlines?country=us&category=technology&pageSize=10&page=${currentPage.value}&apiKey=${apiKey}`
     )
     .then((response) => (newsList.value = response.data.articles))
     .catch((error) => {

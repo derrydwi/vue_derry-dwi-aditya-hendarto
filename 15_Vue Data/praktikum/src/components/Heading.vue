@@ -9,6 +9,3 @@
 <script setup>
 const props = defineProps(["title"]);
 </script>
-
-<style>
-</style>
