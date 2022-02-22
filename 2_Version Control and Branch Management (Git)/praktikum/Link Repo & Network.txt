@@ -1,5 +1,0 @@
-Link repo branch master: https://github.com/derrydwi/vue_derry-dwi-aditya-hendarto/tree/master/2_Version%20Control%20and%20Branch%20Management%20(Git)/praktikum
-Link repo branch develop: https://github.com/derrydwi/vue_derry-dwi-aditya-hendarto/tree/develop/2_Version%20Control%20and%20Branch%20Management%20(Git)/praktikum
-Link repo branch feature_css: https://github.com/derrydwi/vue_derry-dwi-aditya-hendarto/tree/feature_css/2_Version%20Control%20and%20Branch%20Management%20(Git)/praktikum
-Link repo branch feature_js: https://github.com/derrydwi/vue_derry-dwi-aditya-hendarto/tree/feature_js/2_Version%20Control%20and%20Branch%20Management%20(Git)/praktikum
-Link insight network: https://github.com/derrydwi/vue_derry-dwi-aditya-hendarto/network
