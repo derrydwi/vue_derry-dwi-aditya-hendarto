@@ -21,6 +21,8 @@ Staging Area dalam Git memiliki 3 fase diantaranya yakni working directory, stag
 
 ## Task
 
+### 1. Branch Management
+
 Pada task ini membuat branch develop, feature_css, dan feature_js. Dimana masing-masing branch feature berfungsi sebagai tempat mengembangkan fitur baru, untuk kemudian dilakukan merge ke branch develop. Di akhir ketika program sudah siap release branch develop dapat di merge ke master supaya head secara default mengarah ke branch master.
 
 Berikut kode hasil dari praktikum ini.
@@ -30,3 +32,11 @@ Berikut kode hasil dari praktikum ini.
 Output:
 
 ![insight_network](./screenshots/insight_network.png)
+
+Link lebih detail:
+
+- Link repo branch master: https://github.com/derrydwi/vue_derry-dwi-aditya-hendarto/tree/master/2_Version%20Control%20and%20Branch%20Management%20(Git)/praktikum
+- Link repo branch develop: https://github.com/derrydwi/vue_derry-dwi-aditya-hendarto/tree/develop/2_Version%20Control%20and%20Branch%20Management%20(Git)/praktikum
+- Link repo branch feature_css: https://github.com/derrydwi/vue_derry-dwi-aditya-hendarto/tree/feature_css/2_Version%20Control%20and%20Branch%20Management%20(Git)/praktikum
+- Link repo branch feature_js: https://github.com/derrydwi/vue_derry-dwi-aditya-hendarto/tree/feature_js/2_Version%20Control%20and%20Branch%20Management%20(Git)/praktikum
+- Link insight network (Timeline 18 Februari 2022): https://github.com/derrydwi/vue_derry-dwi-aditya-hendarto/network
