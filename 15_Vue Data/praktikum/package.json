@@ -7,7 +7,6 @@
     "build": "vue-cli-service build"
   },
   "dependencies": {
-    "@ocrv/vue-tailwind-pagination": "^0.0.4",
     "axios": "^0.26.0",
     "core-js": "^3.8.3",
     "vue": "^3.2.13",

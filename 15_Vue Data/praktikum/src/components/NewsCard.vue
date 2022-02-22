@@ -74,13 +74,51 @@
           </div>
         </router-link>
       </div>
-      <VueTailwindPagination
-        :current="currentPage"
-        :total="total"
-        :per-page="perPage"
-        @page-changed="currentPage = $event"
-        class="mt-4 mb-8"
-      />
+      <div class="flex mb-5">
+        <button
+          @click="loadMore"
+          class="
+            mx-auto
+            inline-flex
+            items-center
+            px-2
+            py-2
+            font-medium
+            tracking-wide
+            text-white
+            capitalize
+            transition-colors
+            duration-200
+            transform
+            bg-blue-600
+            rounded-md
+            hover:bg-blue-500
+            focus:outline-none
+            focus:ring
+            focus:ring-blue-300
+            focus:ring-opacity-80
+          "
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            fill="currentColor"
+            class="w-5 h-5 mx-1"
+            viewBox="0 0 16 16"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M1.646 6.646a.5.5 0 0 1 .708 0L8 12.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"
+            />
+            <path
+              fill-rule="evenodd"
+              d="M1.646 2.646a.5.5 0 0 1 .708 0L8 8.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"
+            />
+          </svg>
+          <span class="mx-1">Load More</span>
+        </button>
+      </div>
     </div>
     <div v-else class="flex min-h-screen">
       <svg
@@ -115,15 +153,10 @@
 
 <script setup>
 import axios from "axios";
-import { ref, watchEffect } from "vue";
+import { ref } from "vue";
 import { useStore } from "vuex";
 
-import "@ocrv/vue-tailwind-pagination/styles";
-import VueTailwindPagination from "@ocrv/vue-tailwind-pagination";
-
 const currentPage = ref(1);
-const perPage = ref(1);
-const total = 7;
 
 const apiKey = "e07e54fe47cb42ec808ae277b6b5f79d";
 
@@ -133,9 +166,9 @@ const newsList = ref([]);
 const loadNews = async () => {
   await axios
     .get(
-      `https://newsapi.org/v2/top-headlines?country=us&category=technology&pageSize=10&page=${currentPage.value}&apiKey=${apiKey}`
+      `https://newsapi.org/v2/top-headlines?country=us&category=technology&pageSize=5&page=${currentPage.value}&apiKey=${apiKey}`
     )
-    .then((response) => (newsList.value = response.data.articles))
+    .then((response) => newsList.value.push(...response.data.articles))
     .catch((error) => {
       console.log(error.response);
     });
@@ -145,7 +178,12 @@ const saveDetail = (index) => {
   store.dispatch("saveNews", newsList.value[index]);
 };
 
-watchEffect(() => loadNews());
+const loadMore = () => {
+  currentPage.value++;
+  loadNews();
+};
+
+loadNews();
 </script>
 
 <style>
