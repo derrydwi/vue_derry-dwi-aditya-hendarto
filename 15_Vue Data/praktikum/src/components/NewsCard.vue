@@ -153,7 +153,7 @@
 
 <script setup>
 import axios from "axios";
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
 import { useStore } from "vuex";
 
 const currentPage = ref(1);
@@ -183,7 +183,7 @@ const loadMore = () => {
   loadNews();
 };
 
-loadNews();
+onMounted(() => loadNews());
 </script>
 
 <style>
