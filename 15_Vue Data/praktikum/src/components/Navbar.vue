@@ -1,5 +1,5 @@
 <template>
-  <nav class="bg-white shadow dark:bg-gray-800">
+  <nav class="bg-white shadow dark:bg-gray-800 sticky top-0 z-50">
     <div class="container px-6 py-4 mx-auto">
       <div class="md:flex md:items-center md:justify-between">
         <div class="flex items-center justify-between">
@@ -68,7 +68,7 @@
                 "
               >
                 <img
-                  src="https://images.unsplash.com/photo-1539125530496-3ca408f9c2d9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=334&q=80"
+                  src="https://images.unsplash.com/photo-1499996860823-5214fcc65f8f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=334&q=80"
                   class="object-cover w-full h-full"
                   alt="avatar"
                 />

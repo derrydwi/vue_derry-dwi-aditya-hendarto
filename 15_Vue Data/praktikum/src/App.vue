@@ -1,14 +1,12 @@
 <template>
   <div>
-    <nav class="sticky top-0 z-50">
-      <Header />
-    </nav>
+    <Navbar />
     <router-view />
     <Footer />
   </div>
 </template>
 
 <script setup>
-import Header from "@/components/Header.vue";
+import Navbar from "@/components/Navbar.vue";
 import Footer from "@/components/Footer.vue";
 </script>

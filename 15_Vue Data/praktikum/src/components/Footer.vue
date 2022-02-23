@@ -17,7 +17,7 @@
               hover:text-gray-500
               dark:hover:text-gray-300
             "
-            aria-label="Reddit"
+            aria-label="Teams"
           >
             Teams
           </a>
@@ -30,7 +30,7 @@
               hover:text-gray-500
               dark:hover:text-gray-300
             "
-            aria-label="Reddit"
+            aria-label="Privacy"
           >
             Privacy
           </a>
@@ -43,7 +43,7 @@
               hover:text-gray-500
               dark:hover:text-gray-300
             "
-            aria-label="Reddit"
+            aria-label="Cookies"
           >
             Cookies
           </a>

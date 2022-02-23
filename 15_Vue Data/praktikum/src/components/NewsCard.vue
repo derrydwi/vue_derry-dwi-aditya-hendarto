@@ -156,12 +156,11 @@ import axios from "axios";
 import { ref, onMounted } from "vue";
 import { useStore } from "vuex";
 
-const currentPage = ref(1);
-
 const apiKey = "e07e54fe47cb42ec808ae277b6b5f79d";
 
 const store = useStore();
 const newsList = ref([]);
+const currentPage = ref(1);
 
 const loadNews = async () => {
   await axios
