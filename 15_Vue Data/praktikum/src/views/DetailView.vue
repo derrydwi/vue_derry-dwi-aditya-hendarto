@@ -10,10 +10,9 @@
 import Navbar from "@/components/Navbar.vue";
 import Detail from "@/components/Detail.vue";
 import Footer from "@/components/Footer.vue";
-
 import { useStore } from "vuex";
-const store = useStore();
 
+const store = useStore();
 const changeCategory = (categoryName) => {
   store.dispatch("saveCategory", categoryName);
 };
