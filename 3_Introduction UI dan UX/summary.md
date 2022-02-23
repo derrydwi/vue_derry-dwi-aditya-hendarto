@@ -55,3 +55,14 @@ Tools yang dapat digunakan untuk merancang prototype diantaranya adalah Adobe Xd
 Berikut tugas praktikum yang sudah dikerjakan.
 - Versi file docx: [tugas_praktikum](./praktikum/Tugas%20Praktikum%20UI_UX%20-%20Derry%20Dwi%20Aditya.docx)
 - Versi google docs : https://docs.google.com/document/d/1v-adDDTMdss-MpHT17ncVSOfNrIBq22-SJfXxKQNxZw/edit?usp=sharing
+
+Berikut screenshot desain web yang dipilih:
+
+Home Page
+![HomePage](./screenshots/HomePage.png)
+
+Feature Feedback Surveys Page
+![FeatureFeedbackSurveysPage](./screenshots/FeatureFeedbackSurveysPage.png)
+
+Pricing Page
+![PricingPage](./screenshots/PricingPage.png)
