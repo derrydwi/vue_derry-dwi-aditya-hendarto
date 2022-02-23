@@ -152,37 +152,16 @@
 </template>
 
 <script setup>
-import axios from "axios";
-import { ref, onMounted } from "vue";
-import { useStore } from "vuex";
-
-const apiKey = "e07e54fe47cb42ec808ae277b6b5f79d";
-
-const store = useStore();
-const newsList = ref([]);
-const currentPage = ref(1);
-
-const loadNews = async () => {
-  await axios
-    .get(
-      `https://newsapi.org/v2/top-headlines?country=us&category=technology&pageSize=5&page=${currentPage.value}&apiKey=${apiKey}`
-    )
-    .then((response) => newsList.value.push(...response.data.articles))
-    .catch((error) => {
-      console.log(error.response);
-    });
-};
+const props = defineProps(["newsList"]);
+const emit = defineEmits();
 
 const saveDetail = (index) => {
-  store.dispatch("saveNews", newsList.value[index]);
+  emit("saveDetail", index);
 };
 
 const loadMore = () => {
-  currentPage.value++;
-  loadNews();
+  emit("loadMore");
 };
-
-onMounted(() => loadNews());
 </script>
 
 <style>

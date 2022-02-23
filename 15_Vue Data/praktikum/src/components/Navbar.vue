@@ -5,6 +5,7 @@
         <div class="flex items-center justify-between">
           <div class="text-xl font-semibold text-gray-700">
             <router-link
+              @click="changeCategory(categories[0])"
               class="
                 text-2xl
                 font-bold
@@ -48,9 +49,34 @@
 
         <!-- Mobile Menu open: "block", Menu closed: "hidden" -->
         <div class="flex-1 md:flex md:items-center md:justify-between">
-          <div
-            class="flex flex-col -mx-4 md:flex-row md:items-center md:mx-8"
-          ></div>
+          <div class="flex flex-col -mx-4 md:flex-row md:items-center md:mx-8">
+            <router-link
+              :to="{ name: 'home' }"
+              v-for="category in categories"
+              :key="category"
+              @click="changeCategory(category)"
+              class="
+                px-2
+                py-1
+                mx-2
+                mt-2
+                text-sm
+                capitalize
+                font-medium
+                text-gray-700
+                transition-colors
+                duration-200
+                transform
+                rounded-md
+                md:mt-0
+                dark:text-gray-200
+                hover:bg-gray-300
+                dark:hover:bg-gray-700
+              "
+            >
+              {{ category }}
+            </router-link>
+          </div>
 
           <div class="flex items-center mt-4 md:mt-0">
             <button
@@ -93,3 +119,18 @@
     </div>
   </nav>
 </template>
+
+<script setup>
+const categories = [
+  "general",
+  "business",
+  "entertainment",
+  "science",
+  "sports",
+  "technology",
+];
+const emit = defineEmits();
+const changeCategory = (index) => {
+  emit("changeCategory", index);
+};
+</script>
