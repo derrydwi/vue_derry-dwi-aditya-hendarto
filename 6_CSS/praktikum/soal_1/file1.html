@@ -4,14 +4,13 @@
 </head>
 
 <body>
-  <!-- First row box -->
-  <div class="first-row">
-    <div class="red-box">Saya adalah box red berukuran 100 px</div>
-    <div class="blue-box">Saya adalah box blue berukuran 100 px</div>
+  <div class="container">
+    <div class="first-row">
+      <div class="red-box">Saya adalah box red berukuran 100 px</div>
+      <div class="blue-box">Saya adalah box blue berukuran 100 px</div>
+    </div>
+    <div class="green-box">Saya adalah box green berukuran 350 px </div>
   </div>
-
-  <!-- Second row box -->
-  <div class="green-box">Saya adalah box green berukuran 350 px </div>
 </body>
 
 <style>
@@ -24,33 +23,32 @@
     text-align: center;
   }
 
+  .container {
+    width: 350px;
+  }
+
   .first-row {
     display: flex;
+    justify-content: space-between;
     margin-bottom: 50px;
   }
 
   .first-row>div {
-    margin-right: 70px;
+    width: 100px;
+    height: 100px;
   }
 
   .red-box {
     background-color: red;
-    width: 100px;
-    height: 100px;
-    padding: 20px;
   }
 
   .blue-box {
     background-color: blue;
-    width: 100px;
-    height: 100px;
-    padding: 20px;
   }
 
   .green-box {
-    background-color: green;
-    width: 350px;
     height: 350px;
+    background-color: green;
     border-radius: 20px;
   }
 </style>
