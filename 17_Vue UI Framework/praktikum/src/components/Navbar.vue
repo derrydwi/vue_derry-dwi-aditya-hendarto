@@ -14,7 +14,7 @@
       z-50
     "
   >
-    <div class="container flex flex-wrap justify-between items-center mx-auto">
+    <div class="container flex justify-between items-center mx-auto">
       <router-link
         :to="{ name: 'home' }"
         class="flex"
