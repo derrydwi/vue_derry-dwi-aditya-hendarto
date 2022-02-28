@@ -24,7 +24,7 @@ import NewsCard from "@/components/NewsCard.vue";
 import Footer from "@/components/Footer.vue";
 
 import axios from "axios";
-import { ref, onMounted, watch } from "vue";
+import { ref, onMounted } from "vue";
 import { useStore } from "vuex";
 
 const APIKEY = "2b25f844d1db4b019ec74d004426a9fd";
