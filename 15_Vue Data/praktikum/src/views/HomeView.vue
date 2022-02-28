@@ -1,13 +1,19 @@
 <template>
-  <div class="home dark:bg-gray-900">
-    <Navbar @changeCategory="changeCategory" @search="search" />
-    <Heading :title="title" />
-    <NewsCard
-      :newsList="newsList"
-      @saveDetail="saveDetail"
-      @loadMore="loadMore"
-    />
-    <Footer />
+  <div :class="isDark ? 'dark' : ''">
+    <div class="home dark:bg-gray-900">
+      <Navbar
+        @changeCategory="changeCategory"
+        @search="search"
+        @darkModeToggle="darkModeToggle"
+      />
+      <Heading :title="title" />
+      <NewsCard
+        :newsList="newsList"
+        @saveDetail="saveDetail"
+        @loadMore="loadMore"
+      />
+      <Footer />
+    </div>
   </div>
 </template>
 
@@ -18,7 +24,7 @@ import NewsCard from "@/components/NewsCard.vue";
 import Footer from "@/components/Footer.vue";
 
 import axios from "axios";
-import { ref, onMounted } from "vue";
+import { ref, onMounted, watch } from "vue";
 import { useStore } from "vuex";
 
 const APIKEY = "2b25f844d1db4b019ec74d004426a9fd";
@@ -26,6 +32,7 @@ const APIKEY = "2b25f844d1db4b019ec74d004426a9fd";
 const store = useStore();
 const newsList = ref([]);
 const isSearch = ref(false);
+const isDark = ref(store.state.isDark);
 
 const oldQuery = ref(store.state.query);
 
@@ -83,6 +90,11 @@ const search = async (query) => {
   );
   oldQuery.value = query;
   store.dispatch("deleteQuery");
+};
+
+const darkModeToggle = () => {
+  isDark.value = !isDark.value;
+  store.dispatch("saveIsDark", isDark.value);
 };
 
 onMounted(() => {

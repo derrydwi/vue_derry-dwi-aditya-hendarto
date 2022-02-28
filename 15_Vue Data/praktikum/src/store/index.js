@@ -7,6 +7,7 @@ const store = createStore({
     currentNews: '',
     category: '',
     query: '',
+    isDark: '',
   },
   getters: {},
   mutations: {
@@ -22,6 +23,9 @@ const store = createStore({
     DELETE_QUERY(state) {
       state.query = '';
     },
+    SAVE_ISDARK(state, title) {
+      state.isDark = title;
+    },
   },
   actions: {
     saveNews({ commit }, title) {
@@ -35,6 +39,9 @@ const store = createStore({
     },
     deleteQuery({ commit }, title) {
       commit('DELETE_QUERY', title);
+    },
+    saveIsDark({ commit }, title) {
+      commit('SAVE_ISDARK', title);
     },
   },
   modules: {},

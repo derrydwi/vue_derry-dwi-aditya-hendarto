@@ -222,6 +222,31 @@
             placeholder="Search..."
           />
         </div>
+        <div class="my-auto ml-3">
+          <label
+            for="toggle-example"
+            class="flex relative items-center cursor-pointer"
+          >
+            <input
+              type="checkbox"
+              id="toggle-example"
+              class="sr-only"
+              :checked="$store.state.isDark"
+              @click="$emit('darkModeToggle')"
+            />
+            <div
+              class="
+                w-11
+                h-6
+                bg-gray-200
+                rounded-full
+                border border-gray-200
+                toggle-bg
+                dark:bg-gray-700 dark:border-gray-600
+              "
+            ></div>
+          </label>
+        </div>
         <button
           data-collapse-toggle="mobile-menu-3"
           type="button"
@@ -317,7 +342,7 @@
 
 <script setup>
 import { ref } from "vue";
-defineEmits(["changeCategory", "search"]);
+defineEmits(["changeCategory", "search", "darkModeToggle"]);
 
 const query = ref("");
 const categories = [
