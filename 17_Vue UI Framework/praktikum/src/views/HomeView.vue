@@ -191,7 +191,6 @@ import { onMounted, ref } from "vue";
 const APIKEY = "ef4cfbb05041416fb35131491a8c3cb9";
 const drawer = ref(true);
 const articles = ref([]);
-const query = ref("");
 const theme = ref("light");
 
 const toggleTheme = () => {
@@ -210,7 +209,7 @@ const loadNews = async (query) => {
     requestApi(`https://newsapi.org/v2/everything?q=${query}&apiKey=${APIKEY}`);
   } else {
     requestApi(
-      `https://newsapi.org/v2/top-headlines?sources=techcrunch&apiKey=${APIKEY}`
+      `https://newsapi.org/v2/top-headlines?country=us&apiKey=${APIKEY}`
     );
   }
 };
