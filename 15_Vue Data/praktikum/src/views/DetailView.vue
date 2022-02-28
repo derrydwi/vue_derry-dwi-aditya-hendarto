@@ -1,6 +1,6 @@
 <template>
   <div class="home dark:bg-gray-900 min-h-screen">
-    <Navbar @changeCategory="changeCategory" />
+    <Navbar @changeCategory="changeCategory" @search="search" />
     <Detail />
     <Footer />
   </div>
@@ -15,5 +15,9 @@ import { useStore } from "vuex";
 const store = useStore();
 const changeCategory = (categoryName) => {
   store.dispatch("saveCategory", categoryName);
+};
+
+const search = (query) => {
+  store.dispatch("saveQuery", query);
 };
 </script>

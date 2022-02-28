@@ -6,6 +6,7 @@ const store = createStore({
   state: {
     currentNews: '',
     category: '',
+    query: '',
   },
   getters: {},
   mutations: {
@@ -15,6 +16,12 @@ const store = createStore({
     SAVE_CATEGORY(state, title) {
       state.category = title;
     },
+    SAVE_QUERY(state, title) {
+      state.query = title;
+    },
+    DELETE_QUERY(state) {
+      state.query = '';
+    },
   },
   actions: {
     saveNews({ commit }, title) {
@@ -22,6 +29,12 @@ const store = createStore({
     },
     saveCategory({ commit }, title) {
       commit('SAVE_CATEGORY', title);
+    },
+    saveQuery({ commit }, title) {
+      commit('SAVE_QUERY', title);
+    },
+    deleteQuery({ commit }, title) {
+      commit('DELETE_QUERY', title);
     },
   },
   modules: {},

@@ -13,7 +13,7 @@
               id: news.title.replace(/ /g, '-').replace(/[^\w-]+/g, ''),
             },
           }"
-          @click="saveDetail(index)"
+          @click="$emit('saveDetail', index)"
         >
           <div
             class="
@@ -76,7 +76,7 @@
       </div>
       <div class="flex mb-5">
         <button
-          @click="loadMore"
+          @click="$emit('loadMore')"
           class="
             mx-auto
             inline-flex
@@ -152,16 +152,8 @@
 </template>
 
 <script setup>
-const props = defineProps(["newsList"]);
-const emit = defineEmits();
-
-const saveDetail = (index) => {
-  emit("saveDetail", index);
-};
-
-const loadMore = () => {
-  emit("loadMore");
-};
+defineProps(["newsList"]);
+defineEmits(["saveDetail", "loadMore"]);
 </script>
 
 <style>
