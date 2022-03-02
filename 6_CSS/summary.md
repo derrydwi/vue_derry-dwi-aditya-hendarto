@@ -7,6 +7,7 @@ Berikut diantaranya adalah beberapa poin yang saya pelajari dari materi ini:
 2. Metode penambahan file CSS
 3. Syntax CSS
 4. CSS Font Properties
+5. CSS Padding & Margin
 
 ### Pendahuluan
 
@@ -37,6 +38,10 @@ CSS Font dapat digunakan untuk melakukan styling font. Beberapa propertiesnya ya
 3. font-size, untuk menentukan ukuran font
 4. font-weight, untuk menentukan ketebalan untuk font
 5. font-style, untuk menentukan gaya font
+
+### CSS Padding & Margin
+
+Padding berfungsi untuk menambah jarak pada bagian dalam elemen. Sedangkan margin berfungsi untuk menambah jarak pada bagian luar elemen.
 
 ## Task
 
