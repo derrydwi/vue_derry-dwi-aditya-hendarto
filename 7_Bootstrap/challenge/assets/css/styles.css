@@ -69,6 +69,16 @@ header {
   color: hsl(198, 62%, 26%);
 }
 
+.margin-heading-graphic-design,
+.margin-heading-photography {
+  margin-top: 100px;
+}
+
+.margin-paragraph-graphic-design,
+.margin-paragraph-photography {
+  margin-top: 180px;
+}
+
 .text-position {
   color: #b0b0b0;
 }
