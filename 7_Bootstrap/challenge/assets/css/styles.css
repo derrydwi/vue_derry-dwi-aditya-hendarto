@@ -59,15 +59,19 @@ header {
 
 .text-graphic-design {
   color: hsl(167, 40%, 24%);
+  width: 100%;
+  padding: 0 30px;
 }
 
 .text-photography {
   color: hsl(198, 62%, 26%);
+  width: 100%;
+  padding: 0 30px;
 }
 
 .margin-heading-graphic-design,
 .margin-heading-photography {
-  margin-top: 20px;
+  margin-top: 40px;
 }
 
 .margin-paragraph-graphic-design,
@@ -129,7 +133,13 @@ footer {
   }
 
   .testimony {
-    height: 100vh;
+    height: auto;
+  }
+
+  .text-graphic-design,
+  .text-photography {
+    width: auto;
+    padding: 0 0;
   }
 
   .margin-heading-graphic-design,
