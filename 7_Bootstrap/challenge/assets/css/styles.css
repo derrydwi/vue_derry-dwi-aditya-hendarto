@@ -22,7 +22,7 @@ header {
 }
 
 .arrow {
-  width: 5%;
+  width: 10%;
 }
 
 .contact-rounded {
@@ -54,11 +54,7 @@ header {
 }
 
 .testimony {
-  height: 100vh;
-}
-
-.heading-highlight-row-3 {
-  padding-top: 313px;
+  height: auto;
 }
 
 .text-graphic-design {
@@ -71,12 +67,12 @@ header {
 
 .margin-heading-graphic-design,
 .margin-heading-photography {
-  margin-top: 100px;
+  margin-top: 20px;
 }
 
 .margin-paragraph-graphic-design,
 .margin-paragraph-photography {
-  margin-top: 180px;
+  margin-top: 100px;
 }
 
 .text-position {
@@ -124,4 +120,25 @@ footer {
 .nav-link:hover,
 .social-media:hover {
   color: white;
+}
+
+/* Small devices (portrait tablets and large phones, 576px and up) */
+@media only screen and (min-width: 576px) {
+  .arrow {
+    width: 5%;
+  }
+
+  .testimony {
+    height: 100vh;
+  }
+
+  .margin-heading-graphic-design,
+  .margin-heading-photography {
+    margin-top: 100px;
+  }
+
+  .margin-paragraph-graphic-design,
+  .margin-paragraph-photography {
+    margin-top: 180px;
+  }
 }
