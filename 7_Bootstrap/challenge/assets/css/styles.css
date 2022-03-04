@@ -1,0 +1,117 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow:wght@600;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:wght@700;900&display=swap');
+
+body {
+  font-family: 'Barlow', sans-serif;
+}
+
+nav {
+  background-color: #57bfff;
+}
+
+header {
+  background-image: url('../img/desktop/image-header.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100vh;
+}
+
+.font-fraunces {
+  font-family: 'Fraunces', sans-serif;
+}
+
+.arrow {
+  width: 5%;
+}
+
+.contact-rounded {
+  background-color: white;
+  border-radius: 20px;
+  color: black;
+}
+
+.spacing {
+  letter-spacing: 8px;
+}
+
+.bold {
+  font-weight: 900;
+}
+
+.graphic-design {
+  background-image: url('../img/desktop/image-graphic-design.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.photography {
+  background-image: url('../img/desktop/image-photography.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.testimony {
+  height: 100vh;
+}
+
+.heading-highlight-row-3 {
+  padding-top: 313px;
+}
+
+.text-graphic-design {
+  color: hsl(167, 40%, 24%);
+}
+
+.text-photography {
+  color: hsl(198, 62%, 26%);
+}
+
+.text-position {
+  color: #b0b0b0;
+}
+
+footer {
+  background-color: #90d4c4;
+}
+
+.footer-brand {
+  color: #2e7566;
+}
+
+.footer-item {
+  color: #488c7d;
+}
+
+.social-media {
+  color: #2e7566;
+  font-size: 24px;
+}
+
+.nav-item-contact:hover {
+  background-color: #6dceff;
+  color: white;
+}
+
+.nav-link-contact:hover {
+  color: white !important;
+}
+
+.learn-more-transform:hover {
+  border-bottom: 5px solid #f7d1014d;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+.learn-more-stand:hover {
+  border-bottom: 5px solid #f073644d;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+.nav-link:hover,
+.social-media:hover {
+  color: white;
+}
