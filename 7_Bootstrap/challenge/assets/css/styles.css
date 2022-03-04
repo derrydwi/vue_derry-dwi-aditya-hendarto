@@ -100,12 +100,8 @@ footer {
   font-size: 24px;
 }
 
-.nav-item-contact:hover {
+.btn-light:hover {
   background-color: #6dceff;
-  color: white;
-}
-
-.nav-link-contact:hover {
   color: white !important;
 }
 
