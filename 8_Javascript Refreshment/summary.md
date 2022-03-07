@@ -4,31 +4,90 @@
 
 Berikut adalah beberapa poin yang saya pelajari dari materi ini:
 1. Pendahuluan Javascript
-2. Karakteristik var, let, dan const
-3. Declaration, scoping, dan hoisting
-4. Jenis tipe data
-5. Destructuring
+2. Declaration, scoping, dan hoisting
+3. Perbandingan karakteristik var, let, dan const
+4. Primitive & Object
+5. Jenis tipe data
+6. Destructuring
+7. Spread
+8. Method-method dalam javascript
+9. Control flow
+10. Function
+11. Synchronous & Asynchronous
+12. Callback
+13. Promise
+14. Asynchronous & Await
+15. Class
+16. Document Object Model (DOM)
 
 ### Pendahuluan Javascript
 
 Javascript adalah suatu bahasa pemrograman yang bersifat high-level, scripting, untyped dan interpreted.
 
-### Karakteristik var, let, dan const
+### Declaration, scoping, dan hoisting
+
+- Declaration adalah suatu proses pembuatan variabel baru.
+- Scoping adalah ruang lingkup variabel, fungsi, atau suatu objek dapat diakses.
+- Hoisting adalah kondisi dimana variabel atau fungsi dapat diakses sebelum dideklarasikan.
+
+### Perbandingan karakteristik var, let, dan const
 
 Var memperbolehkan redeclaration, sedangkan pada let dan const tidak diperbolehkan. Var dan let memperbolehkan reassignment, sedangkan pada const tidak diperbolehkan.
 
-### Declaration, scoping, dan hoisting
+  | Declaration | Redeclaration | Reassignment | Hoisting | Global Scope | Function Scope | Block Scope
+:---: | :---: | :---: | :---: | :---: | :---: | :---: | :---:
+Var | ✔ | ✔ | ✔ | ✔ | ✔ | ❌ | ✔
+Let | ✔ | ❌ | ✔ | ❌ | ✔ | ❌ | ❌
+Const | ❌ | ❌ | ❌ | ❌ | ✔ | ❌ | ❌
 
-Declaration adalah suatu proses pembuatan variabel baru. Scoping adalah ruang lingkup variabel, fungsi, atau suatu objek dapat diakses. Hoisting adalah kondisi dimana variabel atau fungsi dapat diakses sebelum dideklarasikan.
+### Primitive & Object
 
-### Jenis tipe data
-
-- Primitives, unit pemrosesan terkecil dan elemen paling sederhana dalam bahasa pemrograman. Primitif bersifat dapat meneruskan suatu nilai. Contoh: String, boolean, number, bigint, dll.
-- Objects, unit yang menampung properti dan fungsi atau method. Objects disebut juga sebagai collection atau reference type. Contoh: Object, array, function, date, set, map, dll.
+- Primitives merupakan unit pemrosesan terkecil dan elemen paling sederhana dalam bahasa pemrograman. Primitif bersifat dapat meneruskan suatu nilai. Contoh: String, boolean, number, bigint, dll.
+- Objects adalah unit yang menampung properti dan fungsi atau method. Objects disebut juga sebagai collection atau reference type. Contoh: Object, array, function, date, set, map, dll.
 
 ### Destructuring
 
 Destructuring merupakan suatu ekspersi pada javascript yang berfungsi untuk menyalin nilai dari array atau properti dari object ke dalam suatu variabel baru.
+
+### Spread
+
+Spread yaitu salah satu syntax atau operator dalam javascript yang dapat digunakan untuk membagi elemen array atau properti pada objek, sehingga elemen array dapat ditambahkan ataupun dimasukan ke dalam suatu array baru.
+
+### Method-method dalam javascript
+
+- Concat, menggabungkan dua atau lebih array untuk dapat dikembalikan lagi dalam bentuk yang sudah digabung.
+- Map, mengembalikan array baru dengan menjalankan fungsi atau statement untuk setiap elemen pada array.
+- Foreach, menjalankan fungsi atau statement untuk setiap elemen array.
+- Slice, memilih sebagian elemen dari array untuk dikembalikan lagi dalam array baru.
+- Filter, mengembalikan array baru berisi elemen array yang sudah lolos seleksi kondisi.
+- Reduce, melakukan operasi pada setiap elemen array ke dalam nilai tunggal.
+
+### Control flow
+
+- Pengulangan. Contoh: for, while, do while.
+- Pengkondisian. Contoh: if else, switch case, block, try catch, break, continue, throw.
+
+### Function
+
+Function dalam javascript ditujukan untuk menampung serangkaian komputasi atau prosedur yang digunakan berkali-kali. Bentuk-bentuk fungsi dalam javascript umumnya terdapat 3 jenis yaitu declaration function, expression function, dan arrow function.
+
+### Synchronous & Asynchronous
+
+- Synchronous merupakan eksekusi kode yang dijalankan satu persatu sesuai urutan penulisannya.
+- Asynchronous adalah eksekusi kode yang tidak selalu dijalankan berdasarkan urutan penulisannya, melainkan berdasarkan waktu proses.
+
+### Class
+
+Class dapat diibaratkan sebagai prototype dari suatu object yang akan dibuat.
+Beberapa terminologi umum yang berkaitan dengan class adalah sebagai berikut:
+- Constructor, yaitu suatu method yang selalu dijalankan saat pertama kali menginisialisasikan object.
+- Method, merupakan fungsi yang terdapat dalam suatu class.
+- Attributes, adalah sekumpulan variabel yang dimiliki oleh suatu object pada class.
+- Extend, ditujukan untuk membuat class child dari class parent, yang akan artinya mewarisi seluruh atribut dan method dari class parent.
+
+### Document Object Model (DOM)
+
+DOM adalah Application Programming Interface (API) pada HTML yang merepresentasikan halaman web pada suatu dokumen menjadi sebuah object.
 
 ## Task
 
