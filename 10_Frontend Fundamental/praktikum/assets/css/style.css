@@ -1,10 +1,8 @@
 .container {
   display: flex;
-  flex-wrap: wrap;
 }
 
 .content {
-  width: 33.3%;
   height: 50px;
 }
 
@@ -32,12 +30,6 @@
   background-color: grey;
 }
 
-@media only screen and (max-width: 960px) {
-  .content {
-    width: 50%;
-  }
-}
-
 @media only screen and (max-width: 600px) {
   .container {
     flex-direction: column;
@@ -45,5 +37,22 @@
 
   .content {
     width: 100%;
+  }
+}
+
+@media only screen and (min-width: 600px) {
+  .container {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .content {
+    width: 50%;
+  }
+}
+
+@media only screen and (min-width: 960px) {
+  .content {
+    width: 33.3%;
   }
 }
