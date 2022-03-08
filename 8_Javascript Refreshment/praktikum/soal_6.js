@@ -1,4 +1,4 @@
-let value = [1, 2, 3, 4, 5, 6];
-console.log(value);
-value = value.map((item) => (item *= 2));
-console.log(value);
+let arr = [1.5, 2.56, 5.1, 12.33];
+console.log(arr);
+arr = arr.map((item) => Math.round(item));
+console.log(arr);
