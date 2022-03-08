@@ -156,7 +156,17 @@ Output:
 
 ![OutputSoal3.png](./screenshots/OutputSoal3.png)
 
-### 5. Kalian memiliki sebuah variabel berikut (let bdays = ['10-17','05-19','20-19']). Ubahlah tanda (-) dalam variabel tersebut menjadi (/) sehingga output yang akan keluar dalam console menjadi [ '10/17', '05/19', '20/19' ]
+### 4. Kalian memiliki sebuah variabel berikut (let bdays = ['10-17','05-19','20-19']). Ubahlah tanda (-) dalam variabel tersebut menjadi (/) sehingga output yang akan keluar dalam console menjadi [ '10/17', '05/19', '20/19' ]
+
+Berikut kode hasil dari praktikum ini:
+
+[soal_4.js](./praktikum/soal_4.js)
+
+Output:
+
+![OutputSoal4.png](./screenshots/OutputSoal4.png)
+
+### 5. Kalian memiliki variabel berikut (let value = [1,2,3,4,5,6]). Kalikan setiap value dalam array tersebut dengan dua. Sehingga, ketika dipanggil variable value mengeluarkan output berupa [ 2, 4, 6, 8, 10, 12 ]
 
 Berikut kode hasil dari praktikum ini:
 
@@ -166,7 +176,7 @@ Output:
 
 ![OutputSoal5.png](./screenshots/OutputSoal5.png)
 
-### 6. Kalian memiliki variabel berikut (let value = [1,2,3,4,5,6]). Kalikan setiap value dalam array tersebut dengan dua. Sehingga, ketika dipanggil variable value mengeluarkan output berupa [ 2, 4, 6, 8, 10, 12 ]
+### 6. Kalian memiliki variabel berikut (let arr = [1.5, 2.56,5.1, 12.33]) Bulatkan ke atas variable tersebut sehingga output yang dihasilkan adalah [ 2, 3, 5, 12 ]
 
 Berikut kode hasil dari praktikum ini:
 
@@ -175,13 +185,3 @@ Berikut kode hasil dari praktikum ini:
 Output:
 
 ![OutputSoal6.png](./screenshots/OutputSoal6.png)
-
-### 7. Kalian memiliki variabel berikut (let arr = [1.5, 2.56,5.1, 12.33]) Bulatkan ke atas variable tersebut sehingga output yang dihasilkan adalah [ 2, 3, 6, 13 ]
-
-Berikut kode hasil dari praktikum ini:
-
-[soal_7.js](./praktikum/soal_7.js)
-
-Output:
-
-![OutputSoal7.png](./screenshots/OutputSoal7.png)
