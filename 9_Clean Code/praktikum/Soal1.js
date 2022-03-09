@@ -10,16 +10,20 @@ class UserService {
   constructor() {
     this.users = [];
   }
+
+  // create user object, push to users array, and return the object
   addUser(id, username, password) {
     const user = new User(id, username, password);
     this.users.push(user);
     return user;
   }
+
   getAllUsers() {
     return this.users;
   }
+
   getUserById(userId) {
-    return this.users.filter((user) => user.id === userId);
+    return this.users.filter((user) => user.id === userId)[0];
   }
 }
 
