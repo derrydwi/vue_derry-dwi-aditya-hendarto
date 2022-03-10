@@ -17,8 +17,8 @@ class Mobil extends Kendaraan {
 
 const mobilCepat = new Mobil(4, 0);
 mobilCepat.tambahKecepatan(100);
-console.log(mobilCepat.status());
+console.log('Mobil Cepat:', mobilCepat.status());
 
 const mobilLamban = new Mobil(4, 0);
 mobilLamban.tambahKecepatan(20);
-console.log(mobilLamban.status());
+console.log('Mobil Lamban:', mobilLamban.status());
