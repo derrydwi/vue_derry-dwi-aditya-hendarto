@@ -97,6 +97,7 @@ class User {
 
 class UserService {
   // ...
+  // create user object, push to users array, and return the object
   addUser({ id, username, password }) {
     const user = new User({ id, username, password });
     this.users.push(user);
@@ -140,6 +141,7 @@ class UserService {
 ```javascript
 class UserService {
   // ...
+  // create user object, push to users array, and return the object
   addUser({ id, username, password }) {
     const user = new User({ id, username, password });
     this.users.push(user);
