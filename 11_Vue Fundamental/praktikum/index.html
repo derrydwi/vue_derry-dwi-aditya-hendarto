@@ -2,21 +2,31 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="./assets/css/style.css">
   <title>Vue Fundamental</title>
 </head>
 
 <body>
   <div id="app">
-    <ol>
-      <li v-for="todo in todos">{{ todo }}</li>
-    </ol>
-    <p>{{ errorMessage }}</p>
-    <input type="text" v-model="todo" @keyup.enter="addTodo(todo)">
-    <button @click="addTodo(todo)" type="submit">Tambahkan</button>
-    <p v-if="todos.length >= 4">{{ message }}</p>
+    <div v-if="todos.length" class="list">
+      <ol>
+        <li v-for="todo in todos">{{ todo }}</li>
+      </ol>
+    </div>
+    <div v-else class="list-empty">
+      <p>Todo masih kosong.</p>
+    </div>
+    <div class="input-field">
+      <input v-model="todo" @keyup.enter="addTodo" type="text" />
+      <button @click="addTodo">Tambahkan</button>
+    </div>
+    <div class="message">
+      <p v-if="isEmpty" class="error-empty">Input todo tidak boleh kosong!</p>
+      <p v-if="todos.length >= 4">Hebat!</p>
+    </div>
   </div>
 
   <script type="importmap">
@@ -28,28 +38,35 @@
   </script>
 
   <script type="module">
-    import { createApp, ref } from 'vue'
+    import {createApp, ref} from 'vue';
 
     createApp({
       setup() {
         const todo = ref('');
         const todos = ref([]);
-        const message = ref('Hebat!');
-        const errorMessage = ref('');
-        const addTodo = (activity) => {
-          if (!activity) {
-            errorMessage.value = 'Input todo tidak boleh kosong!'
-          } else {
-            todos.value.push(activity);
+        const isEmpty = ref(false);
+
+        const validation = () => {
+          todo.value ? (isEmpty.value = false) : (isEmpty.value = true);
+        };
+
+        const addTodo = () => {
+          validation();
+          if (!isEmpty.value) {
+            todos.value.push(todo.value);
             todo.value = '';
-            errorMessage.value = '';
           }
-        }
+        };
+
         return {
-          todo, todos, message, errorMessage, addTodo
-        }
-      }
-    }).mount('#app')
+          todo,
+          todos,
+          isEmpty,
+          validation,
+          addTodo,
+        };
+      },
+    }).mount('#app');
   </script>
 </body>
 
