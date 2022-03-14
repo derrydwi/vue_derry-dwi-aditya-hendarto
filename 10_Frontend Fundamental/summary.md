@@ -3,6 +3,7 @@
 ## Resume
 
 Secara garis besar berikut adalah sub topik yang saya pelajari dari materi ini:
+
 1. HTML
    - Definisi
    - Cara kerja
@@ -44,11 +45,13 @@ Sebuah file HTML tersusun atas serangkaian tags atau elements. Dimana pertama te
 Tag HTML memiliki dua tipe utama yakni block level `<div></div>` dan inline level `<span></span>`.
 
 Tiga tag block-level yang harus dimiliki pada setiap file HTML adalah:
+
 1. `<html>`
 2. `<head>`
 3. `<body>`
 
 Adapun tag yang sering dipakai yakni sebagai berikut:
+
 1. `<div></div>`
 2. `<span></span>`
 3. `<h1></h1>` `<h2></h2>` `<h3></h3>`
@@ -78,6 +81,7 @@ Pada dasarnya JS bisa ditulis langsung di dalam file HTML dan akan berjalan otom
 JS dapat disisipkan pada file HTML baik itu pada head atau body dengan diapit oleh tag `<script></script>`.
 
 Hal-hal basic pada JS diantaranya adalah sebagai berikut:
+
 - Variabel, merupakan tempat untuk menampung suatu nilai.
 - Operasi matematika, seperti penambahan, pengurangan, perkalian, pembagian, dll dapat dilakukan dengan menggunakan JavaScript Operators.
 - Fungsi, merupakan tempat untuk menampung logic atau algoritma yang digunakan berkali-kali.
@@ -104,6 +108,7 @@ NPM memiliki tugas untuk mengatur package pada project yang berjalan dengan Node
 Command `npm init` digunakan untuk membuat project baru, yang nantinya akan dibentuk pula file bernama package.json.
 
 Struktur project NPM terdiri dari beberapa key, diantaranya adalah:
+
 - name, merupakan nama project.
 - scripts, adalah daftar command yang dapat di run di dalam project.
 - dependencies, yaitu list library yang dipakai ketika masuk ke fase production.
@@ -120,18 +125,21 @@ Git merupakan suatu tools Version Control System. Dimana git mampu mencatat seti
 Cara kerja Git yakni memantau seluruh perubahan yang terjadi pada file project lalu menyimpannya ke suatu database. Git memiliki 3 area kerja yakni working directory, staging area, dan repository.
 
 Adapun terminologi dalam Git diantaranya adalah:
+
 - Modified, merupakan file yang telah diubah dan dicatat oleh git sehingga dapat dibandingkan dengan versi commit sebelumnya.
 - Staged, adalah file yang telah diubah dan telah di add. Sehingga siap untuk dilakukan commit.
 - Commit, yaitu tahap dimana file yang ada pada staging area disimpan dalam suatu snapshot ke dalam direktori git.
 - Branch, merupakan cerminan direktori pada git.
 
 Langkah-langkah untuk membuat repo yakni:
+
 1. Install git
 2. Pastikan git sudah terinstall dengan baik. Dengan mengetikkan perintah `git --version`
 3. Buka terminal di direktori project
 4. Run command `git init`
 
 Adapun langkah-langkah untuk mengunggah repo ke GitHub yakni:
+
 1. Buat akun github
 2. Buat repo baru pada github
 3. Salin link https repo yang telah dibuat
@@ -149,19 +157,21 @@ Adapun langkah-langkah untuk mengunggah repo ke GitHub yakni:
 
 Berikut kode hasil dari praktikum ini:
 
-[index.html](./praktikum/index.html)
-[style.css](./praktikum/assets/css/style.css)
+- [index.html](./praktikum/index.html)
+- [style.css](./praktikum/assets/css/style.css)
 
 Output:
 
 - Lebar kurang dari 600px
   ![max-width600px.png](./screenshots/max-width600px.png)
 - Lebar lebih dari atau sama dengan 600px dan kurang dari 960px
-  ![min-width600px.png](./screenshots/min-width600px.png)
+  ![min-width600pxAndmax-width959px.png](./screenshots/min-width600pxAndmax-width959px.png)
 - Lebar lebih dari atau sama dengan 960px
   ![min-width960px.png](./screenshots/min-width960px.png)
-  
-### 2. Buat branch bernama "latihan-materi-1" berisi latihan yang sebelumnya.
+
+### 2. Buat repository dan branch baru bernama "latihan-materi-1" berisi latihan yang sebelumnya.
+
+Link Repository: https://github.com/derrydwi/10_Frontend-Fundamental
 
 Output:
 ![ssbranch.png](./screenshots/ssbranch.png)
