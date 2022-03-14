@@ -38,8 +38,8 @@
   }
 }
 
-/* Small devices (portrait tablets and large phones, 600px and up) */
-@media only screen and (min-width: 600px) {
+/* Small devices (portrait tablets and large phones, between 600px and 959px) */
+@media only screen and (min-width: 600px) and (max-width: 959px) {
   .content {
     width: 50%;
   }
