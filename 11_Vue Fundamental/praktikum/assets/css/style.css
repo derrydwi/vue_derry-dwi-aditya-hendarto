@@ -1,7 +1,19 @@
-.error-empty {
-  color: red;
+ol {
+  padding-left: 16px;
+}
+
+li {
+  margin-bottom: 10px;
+}
+
+.input-field {
+  margin-right: 4px;
 }
 
 .message {
   font-weight: bold;
+}
+
+.error-empty {
+  color: red;
 }

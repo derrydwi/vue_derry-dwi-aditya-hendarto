@@ -19,8 +19,8 @@
     <div v-else class="list-empty">
       <p>Todo masih kosong.</p>
     </div>
-    <div class="input-field">
-      <input v-model="todo" @keyup.enter="addTodo" type="text" />
+    <div class="input">
+      <input v-model="todo" @keyup.enter="addTodo" type="text" class="input-field" />
       <button @click="addTodo">Tambahkan</button>
     </div>
     <div class="message">
@@ -29,22 +29,15 @@
     </div>
   </div>
 
-  <script type="importmap">
-    {
-      "imports": {
-        "vue": "https://unpkg.com/vue@3/dist/vue.esm-browser.js"
-      }
-    }
-  </script>
-
-  <script type="module">
-    import {createApp, ref} from 'vue';
-
-    createApp({
+  <!-- Import Vue 3 Global Build -->
+  <script src="https://unpkg.com/vue"></script>
+  
+  <script>
+    Vue.createApp({
       setup() {
-        const todo = ref('');
-        const todos = ref([]);
-        const isEmpty = ref(false);
+        const todo = Vue.ref('');
+        const todos = Vue.ref([]);
+        const isEmpty = Vue.ref(false);
 
         const validation = () => {
           todo.value ? (isEmpty.value = false) : (isEmpty.value = true);
