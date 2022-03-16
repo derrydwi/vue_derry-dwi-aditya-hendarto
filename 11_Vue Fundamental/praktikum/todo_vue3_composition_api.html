@@ -39,12 +39,8 @@
         const todos = Vue.ref([]);
         const isEmpty = Vue.ref(false);
 
-        const validation = () => {
-          todo.value ? (isEmpty.value = false) : (isEmpty.value = true);
-        };
-
         const addTodo = () => {
-          validation();
+          isEmpty.value = !todo.value;
           if (!isEmpty.value) {
             todos.value.push(todo.value);
             todo.value = '';
@@ -55,7 +51,6 @@
           todo,
           todos,
           isEmpty,
-          validation,
           addTodo,
         };
       },

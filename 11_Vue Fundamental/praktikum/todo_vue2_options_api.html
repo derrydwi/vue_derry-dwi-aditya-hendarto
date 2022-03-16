@@ -43,11 +43,8 @@
         }
       },
       methods: {
-        validation: function () {
-          this.todo ? (this.isEmpty = false) : (this.isEmpty = true)
-        },
         addTodo: function () {
-          this.validation();
+          this.isEmpty = !this.todo;
           if (!this.isEmpty) {
             this.todos.push(this.todo);
             this.todo = '';
