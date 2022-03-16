@@ -1,11 +1,19 @@
 <template>
-  <div>
-    <Heading title="Todo List" />
+  <div id="app">
+    <HeadingTitle title="Todo List" />
     <TodoList />
   </div>
 </template>
 
-<script setup>
+<script>
+import HeadingTitle from "./components/HeadingTitle.vue";
 import TodoList from "./components/TodoList.vue";
-import Heading from "./components/Heading.vue";
+
+export default {
+  name: "App",
+  components: {
+    HeadingTitle,
+    TodoList,
+  },
+};
 </script>

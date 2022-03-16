@@ -1,63 +1,71 @@
 <template>
-  <div>
-    <div v-if="todos.length > 0">
+  <div id="todo-list">
+    <div v-if="todos.length" class="list">
       <div v-for="(todo, index) in todos" :key="todo.id" class="item">
         <div v-if="editMode && editIndex === index" class="todo-edit">
           <div class="index-column">{{ index + 1 }}.</div>
           <input
+            v-model="todo.body"
+            @keyup.enter="editTodo(index)"
             type="text"
             class="edit-column"
-            v-model="todo.body"
-            @keyup.enter="editTodo(todo)"
           />
         </div>
         <div v-else class="todo">{{ index + 1 }}. {{ todo.body }}</div>
-        <button class="action" @click="deleteTodo(index)">Delete</button>
-        <button class="action" @click="editTodo(index)">Edit</button>
+        <button @click="deleteTodo(index)" class="action">Delete</button>
+        <button @click="editTodo(index)" class="action">Edit</button>
       </div>
     </div>
-    <div v-else class="empty-todo">Todo masih kosong.</div>
+    <div v-else class="list-empty">
+      <p>Todo masih kosong.</p>
+    </div>
     <div class="input">
       <input
+        v-model="todo"
+        @keyup.enter="addTodo"
         type="text"
         class="input-field"
-        v-model="todo"
-        @keyup.enter="addTodo(todo)"
       />
-      <button class="input-button" @click="addTodo(todo)">Tambahkan</button>
+      <button @click="addTodo" class="input-button">Tambahkan</button>
     </div>
-    <p v-if="isEmpty">Input todo tidak boleh kosong!</p>
-    <p v-if="todos.length >= 4">Hebat!</p>
+    <div class="message">
+      <p v-if="isEmpty" class="error-empty">Input todo tidak boleh kosong!</p>
+      <p v-if="todos.length >= 4">Hebat!</p>
+    </div>
   </div>
 </template>
 
-<script setup>
-import { ref } from "vue";
-
-const todo = ref("");
-const todos = ref([]);
-const isEmpty = ref(false);
-const editMode = ref(false);
-const editIndex = ref("");
-
-const addTodo = () => {
-  isEmpty.value = !todo.value;
-  if (todo.value) {
-    todos.value.push({
-      id: Date.now(),
-      body: todo.value,
-    });
-    todo.value = "";
-  }
-};
-
-const editTodo = (index) => {
-  editMode.value = !editMode.value;
-  editIndex.value = index;
-};
-
-const deleteTodo = (index) => {
-  todos.value.splice(index, 1);
+<script>
+export default {
+  name: "TodoList",
+  data() {
+    return {
+      todo: "",
+      todos: [],
+      isEmpty: false,
+      editMode: false,
+      editIndex: "",
+    };
+  },
+  methods: {
+    addTodo: function () {
+      this.isEmpty = !this.todo;
+      if (!this.isEmpty) {
+        this.todos.push({
+          id: Date.now(),
+          body: this.todo,
+        });
+        this.todo = "";
+      }
+    },
+    editTodo: function (index) {
+      this.editMode = !this.editMode;
+      this.editIndex = index;
+    },
+    deleteTodo: function (index) {
+      this.todos.splice(index, 1);
+    },
+  },
 };
 </script>
 
@@ -96,7 +104,19 @@ const deleteTodo = (index) => {
   width: 95%;
 }
 
-.empty-todo {
+.list-empty {
   text-align: center;
+}
+
+.input-field {
+  margin-right: 4px;
+}
+
+.message {
+  font-weight: bold;
+}
+
+.error-empty {
+  color: red;
 }
 </style>
