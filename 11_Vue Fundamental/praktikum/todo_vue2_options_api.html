@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="./assets/css/style.css">
+  <title>Vue Fundamental</title>
+</head>
+
+<body>
+  <div id="app">
+    <div v-if="todos.length" class="list">
+      <ol>
+        <li v-for="todo in todos">{{ todo }}</li>
+      </ol>
+    </div>
+    <div v-else class="list-empty">
+      <p>Todo masih kosong.</p>
+    </div>
+    <div class="input">
+      <input v-model="todo" @keyup.enter="addTodo" type="text" class="input-field" />
+      <button @click="addTodo">Tambahkan</button>
+    </div>
+    <div class="message">
+      <p v-if="isEmpty" class="error-empty">Input todo tidak boleh kosong!</p>
+      <p v-if="todos.length >= 4">Hebat!</p>
+    </div>
+  </div>
+
+  <!-- Import Vue 2 -->
+  <script src="https://unpkg.com/vue@2.6.14/dist/vue.js"></script>
+
+  <script>
+    new Vue({
+      el: '#app',
+      data() {
+        return {
+          todo: '',
+          todos: [],
+          isEmpty: false,
+        }
+      },
+      methods: {
+        validation: function () {
+          this.todo ? (this.isEmpty = false) : (this.isEmpty = true)
+        },
+        addTodo: function () {
+          this.validation();
+          if (!this.isEmpty) {
+            this.todos.push(this.todo);
+            this.todo = '';
+          }
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>
