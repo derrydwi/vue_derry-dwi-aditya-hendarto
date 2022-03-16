@@ -13,7 +13,7 @@
   <div id="app">
     <div v-if="todos.length" class="list">
       <ol>
-        <li v-for="todo in todos">{{ todo }}</li>
+        <li v-for="(todo, index) in todos" :key="index">{{ todo }}</li>
       </ol>
     </div>
     <div v-else class="list-empty">
