@@ -1,14 +1,17 @@
 <template>
   <div id="message-todo">
     <p v-if="isEmpty" class="error-empty">Input todo tidak boleh kosong!</p>
-    <p v-if="todos.length >= 4">Hebat!</p>
+    <p v-if="todosLength >= 4">Hebat!</p>
   </div>
 </template>
 
 <script>
 export default {
   name: "MessageTodo",
-  props: ["todos", "isEmpty"],
+  props: {
+    todosLength: Number,
+    isEmpty: Boolean,
+  },
 };
 </script>
 

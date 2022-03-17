@@ -19,7 +19,7 @@ export default {
     };
   },
   methods: {
-    sendTodo: function () {
+    sendTodo() {
       this.$emit("addTodo", this.todo);
       this.todo = "";
     },

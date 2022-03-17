@@ -14,7 +14,9 @@
 <script>
 export default {
   name: "ListTodo",
-  props: ["todos"],
+  props: {
+    todos: Array,
+  },
 };
 </script>
 

@@ -2,7 +2,7 @@
   <div id="app">
     <ListTodo :todos="todos" />
     <InputTodo @addTodo="addTodo" />
-    <MessageTodo :todos="todos" :isEmpty="isEmpty" />
+    <MessageTodo :todosLength="todosLength" :isEmpty="isEmpty" />
   </div>
 </template>
 
@@ -24,8 +24,13 @@ export default {
       isEmpty: false,
     };
   },
+  computed: {
+    todosLength() {
+      return this.todos.length;
+    },
+  },
   methods: {
-    addTodo: function (todo) {
+    addTodo(todo) {
       this.isEmpty = !todo;
       if (!this.isEmpty) {
         this.todos.push(todo);
