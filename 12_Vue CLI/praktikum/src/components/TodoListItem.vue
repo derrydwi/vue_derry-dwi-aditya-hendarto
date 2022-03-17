@@ -1,5 +1,5 @@
 <template>
-  <div id="list-todo">
+  <div id="todo-list-item">
     <div v-if="todos.length" class="list">
       <ol>
         <li v-for="(todo, index) in todos" :key="index">{{ todo }}</li>
@@ -13,7 +13,7 @@
 
 <script>
 export default {
-  name: "ListTodo",
+  name: "TodoListItem",
   props: {
     todos: Array,
   },

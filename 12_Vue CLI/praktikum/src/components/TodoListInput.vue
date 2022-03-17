@@ -1,5 +1,5 @@
 <template>
-  <div id="input-todo">
+  <div id="todo-list-input">
     <input
       v-model="todo"
       @keyup.enter="sendTodo"
@@ -12,7 +12,7 @@
 
 <script>
 export default {
-  name: "TodoList",
+  name: "TodoListInput",
   data() {
     return {
       todo: "",

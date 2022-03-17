@@ -1,5 +1,5 @@
 <template>
-  <div id="message-todo">
+  <div id="todo-list-message">
     <p v-if="isEmpty" class="error-empty">Input todo tidak boleh kosong!</p>
     <p v-if="todosLength >= 4">Hebat!</p>
   </div>
@@ -7,7 +7,7 @@
 
 <script>
 export default {
-  name: "MessageTodo",
+  name: "TodoListMessage",
   props: {
     todosLength: Number,
     isEmpty: Boolean,

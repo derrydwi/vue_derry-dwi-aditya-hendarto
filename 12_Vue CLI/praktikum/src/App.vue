@@ -1,22 +1,22 @@
 <template>
   <div id="app">
-    <ListTodo :todos="todos" />
-    <InputTodo @addTodo="addTodo" />
-    <MessageTodo :todosLength="todosLength" :isEmpty="isEmpty" />
+    <TodoListItem :todos="todos" />
+    <TodoListInput @addTodo="addTodo" />
+    <TodoListMessage :todosLength="todosLength" :isEmpty="isEmpty" />
   </div>
 </template>
 
 <script>
-import ListTodo from "@/components/ListTodo.vue";
-import InputTodo from "@/components/InputTodo.vue";
-import MessageTodo from "@/components/MessageTodo.vue";
+import TodoListItem from "./components/TodoListItem.vue";
+import TodoListInput from "./components/TodoListInput.vue";
+import TodoListMessage from "./components/TodoListMessage.vue";
 
 export default {
   name: "App",
   components: {
-    ListTodo,
-    InputTodo,
-    MessageTodo,
+    TodoListItem,
+    TodoListInput,
+    TodoListMessage,
   },
   data() {
     return {
