@@ -31,6 +31,7 @@ export default {
 #todo-list-input {
   display: flex;
 }
+
 .input-field {
   width: 80%;
 }
