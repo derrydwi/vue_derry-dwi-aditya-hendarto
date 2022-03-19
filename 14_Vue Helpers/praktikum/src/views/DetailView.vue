@@ -1,21 +1,26 @@
 <template>
   <div class="detail">
     <BaseButton text="Kembali" />
-    <TheHeading :title="todo.body" />
-    <TheContent :text="todo.description" />
-    <TodoListInput
-      v-if="editMode"
-      action="save-description"
-      text="Simpan"
-      :description="todo.description"
-      @save-description="saveDescription"
-    />
-    <BaseButton
-      v-else
-      action="edit-description"
-      text="Ubah Deskripsi"
-      @edit-description="editDescription"
-    />
+    <div v-if="todo">
+      <TheHeading :title="todo.body" />
+      <TheContent :text="todo.description" />
+      <TodoListInput
+        v-if="editMode"
+        action="save-description"
+        text="Simpan"
+        :description="todo.description"
+        @save-description="saveDescription"
+      />
+      <BaseButton
+        v-else
+        action="edit-description"
+        text="Ubah Deskripsi"
+        @edit-description="editDescription"
+      />
+    </div>
+    <div v-else>
+      <TheContent text="Todo tidak ditemukan!" />
+    </div>
   </div>
 </template>
 
