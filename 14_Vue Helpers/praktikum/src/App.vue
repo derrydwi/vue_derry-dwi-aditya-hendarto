@@ -1,10 +1,5 @@
 <template>
-  <div>
-    <Heading title="Todo List" />
+  <div id="app">
     <router-view />
   </div>
 </template>
-
-<script setup>
-import Heading from "./components/Heading.vue";
-</script>
