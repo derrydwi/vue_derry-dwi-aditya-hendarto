@@ -1,29 +1,42 @@
 <template>
   <div id="app">
-    <TheHeading title="Todo List" />
-    <TodoListItem
-      :todos="todos"
-      @edit-todo="editTodo"
-      @delete-todo="deleteTodo"
-    />
+    <BaseHeading title="Todo List" />
+    <div v-if="todosLength">
+      <TodoListItem
+        v-for="(todo, index) in todos"
+        :key="index"
+        :index="index"
+        :todo="todo"
+        @edit-todo="editTodo"
+        @delete-todo="deleteTodo"
+      />
+    </div>
+    <div v-else>
+      <BaseMessage message="Todo masih kosong." />
+    </div>
     <TodoListInput @add-todo="addTodo" />
-    <TodoListMessage :todos-length="todosLength" :is-empty="isEmpty" />
+    <BaseMessage
+      v-if="isEmpty"
+      message="Input todo tidak boleh kosong!"
+      class="error-empty"
+    />
+    <BaseMessage v-if="todosLength > 3" message="Hebat!" />
   </div>
 </template>
 
 <script>
-import TheHeading from "@/components/TheHeading.vue";
+import BaseMessage from "@/components/BaseMessage.vue";
+import BaseHeading from "@/components/BaseHeading.vue";
 import TodoListItem from "@/components/TodoListItem.vue";
 import TodoListInput from "@/components/TodoListInput.vue";
-import TodoListMessage from "@/components/TodoListMessage.vue";
 
 export default {
   name: "App",
   components: {
-    TheHeading,
+    BaseMessage,
+    BaseHeading,
     TodoListItem,
     TodoListInput,
-    TodoListMessage,
   },
   data() {
     return {
@@ -46,12 +59,20 @@ export default {
         });
       }
     },
-    editTodo(index, todo) {
-      this.todos[index].body = todo;
+    editTodo(todoId, todoBody) {
+      this.todos = this.todos.map((todo) =>
+        todo.id === todoId ? { ...todo, body: todoBody } : todo
+      );
     },
-    deleteTodo(index) {
-      this.todos.splice(index, 1);
+    deleteTodo(todoId) {
+      this.todos = this.todos.filter((todo) => todo.id !== todoId);
     },
   },
 };
 </script>
+
+<style scoped>
+.error-empty {
+  color: red;
+}
+</style>
