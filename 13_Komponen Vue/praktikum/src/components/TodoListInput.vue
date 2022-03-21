@@ -1,5 +1,5 @@
 <template>
-  <div id="todo-list-input">
+  <div class="todo-list-input">
     <input
       v-model="todo"
       @keyup.enter="sendTodo"
@@ -20,7 +20,7 @@ export default {
   },
   methods: {
     sendTodo() {
-      this.$emit("addTodo", this.todo);
+      this.$emit("add-todo", this.todo);
       this.todo = "";
     },
   },
@@ -28,7 +28,7 @@ export default {
 </script>
 
 <style scoped>
-#todo-list-input {
+.todo-list-input {
   display: flex;
 }
 

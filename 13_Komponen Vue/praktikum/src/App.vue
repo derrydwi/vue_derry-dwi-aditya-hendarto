@@ -3,19 +3,19 @@
     <TheHeading title="Todo List" />
     <TodoListItem
       :todos="todos"
-      @editTodo="editTodo"
-      @deleteTodo="deleteTodo"
+      @edit-todo="editTodo"
+      @delete-todo="deleteTodo"
     />
-    <TodoListInput @addTodo="addTodo" />
-    <TodoListMessage :todosLength="todosLength" :isEmpty="isEmpty" />
+    <TodoListInput @add-todo="addTodo" />
+    <TodoListMessage :todos-length="todosLength" :is-empty="isEmpty" />
   </div>
 </template>
 
 <script>
-import TheHeading from "./components/TheHeading.vue";
-import TodoListItem from "./components/TodoListItem.vue";
-import TodoListInput from "./components/TodoListInput.vue";
-import TodoListMessage from "./components/TodoListMessage.vue";
+import TheHeading from "@/components/TheHeading.vue";
+import TodoListItem from "@/components/TodoListItem.vue";
+import TodoListInput from "@/components/TodoListInput.vue";
+import TodoListMessage from "@/components/TodoListMessage.vue";
 
 export default {
   name: "App",

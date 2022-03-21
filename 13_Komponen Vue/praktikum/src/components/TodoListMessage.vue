@@ -1,5 +1,5 @@
 <template>
-  <div id="todo-list-message">
+  <div class="todo-list-message">
     <p v-if="isEmpty" class="error-empty">Input todo tidak boleh kosong!</p>
     <p v-if="todosLength >= 4">Hebat!</p>
   </div>

@@ -1,5 +1,5 @@
 <template>
-  <div id="todo-list-item">
+  <div class="todo-list-item">
     <div v-if="todos.length" class="list">
       <div v-for="(todo, index) in todos" :key="todo.id" class="item">
         <div v-if="editMode && editIndex === index" class="todo-edit">
@@ -12,7 +12,7 @@
           />
         </div>
         <div v-else class="todo">{{ index + 1 }}. {{ todo.body }}</div>
-        <button @click="$emit('deleteTodo', index)" class="action">
+        <button @click="$emit('delete-todo', index)" class="action">
           Delete
         </button>
         <button @click="editTodo(index)" class="action">Edit</button>
@@ -52,7 +52,7 @@ export default {
       if (this.editMode) {
         this.editedTodo = this.todos[this.editIndex].body;
       } else {
-        this.$emit("editTodo", this.editIndex, this.editedTodo);
+        this.$emit("edit-todo", this.editIndex, this.editedTodo);
         this.editedTodo = "";
       }
     },
