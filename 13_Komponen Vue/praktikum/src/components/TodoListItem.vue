@@ -51,6 +51,11 @@ export default {
   mounted() {
     this.editedTodo = this.todo.body;
   },
+  watch: {
+    todo(value) {
+      this.editedTodo = value.body;
+    },
+  },
   methods: {
     changeEditMode() {
       this.editMode = !this.editMode;
