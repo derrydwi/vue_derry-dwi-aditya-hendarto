@@ -3,10 +3,10 @@
     <BaseHeading title="Todo List" />
     <div v-if="todosLength">
       <TodoListItem
-        v-for="(todo, index) in todos"
+        v-for="(todoItem, index) in todos"
         :key="index"
         :index="index"
-        :todo="todo"
+        :todo-item="todoItem"
         @edit-todo="editTodo"
         @delete-todo="deleteTodo"
       />
@@ -14,7 +14,7 @@
     <div v-else>
       <BaseMessage message="Todo masih kosong." />
     </div>
-    <TodoListInput @add-todo="addTodo" />
+    <TodoListInput v-model="todo" @add-todo="addTodo" />
     <BaseMessage
       v-if="isEmpty"
       message="Input todo tidak boleh kosong!"
@@ -40,6 +40,7 @@ export default {
   },
   data() {
     return {
+      todo: "",
       todos: [],
       isEmpty: false,
     };
@@ -50,13 +51,14 @@ export default {
     },
   },
   methods: {
-    addTodo(todo) {
-      this.isEmpty = !todo;
+    addTodo() {
+      this.isEmpty = !this.todo;
       if (!this.isEmpty) {
         this.todos.push({
           id: Date.now(),
-          body: todo,
+          body: this.todo,
         });
+        this.todo = "";
       }
     },
     editTodo(todoId, todoBody) {

@@ -5,21 +5,14 @@
         <div class="index-column">{{ index + 1 }}.</div>
         <input
           v-model="editedTodo"
-          @keyup.enter="editTodo(todo.id)"
+          @keyup.enter="editTodo"
           type="text"
           class="edit-column"
         />
       </div>
-      <div v-else class="todo">{{ index + 1 }}. {{ todo.body }}</div>
-      <button @click="$emit('delete-todo', todo.id)" class="action">
-        Delete
-      </button>
-      <button
-        @click="editMode ? editTodo(todo.id) : changeEditMode()"
-        class="action"
-      >
-        Edit
-      </button>
+      <div v-else class="todo">{{ index + 1 }}. {{ todoItem.body }}</div>
+      <button @click="deleteTodo" class="action">Delete</button>
+      <button @click="editHandler" class="action">Edit</button>
     </div>
     <BaseMessage
       v-if="isEmpty"
@@ -39,7 +32,7 @@ export default {
   },
   props: {
     index: Number,
-    todo: Object,
+    todoItem: Object,
   },
   data() {
     return {
@@ -49,10 +42,10 @@ export default {
     };
   },
   mounted() {
-    this.editedTodo = this.todo.body;
+    this.editedTodo = this.todoItem.body;
   },
   watch: {
-    todo(value) {
+    todoItem(value) {
       this.editedTodo = value.body;
     },
   },
@@ -60,10 +53,16 @@ export default {
     changeEditMode() {
       this.editMode = !this.editMode;
     },
-    editTodo(todoId) {
+    deleteTodo() {
+      this.$emit("delete-todo", this.todoItem.id);
+    },
+    editHandler() {
+      this.editMode ? this.editTodo() : this.changeEditMode();
+    },
+    editTodo() {
       this.isEmpty = !this.editedTodo;
       if (!this.isEmpty) {
-        this.$emit("edit-todo", todoId, this.editedTodo);
+        this.$emit("edit-todo", this.todoItem.id, this.editedTodo);
         this.changeEditMode();
       }
     },

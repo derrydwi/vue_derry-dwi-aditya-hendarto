@@ -1,7 +1,8 @@
 <template>
   <div class="todo-list-input">
     <input
-      v-model="todo"
+      :value="value"
+      @input="inputHandler($event.target.value)"
       @keyup.enter="sendTodo"
       type="text"
       class="input-field"
@@ -13,15 +14,15 @@
 <script>
 export default {
   name: "TodoListInput",
-  data() {
-    return {
-      todo: "",
-    };
+  props: {
+    value: String,
   },
   methods: {
+    inputHandler(value) {
+      this.$emit("input", value);
+    },
     sendTodo() {
-      this.$emit("add-todo", this.todo);
-      this.todo = "";
+      this.$emit("add-todo");
     },
   },
 };
