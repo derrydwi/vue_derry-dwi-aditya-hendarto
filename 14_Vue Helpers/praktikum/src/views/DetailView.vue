@@ -1,47 +1,48 @@
 <template>
   <div class="detail">
-    <BaseButton text="Kembali" />
+    <BaseButton action="back" text="Kembali" @back="back" />
     <div v-if="todo">
-      <TheHeading :title="todo.body" />
-      <TheContent :text="todo.description" />
+      <BaseHeading :text="todo.body" />
+      <BaseMessage :text="todo.description" />
       <TodoListInput
         v-if="editMode"
+        v-model="description"
         action="save-description"
         text="Simpan"
-        :description="todo.description"
         @save-description="saveDescription"
       />
       <BaseButton
         v-else
-        action="edit-description"
+        action="change-edit-mode"
         text="Ubah Deskripsi"
-        @edit-description="editDescription"
+        @change-edit-mode="changeEditMode"
       />
     </div>
     <div v-else>
-      <TheContent text="Todo tidak ditemukan!" />
+      <BaseMessage text="Todo tidak ditemukan!" />
     </div>
   </div>
 </template>
 
 <script>
 import BaseButton from "@/components/BaseButton.vue";
-import TheContent from "@/components/TheContent.vue";
-import TheHeading from "@/components/TheHeading.vue";
+import BaseHeading from "@/components/BaseHeading.vue";
+import BaseMessage from "@/components/BaseMessage.vue";
 import TodoListInput from "@/components/TodoListInput.vue";
 
 export default {
   name: "DetailVue",
   components: {
     BaseButton,
-    TheContent,
-    TheHeading,
+    BaseHeading,
+    BaseMessage,
     TodoListInput,
   },
   data() {
     return {
       editMode: false,
-      editedDescription: "",
+      description: "",
+      emptyDescription: "Belum ada deskripsi nih",
     };
   },
   computed: {
@@ -49,26 +50,31 @@ export default {
       return this.$store.state.todo.todos[this.$route.params.id];
     },
   },
+  mounted() {
+    if (!this.todo || this.todo.description === this.emptyDescription) {
+      this.description = "";
+    } else {
+      this.description = this.todo.description;
+    }
+  },
   methods: {
-    editDescription() {
-      this.editMode = !this.editMode;
-      if (this.todo.description === "Belum ada deskripsi nih") {
-        this.editedDescription = "";
-      } else {
-        this.editedDescription = this.todo.description;
-      }
+    back() {
+      this.$router.back();
     },
-    saveDescription(description) {
+    changeEditMode() {
+      this.editMode = !this.editMode;
+    },
+    saveDescription() {
       this.$store.dispatch("todo/editDescription", {
-        index: this.$route.params.id,
-        ...(description && {
-          description: description,
+        id: this.todo.id,
+        ...(this.description && {
+          description: this.description,
         }),
-        ...(!description && {
-          description: "Belum ada deskripsi nih",
+        ...(!this.description && {
+          description: this.emptyDescription,
         }),
       });
-      this.editMode = !this.editMode;
+      this.changeEditMode();
     },
   },
 };

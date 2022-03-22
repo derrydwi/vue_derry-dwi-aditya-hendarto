@@ -1,7 +1,8 @@
 <template>
   <div class="todo-list-input">
     <input
-      v-model="todo"
+      :value="value"
+      @input="inputHandler($event.target.value)"
       @keyup.enter="doEmit"
       type="text"
       class="input-field"
@@ -13,32 +14,18 @@
 <script>
 export default {
   name: "TodoListInput",
-  data() {
-    return {
-      todo: "",
-    };
-  },
   props: {
     action: String,
-    description: String,
     text: String,
+    value: String,
   },
   methods: {
     doEmit() {
-      this.$emit(this.action, this.todo);
-      this.todo = "";
+      this.$emit(this.action);
     },
-  },
-  mounted() {
-    this.$nextTick(function () {
-      if (this.description) {
-        if (this.description === "Belum ada deskripsi nih") {
-          this.todo = "";
-        } else {
-          this.todo = this.description;
-        }
-      }
-    });
+    inputHandler(value) {
+      this.$emit("input", value);
+    },
   },
 };
 </script>

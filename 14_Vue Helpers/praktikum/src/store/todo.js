@@ -7,13 +7,17 @@ const mutations = {
     state.todos.push(param);
   },
   EDIT_TODO(state, param) {
-    state.todos[param.index].body = param.todo;
+    state.todos = state.todos.map((todo) =>
+      todo.id === param.id ? { ...todo, body: param.body } : todo
+    );
   },
   DELETE_TODO(state, param) {
-    state.todos.splice(param, 1);
+    state.todos = state.todos.filter((todo) => todo.id !== param);
   },
   EDIT_DESCRIPTION(state, param) {
-    state.todos[param.index].description = param.description;
+    state.todos = state.todos.map((todo) =>
+      todo.id === param.id ? { ...todo, description: param.description } : todo
+    );
   },
 };
 

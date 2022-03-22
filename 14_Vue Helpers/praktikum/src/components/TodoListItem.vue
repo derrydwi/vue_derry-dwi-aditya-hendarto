@@ -1,65 +1,75 @@
 <template>
   <div class="todo-list-item">
-    <div v-if="todos.length" class="list">
-      <div v-for="(todo, index) in todos" :key="todo.id" class="item">
-        <div v-if="editMode && editIndex === index" class="todo-edit">
-          <div class="index-column">{{ index + 1 }}.</div>
-          <input
-            v-model="editedTodo"
-            @keyup.enter="editTodo(index)"
-            type="text"
-            class="edit-column"
-          />
-        </div>
-        <div v-else class="todo">
-          <router-link
-            :to="{ name: 'detail', params: { id: index } }"
-            class="todo-link"
-            >{{ index + 1 }}. {{ todo.body }}</router-link
-          >
-        </div>
-        <button @click="$emit('deleteTodo', index)" class="action">
-          Delete
-        </button>
-        <button @click="editTodo(index)" class="action">Edit</button>
+    <div class="list">
+      <div v-if="editMode" class="todo-edit">
+        <div class="index-column">{{ index + 1 }}.</div>
+        <input
+          v-model="editedTodo"
+          @keyup.enter="editTodo"
+          type="text"
+          class="edit-column"
+        />
       </div>
+      <div v-else class="todo">
+        <router-link
+          :to="{ name: 'detail', params: { id: index } }"
+          class="todo-link"
+          >{{ index + 1 }}. {{ todoItem.body }}</router-link
+        >
+      </div>
+      <button @click="deleteTodo" class="action">Delete</button>
+      <button @click="editHandler" class="action">Edit</button>
     </div>
-    <div v-else class="list-empty">
-      <p>Todo masih kosong.</p>
-    </div>
+    <BaseMessage
+      v-if="isEmpty"
+      text="Input edit todo tidak boleh kosong!"
+      class="error-empty"
+    />
   </div>
 </template>
 
 <script>
+import BaseMessage from "@/components/BaseMessage.vue";
+
 export default {
   name: "TodoListItem",
+  components: {
+    BaseMessage,
+  },
   props: {
-    todos: Array,
+    index: Number,
+    todoItem: Object,
   },
   data() {
     return {
       editedTodo: "",
       editMode: false,
-      editIndex: 0,
+      isEmpty: false,
     };
   },
+  mounted() {
+    this.editedTodo = this.todoItem.body;
+  },
+  watch: {
+    todoItem(value) {
+      this.editedTodo = value.body;
+    },
+  },
   methods: {
-    editTodo(index) {
+    changeEditMode() {
       this.editMode = !this.editMode;
-
-      // when user clicked different edit button before and after
-      if (this.editedTodo && this.editIndex !== index) {
-        this.editedTodo = "";
-        return;
-      }
-
-      this.editIndex = index;
-
-      if (this.editMode) {
-        this.editedTodo = this.todos[this.editIndex].body;
-      } else {
-        this.$emit("editTodo", this.editIndex, this.editedTodo);
-        this.editedTodo = "";
+    },
+    deleteTodo() {
+      this.$emit("delete-todo", this.todoItem.id);
+    },
+    editHandler() {
+      this.editMode ? this.editTodo() : this.changeEditMode();
+    },
+    editTodo() {
+      this.isEmpty = !this.editedTodo;
+      if (!this.isEmpty) {
+        this.$emit("edit-todo", this.todoItem.id, this.editedTodo);
+        this.changeEditMode();
       }
     },
   },
@@ -67,7 +77,7 @@ export default {
 </script>
 
 <style scoped>
-.item {
+.list {
   display: flex;
   margin: 20px 0;
 }
@@ -100,7 +110,7 @@ export default {
   width: 98%;
 }
 
-.list-empty {
-  text-align: center;
+.error-empty {
+  color: red;
 }
 </style>

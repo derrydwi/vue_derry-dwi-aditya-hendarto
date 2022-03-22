@@ -1,6 +1,6 @@
 <template>
   <div class="button">
-    <button @click="clicked">{{ text }}</button>
+    <button @click="doEmit">{{ text }}</button>
   </div>
 </template>
 
@@ -12,12 +12,8 @@ export default {
     text: String,
   },
   methods: {
-    clicked() {
-      if (this.text === "Kembali") {
-        this.$router.back();
-      } else if (this.text === "Ubah Deskripsi") {
-        this.$emit(this.action);
-      }
+    doEmit() {
+      this.$emit(this.action);
     },
   },
 };

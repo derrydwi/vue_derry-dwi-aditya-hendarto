@@ -1,12 +1,12 @@
 <template>
-  <div class="content-text">
-    <p>{{ text }}</p>
+  <div class="heading">
+    <h1>{{ text }}</h1>
   </div>
 </template>
 
 <script>
 export default {
-  name: "TheContent",
+  name: "BaseHeading",
   props: {
     text: String,
   },
