@@ -21,8 +21,6 @@ Secara garis besar berikut adalah sub topik yang saya pelajari dari materi ini:
    - Cara Kerja Lifecycle di Vue
    - Tiga Lifecycle Utama
 
-## Task
-
 ### Module Export & Import
 
 Modul merupakan suatu file yang bisa berupa class atau sekumpulan fungsi yang ditujukan untuk mengerjakan tugas tertentu. Modul bisa memuat satu sama lain dan menggunakan pengarah khusus export dan import untuk fungsi pertukaran, memanggil fungsi dari satu modul ke modul lainnya.
@@ -148,6 +146,8 @@ Namun yang umum digunakan yakni 3 lifecycle utama sebagai berikut:
 
   Berlangsung sebelum instance dihancurkan
   Contoh penggunaannya untuk mencopot event listener scroll
+
+## Task
 
 ### 1. Buatlah sebuah todo list menggunakan SFC, dengan ketentuan:
 
