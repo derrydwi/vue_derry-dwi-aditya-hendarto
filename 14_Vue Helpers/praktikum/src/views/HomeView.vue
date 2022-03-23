@@ -47,7 +47,6 @@ export default {
     return {
       todo: "",
       isEmpty: false,
-      emptyDescription: "Belum ada deskripsi nih",
     };
   },
   computed: {
@@ -62,10 +61,10 @@ export default {
     addTodo() {
       this.isEmpty = !this.todo;
       if (!this.isEmpty) {
-        this.$store.dispatch("todo/saveTodo", {
+        this.$store.dispatch("todo/addTodo", {
           id: Date.now(),
           body: this.todo,
-          description: this.emptyDescription,
+          description: "Belum ada deskripsi nih",
         });
         this.todo = "";
       }

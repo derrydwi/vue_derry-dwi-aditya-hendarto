@@ -3,7 +3,7 @@ const state = () => ({
 });
 
 const mutations = {
-  SAVE_TODO(state, param) {
+  ADD_TODO(state, param) {
     state.todos.push(param);
   },
   EDIT_TODO(state, param) {
@@ -22,8 +22,8 @@ const mutations = {
 };
 
 const actions = {
-  saveTodo({ commit }, param) {
-    commit('SAVE_TODO', param);
+  addTodo({ commit }, param) {
+    commit('ADD_TODO', param);
   },
   editTodo({ commit }, param) {
     commit('EDIT_TODO', param);
@@ -32,7 +32,12 @@ const actions = {
     commit('DELETE_TODO', param);
   },
   editDescription({ commit }, param) {
-    commit('EDIT_DESCRIPTION', param);
+    commit(
+      'EDIT_DESCRIPTION',
+      !param.description
+        ? { ...param, description: 'Belum ada deskripsi nih' }
+        : param
+    );
   },
 };
 

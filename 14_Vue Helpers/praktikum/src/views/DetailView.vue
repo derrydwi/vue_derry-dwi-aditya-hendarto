@@ -42,7 +42,6 @@ export default {
     return {
       editMode: false,
       description: "",
-      emptyDescription: "Belum ada deskripsi nih",
     };
   },
   computed: {
@@ -51,7 +50,7 @@ export default {
     },
   },
   mounted() {
-    if (!this.todo || this.todo.description === this.emptyDescription) {
+    if (!this.todo || this.todo.description === "Belum ada deskripsi nih") {
       this.description = "";
     } else {
       this.description = this.todo.description;
@@ -67,12 +66,7 @@ export default {
     saveDescription() {
       this.$store.dispatch("todo/editDescription", {
         id: this.todo.id,
-        ...(this.description && {
-          description: this.description,
-        }),
-        ...(!this.description && {
-          description: this.emptyDescription,
-        }),
+        description: this.description,
       });
       this.changeEditMode();
     },
