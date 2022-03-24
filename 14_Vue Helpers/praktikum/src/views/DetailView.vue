@@ -46,13 +46,11 @@ export default {
   },
   computed: {
     todo() {
-      return this.$store.state.todo.todos[this.$route.params.id];
+      return this.$store.getters["todo/getTodoById"](this.$route.params.id);
     },
   },
   mounted() {
-    if (!this.todo || this.todo.description === "Belum ada deskripsi nih") {
-      this.description = "";
-    } else {
+    if (this.todo && this.todo.description !== "Belum ada deskripsi nih") {
       this.description = this.todo.description;
     }
   },

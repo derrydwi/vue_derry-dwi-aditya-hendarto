@@ -2,6 +2,15 @@ const state = () => ({
   todos: [],
 });
 
+const getters = {
+  getTodos: (state) => {
+    return state.todos;
+  },
+  getTodoById: (state) => (id) => {
+    return state.todos.find((todo) => todo.id === Number.parseInt(id));
+  },
+};
+
 const mutations = {
   ADD_TODO(state, param) {
     state.todos.push(param);
@@ -43,6 +52,7 @@ const actions = {
 
 export default {
   state,
+  getters,
   mutations,
   actions,
 };

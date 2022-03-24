@@ -1,6 +1,5 @@
 <template>
   <div class="home">
-    <BaseHeading text="Todo List" />
     <div v-if="todosLength">
       <TodoListItem
         v-for="(todoItem, index) in todos"
@@ -30,15 +29,14 @@
 </template>
 
 <script>
-import BaseHeading from "@/components/BaseHeading.vue";
 import BaseMessage from "@/components/BaseMessage.vue";
 import TodoListItem from "@/components/TodoListItem.vue";
 import TodoListInput from "@/components/TodoListInput.vue";
+import { generateId } from "@/utils/idGenerator";
 
 export default {
   name: "HomeView",
   components: {
-    BaseHeading,
     BaseMessage,
     TodoListItem,
     TodoListInput,
@@ -51,7 +49,7 @@ export default {
   },
   computed: {
     todos() {
-      return this.$store.state.todo.todos;
+      return this.$store.getters["todo/getTodos"];
     },
     todosLength() {
       return this.todos.length;
@@ -62,7 +60,7 @@ export default {
       this.isEmpty = !this.todo;
       if (!this.isEmpty) {
         this.$store.dispatch("todo/addTodo", {
-          id: Date.now(),
+          id: generateId(),
           body: this.todo,
           description: "Belum ada deskripsi nih",
         });

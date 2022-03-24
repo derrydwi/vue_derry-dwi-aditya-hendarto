@@ -12,7 +12,7 @@
       </div>
       <div v-else class="todo">
         <router-link
-          :to="{ name: 'detail', params: { id: index } }"
+          :to="{ name: 'detail', params: { id: todoItem.id } }"
           class="todo-link"
           >{{ index + 1 }}. {{ todoItem.body }}</router-link
         >

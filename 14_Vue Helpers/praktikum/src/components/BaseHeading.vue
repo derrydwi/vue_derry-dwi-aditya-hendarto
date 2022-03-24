@@ -1,5 +1,5 @@
 <template>
-  <div class="heading">
+  <div :class="styles">
     <h1>{{ text }}</h1>
   </div>
 </template>
@@ -8,7 +8,14 @@
 export default {
   name: "BaseHeading",
   props: {
+    styles: String,
     text: String,
   },
 };
 </script>
+
+<style scoped>
+.center {
+  text-align: center;
+}
+</style>
