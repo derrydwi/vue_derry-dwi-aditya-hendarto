@@ -354,20 +354,24 @@ Berikut kode hasil dari praktikum ini:
 
 - App
   - [App.vue](./praktikum/src/App.vue)
-- Views
-  - [DetailView.vue](./praktikum/src/views/DetailView.vue)
-  - [HomeView.vue](./praktikum/src/views/HomeView.vue)
 - Components
   - [BaseButton.vue](./praktikum/src/components/BaseButton.vue)
   - [BaseHeading.vue](./praktikum/src/components/BaseHeading.vue)
   - [BaseMessage.vue](./praktikum/src/components/BaseMessage.vue)
   - [TodoListInput.vue](./praktikum/src/components/TodoListInput.vue)
   - [TodoListItem.vue](./praktikum/src/components/TodoListItem.vue)
+- Layout
+  - [DefaultLayout.vue](./praktikum/src/layout/DefaultLayout.vue)
 - Router
   - [index.js](./praktikum/src/router/index.js)
 - Store
   - [index.js](./praktikum/src/store/index.js)
   - [todo.js](./praktikum/src/store/todo.js)
+- Utils
+  - [idGenerator.js](./praktikum/src/utils/idGenerator.js)
+- Views
+  - [DetailView.vue](./praktikum/src/views/DetailView.vue)
+  - [HomeView.vue](./praktikum/src/views/HomeView.vue)
 
 Output:
 
