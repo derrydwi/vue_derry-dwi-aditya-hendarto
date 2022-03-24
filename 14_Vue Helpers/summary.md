@@ -342,7 +342,13 @@ export default new Vuex.Store({
 - Memiliki tombol hapus dan edit dengan fungsionalitasnya
 - Ketika tombol edit ditekan simpan perubahan setelah ditekan kembali
 - Ketika tombol hapus ditekan maka list dibawahnya naik menggantikan
-- Hint gunakan array map dan array filter
+- List tidak boleh hilang meskipun halaman dimuat ulang
+- Jika judul salah satu list diklik, maka navigasi ke halaman detail
+- Sediakan tombol untuk kembali ke list
+- Deskripsi dapat diubah
+- Setelah diubah, deskripsi tidak boleh hilang jika dimuat ulang
+- Fungsionalitas data tidak hilang ketika refresh dan halaman detail harus ada
+- Gunakan store, dynamic router, dan route params
 
 Berikut kode hasil dari praktikum ini:
 
