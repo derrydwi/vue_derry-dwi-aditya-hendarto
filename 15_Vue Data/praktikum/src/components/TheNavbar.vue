@@ -15,11 +15,7 @@
     "
   >
     <div class="container flex flex-wrap justify-between items-center mx-auto">
-      <router-link
-        :to="{ name: 'home' }"
-        class="flex"
-        @click="$emit('changeCategory', categories[0])"
-      >
+      <button @click="changeCategory(categories[0])" class="flex">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           x="0px"
@@ -167,7 +163,7 @@
           "
           >News App</span
         >
-      </router-link>
+      </button>
       <div class="flex md:order-2">
         <div class="hidden relative mr-3 md:mr-0 md:block">
           <div
@@ -196,10 +192,7 @@
           </div>
           <input
             v-model="query"
-            @keyup.enter="
-              $emit('search', query);
-              $router.push('/');
-            "
+            @keyup.enter="search"
             type="text"
             class="
               block
@@ -231,8 +224,8 @@
               type="checkbox"
               id="toggle-example"
               class="sr-only"
-              :checked="$store.state.isDark"
-              @click="$emit('darkModeToggle')"
+              :checked="isDark"
+              @click="darkModeToggle"
             />
             <div
               class="
@@ -310,10 +303,10 @@
           "
         >
           <li v-for="category in categories" :key="category">
-            <router-link
-              :to="{ name: 'home' }"
-              @click="$emit('changeCategory', category)"
+            <button
+              @click="changeCategory(category)"
               class="
+                font-semibold
                 block
                 capitalize
                 py-2
@@ -331,8 +324,9 @@
                 md:dark:hover:bg-transparent
                 dark:border-gray-700
               "
-              >{{ category }}</router-link
             >
+              {{ category }}
+            </button>
           </li>
         </ul>
       </div>
@@ -340,17 +334,55 @@
   </nav>
 </template>
 
-<script setup>
-import { ref } from "vue";
-defineEmits(["changeCategory", "search", "darkModeToggle"]);
-
-const query = ref("");
-const categories = [
-  "general",
-  "business",
-  "entertainment",
-  "science",
-  "sports",
-  "technology",
-];
+<script>
+export default {
+  name: "TheNavbar",
+  props: {
+    isDark: Boolean,
+  },
+  data() {
+    return {
+      categories: [
+        "general",
+        "business",
+        "entertainment",
+        "science",
+        "sports",
+        "technology",
+      ],
+      query: "",
+    };
+  },
+  computed: {
+    queryStore() {
+      return this.$store.getters["news/getQuery"];
+    },
+  },
+  methods: {
+    navigateTo() {
+      if (this.$route.path !== "/") {
+        this.$router.push({ name: "home" });
+      }
+    },
+    changeCategory(category) {
+      this.$store.dispatch("news/saveCategory", category);
+      this.navigateTo();
+    },
+    darkModeToggle() {
+      this.$store.dispatch("news/saveIsDark", !this.isDark);
+    },
+    search() {
+      this.$store.dispatch("news/saveQuery", this.query);
+      this.navigateTo();
+    },
+  },
+  mounted() {
+    this.query = this.queryStore;
+  },
+  watch: {
+    queryStore(value) {
+      this.query = value;
+    },
+  },
+};
 </script>

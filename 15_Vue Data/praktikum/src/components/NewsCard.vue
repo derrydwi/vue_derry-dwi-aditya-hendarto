@@ -1,22 +1,15 @@
 <template>
   <div class="h-100 w-full flex items-center justify-center font-sans">
-    <div v-if="newsList.length">
+    <div v-if="!isLoading">
       <div
         class="py-5 mx-auto"
         v-for="(news, index) in newsList"
         :key="news.url"
       >
-        <router-link
-          :to="{
-            name: 'detail',
-            params: {
-              id: news.title.replace(/ /g, '-').replace(/[^\w-]+/g, ''),
-            },
-          }"
-          @click="$emit('saveDetail', index)"
-        >
+        <button @click="saveDetail(index, news.title)">
           <div
             class="
+              text-left
               mx-auto
               max-w-3xl
               overflow-hidden
@@ -72,11 +65,11 @@
               </div>
             </div>
           </div>
-        </router-link>
+        </button>
       </div>
       <div class="flex mb-5">
         <button
-          @click="$emit('loadMore')"
+          @click="$emit('load-more')"
           class="
             mx-auto
             inline-flex
@@ -151,10 +144,27 @@
   </div>
 </template>
 
-<script setup>
-defineProps(["newsList"]);
-defineEmits(["saveDetail", "loadMore"]);
+<script>
+export default {
+  name: "NewsCard",
+  props: {
+    newsList: Array,
+  },
+  computed: {
+    isLoading() {
+      return this.$store.getters["news/getIsLoading"];
+    },
+  },
+  methods: {
+    saveDetail(index, title) {
+      this.$emit("save-detail", index);
+      this.$router.push({
+        name: "detail",
+        params: {
+          slug: title.replace(/ /g, "-").replace(/[^\w-]+/g, ""),
+        },
+      });
+    },
+  },
+};
 </script>
-
-<style>
-</style>

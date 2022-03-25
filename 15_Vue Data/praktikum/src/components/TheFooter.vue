@@ -4,8 +4,7 @@
       <hr class="mb-10 border-gray-200 dark:border-0" />
       <div class="flex flex-col items-center sm:flex-row sm:justify-between">
         <p class="text-sm text-gray-400">
-          © Derry Dwi Aditya {{ new Date().getFullYear() }}. All Rights
-          Reserved.
+          © Derry Dwi Aditya {{ year }}. All Rights Reserved.
         </p>
 
         <div class="flex mt-3 -mx-2 sm:mt-0">
@@ -52,3 +51,14 @@
     </div>
   </footer>
 </template>
+
+<script>
+export default {
+  name: "TheFooter",
+  computed: {
+    year() {
+      return new Date().getFullYear();
+    },
+  },
+};
+</script>
