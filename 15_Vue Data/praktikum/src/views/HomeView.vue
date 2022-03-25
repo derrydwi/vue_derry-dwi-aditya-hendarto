@@ -24,11 +24,7 @@ export default {
       return this.$store.getters["news/getCategory"];
     },
     title() {
-      if (this.query) {
-        return `Result of "${this.query}"`;
-      } else {
-        return `${this.category} News`;
-      }
+      return this.query ? `Result of "${this.query}"` : `${this.category} News`;
     },
     newsList() {
       return this.$store.getters["news/getNews"];
@@ -45,25 +41,16 @@ export default {
       this.$store.dispatch("news/fetchSearchNews");
     },
     loadMore() {
-      if (this.query) {
-        this.$store.dispatch("news/fetchSearchMoreNews");
-      } else {
-        this.$store.dispatch("news/fetchMoreNews");
-      }
-    },
-    searchLoadMore() {
-      this.$store.dispatch("news/fetchSearchMoreNews");
+      this.query
+        ? this.$store.dispatch("news/fetchSearchMoreNews")
+        : this.$store.dispatch("news/fetchMoreNews");
     },
     saveDetail(index) {
       this.$store.dispatch("news/saveCurrentNews", index);
     },
   },
   mounted() {
-    if (this.query) {
-      this.fetchSearchNews();
-    } else {
-      this.fetchNews();
-    }
+    this.query ? this.fetchSearchNews() : this.fetchNews();
   },
   watch: {
     category() {

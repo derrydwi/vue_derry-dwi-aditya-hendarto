@@ -360,9 +360,7 @@ export default {
   },
   methods: {
     navigateTo() {
-      if (this.$route.path !== "/") {
-        this.$router.push({ name: "home" });
-      }
+      this.$route.path !== "/" && this.$router.push({ name: "home" });
     },
     changeCategory(category) {
       this.$store.dispatch("news/saveCategory", category);

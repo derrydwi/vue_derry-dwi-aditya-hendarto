@@ -67,9 +67,7 @@ const mutations = {
 const actions = {
   fetchNews({ commit, state }) {
     commit('RESET_PAGE');
-    if (state.query) {
-      commit('DELETE_QUERY');
-    }
+    state.query && commit('DELETE_QUERY');
     commit('SAVE_IS_LOADING');
     axios
       .get(
@@ -87,9 +85,7 @@ const actions = {
   },
   fetchMoreNews({ commit, state }) {
     commit('INCREMENT_PAGE');
-    if (state.query) {
-      commit('DELETE_QUERY');
-    }
+    state.query && commit('DELETE_QUERY');
     commit('SAVE_IS_LOADING');
     axios
       .get(
@@ -107,9 +103,7 @@ const actions = {
   },
   fetchSearchNews({ commit, state }) {
     commit('RESET_PAGE');
-    if (state.category) {
-      commit('DELETE_CATEGORY');
-    }
+    state.category && commit('DELETE_CATEGORY');
     commit('SAVE_IS_LOADING');
     axios
       .get(
@@ -127,9 +121,7 @@ const actions = {
   },
   fetchSearchMoreNews({ commit, state }) {
     commit('INCREMENT_PAGE');
-    if (state.category) {
-      commit('DELETE_CATEGORY');
-    }
+    state.category && commit('DELETE_CATEGORY');
     commit('SAVE_IS_LOADING');
     axios
       .get(
