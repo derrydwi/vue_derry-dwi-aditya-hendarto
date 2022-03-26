@@ -47,7 +47,7 @@
         :alt="news.title"
       />
       <p class="py-2">
-        {{ new Date(news.publishedAt).toUTCString().substring(0, 22) }}
+        {{ dateTime }}
       </p>
       <p class="py-2">{{ news.content }}</p>
       <div class="flex">
@@ -106,6 +106,7 @@
 
 <script>
 import BaseHeading from "@/components/BaseHeading.vue";
+import { generateDateTime } from "@/utils/formatter";
 
 export default {
   name: "DetailView",
@@ -115,6 +116,9 @@ export default {
   computed: {
     news() {
       return this.$store.getters["news/getCurrentNews"];
+    },
+    dateTime() {
+      return generateDateTime(this.news.publishedAt);
     },
   },
   methods: {

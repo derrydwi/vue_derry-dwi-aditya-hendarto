@@ -30,7 +30,7 @@
             <div class="p-6">
               <div>
                 <span class="text-xs text-gray-600 dark:text-gray-300">{{
-                  new Date(news.publishedAt).toUTCString().substring(0, 22)
+                  dateTime(news.publishedAt)
                 }}</span>
                 <p
                   class="
@@ -145,6 +145,8 @@
 </template>
 
 <script>
+import { generateSlug, generateDateTime } from "@/utils/formatter";
+
 export default {
   name: "NewsCard",
   props: {
@@ -161,9 +163,12 @@ export default {
       this.$router.push({
         name: "detail",
         params: {
-          slug: title.replace(/ /g, "-").replace(/[^\w-]+/g, ""),
+          slug: generateSlug(title),
         },
       });
+    },
+    dateTime(date) {
+      return generateDateTime(date);
     },
   },
 };
