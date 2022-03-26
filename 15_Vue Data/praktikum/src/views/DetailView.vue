@@ -1,9 +1,9 @@
 <template>
-  <div class="dark:bg-gray-900">
+  <div class="detail dark:bg-gray-900 mb-auto">
     <div class="detail mx-14 md:mx-0 lg:mx-14 sm:mx-0 pb-6 dark:text-white">
       <BaseHeading :text="news.title" class="mx-auto" />
-      <router-link
-        :to="{ name: 'home' }"
+      <button
+        @click="back"
         class="
           items-center
           inline-flex
@@ -39,8 +39,8 @@
             d="M10 12.796V3.204L4.519 8 10 12.796zm-.659.753-5.48-4.796a1 1 0 0 1 0-1.506l5.48-4.796A1 1 0 0 1 11 3.204v9.592a1 1 0 0 1-1.659.753z"
           />
         </svg>
-        <span class="mx-1">Back</span></router-link
-      >
+        <span class="mx-1">Back</span>
+      </button>
       <img
         class="mx-auto rounded-lg shadow-lg w-auto lg:w-3/4 my-5"
         :src="news.urlToImage"
@@ -115,6 +115,11 @@ export default {
   computed: {
     news() {
       return this.$store.getters["news/getCurrentNews"];
+    },
+  },
+  methods: {
+    back() {
+      this.$router.back();
     },
   },
 };

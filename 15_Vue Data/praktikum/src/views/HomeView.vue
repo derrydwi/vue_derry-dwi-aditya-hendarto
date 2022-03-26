@@ -1,21 +1,28 @@
 <template>
-  <div class="home dark:bg-gray-900">
-    <BaseHeading :text="title" />
-    <NewsCard
-      :newsList="newsList"
-      @save-detail="saveDetail"
-      @load-more="loadMore"
-    />
+  <div class="home dark:bg-gray-900 flex flex-col justify-between mb-auto">
+    <div v-if="!info">
+      <BaseHeading :text="title" />
+      <NewsCard
+        :newsList="newsList"
+        @save-detail="saveDetail"
+        @load-more="loadMore"
+      />
+    </div>
+    <div v-else>
+      <BaseError :info="info" />
+    </div>
   </div>
 </template>
 
 <script>
+import BaseError from "@/components/BaseError.vue";
 import BaseHeading from "@/components/BaseHeading.vue";
 import NewsCard from "@/components/NewsCard.vue";
 
 export default {
   name: "HomeView",
   components: {
+    BaseError,
     BaseHeading,
     NewsCard,
   },
@@ -26,6 +33,9 @@ export default {
     title() {
       return this.query ? `Result of "${this.query}"` : `${this.category} News`;
     },
+    info() {
+      return this.$store.getters["news/getInfo"];
+    },
     newsList() {
       return this.$store.getters["news/getNews"];
     },
@@ -34,34 +44,38 @@ export default {
     },
   },
   methods: {
-    fetchNews() {
-      this.$store.dispatch("news/fetchNews");
-    },
-    fetchSearchNews() {
-      this.$store.dispatch("news/fetchSearchNews");
+    fetchNews(type, loadMore) {
+      this.$store.dispatch("news/fetchNews", {
+        type: type,
+        loadMore: loadMore,
+      });
     },
     loadMore() {
       this.query
-        ? this.$store.dispatch("news/fetchSearchMoreNews")
-        : this.$store.dispatch("news/fetchMoreNews");
+        ? this.fetchNews("search", true)
+        : this.fetchNews("category", true);
     },
     saveDetail(index) {
       this.$store.dispatch("news/saveCurrentNews", index);
     },
   },
   mounted() {
-    this.query ? this.fetchSearchNews() : this.fetchNews();
+    if (this.query && !this.newsList.length) {
+      this.fetchNews("search", false);
+    } else if (!this.newsList.length) {
+      this.fetchNews("category", false);
+    }
   },
   watch: {
-    category() {
-      if (this.category) {
-        this.fetchNews();
+    query() {
+      if (this.query) {
+        this.fetchNews("search", false);
         window.scrollTo(0, 0);
       }
     },
-    query() {
-      if (this.query) {
-        this.fetchSearchNews();
+    category() {
+      if (this.category) {
+        this.fetchNews("category", false);
         window.scrollTo(0, 0);
       }
     },

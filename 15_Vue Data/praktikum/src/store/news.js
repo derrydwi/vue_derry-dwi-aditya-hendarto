@@ -2,9 +2,10 @@ import axios from 'axios';
 
 const state = () => ({
   news: [],
+  info: '',
   page: 1,
   currentNews: {},
-  category: 'General',
+  category: 'general',
   query: '',
   isDark: false,
   isLoading: false,
@@ -13,6 +14,9 @@ const state = () => ({
 const getters = {
   getNews: (state) => {
     return state.news;
+  },
+  getInfo: (state) => {
+    return state.info;
   },
   getCurrentNews: (state) => {
     return state.currentNews;
@@ -32,128 +36,83 @@ const getters = {
 };
 
 const mutations = {
-  FETCH_NEWS(state, param) {
+  SET_NEWS(state, param) {
     state.news = param;
   },
-  RESET_PAGE(state) {
-    state.page = 1;
+  SET_INFO(state, param) {
+    state.info = param;
   },
-  INCREMENT_PAGE(state) {
-    state.page++;
+  SET_PAGE(state, param) {
+    state.page = param;
   },
-  SAVE_CURRENT_NEWS(state, param) {
+  SET_CURRENT_NEWS(state, param) {
     state.currentNews = param;
   },
-  SAVE_CATEGORY(state, param) {
+  SET_CATEGORY(state, param) {
     state.category = param;
   },
-  SAVE_QUERY(state, param) {
+  SET_QUERY(state, param) {
     state.query = param;
   },
-  DELETE_CATEGORY(state) {
-    state.category = '';
-  },
-  DELETE_QUERY(state) {
-    state.query = '';
-  },
-  SAVE_IS_DARK(state, param) {
+  SET_IS_DARK(state, param) {
     state.isDark = param;
   },
-  SAVE_IS_LOADING(state) {
+  SET_IS_LOADING(state) {
     state.isLoading = !state.isLoading;
   },
 };
 
 const actions = {
-  fetchNews({ commit, state }) {
-    commit('RESET_PAGE');
-    state.query && commit('DELETE_QUERY');
-    commit('SAVE_IS_LOADING');
+  fetchNews({ commit, state }, param) {
+    // check value of loadMore param
+    param.loadMore ? commit('SET_PAGE', state.page + 1) : commit('SET_PAGE', 1);
+
+    // define and determine the request to be used
+    const requestByCategory = `https://newsapi.org/v2/top-headlines?country=us&category=${state.category}&pageSize=5&page=${state.page}&apiKey=${process.env.VUE_APP_API_KEY}`;
+    const requestBySearch = `https://newsapi.org/v2/everything?q=${state.query}&pageSize=5&page=${state.page}&apiKey=${process.env.VUE_APP_API_KEY}`;
+    let request;
+    param.type === 'category'
+      ? (request = requestByCategory)
+      : (request = requestBySearch);
+
+    // set isLoading to true
+    commit('SET_IS_LOADING');
+
     axios
-      .get(
-        `https://newsapi.org/v2/top-headlines?country=us&category=${state.category}&pageSize=5&page=${state.page}&apiKey=${process.env.VUE_APP_API_KEY}`
-      )
+      .get(request)
       .then((response) => {
-        commit('FETCH_NEWS', response.data.articles);
+        // check if loadMore param have a value
+        param.loadMore
+          ? commit('SET_NEWS', [...state.news, ...response.data.articles])
+          : commit('SET_NEWS', response.data.articles);
+
+        // reset info
+        commit('SET_INFO', '');
       })
       .catch((error) => {
-        console.log(error.message);
+        // add erorr message
+        commit('SET_INFO', error.message);
       })
       .finally(() => {
-        commit('SAVE_IS_LOADING');
-      });
-  },
-  fetchMoreNews({ commit, state }) {
-    commit('INCREMENT_PAGE');
-    state.query && commit('DELETE_QUERY');
-    commit('SAVE_IS_LOADING');
-    axios
-      .get(
-        `https://newsapi.org/v2/top-headlines?country=us&category=${state.category}&pageSize=5&page=${state.page}&apiKey=${process.env.VUE_APP_API_KEY}`
-      )
-      .then((response) => {
-        commit('FETCH_NEWS', [...state.news, ...response.data.articles]);
-      })
-      .catch((error) => {
-        console.log(error.message);
-      })
-      .finally(() => {
-        commit('SAVE_IS_LOADING');
-      });
-  },
-  fetchSearchNews({ commit, state }) {
-    commit('RESET_PAGE');
-    state.category && commit('DELETE_CATEGORY');
-    commit('SAVE_IS_LOADING');
-    axios
-      .get(
-        `https://newsapi.org/v2/everything?q=${state.query}&pageSize=5&page=${state.page}&apiKey=${process.env.VUE_APP_API_KEY}`
-      )
-      .then((response) => {
-        commit('FETCH_NEWS', response.data.articles);
-      })
-      .catch((error) => {
-        console.log(error.message);
-      })
-      .finally(() => {
-        commit('SAVE_IS_LOADING');
-      });
-  },
-  fetchSearchMoreNews({ commit, state }) {
-    commit('INCREMENT_PAGE');
-    state.category && commit('DELETE_CATEGORY');
-    commit('SAVE_IS_LOADING');
-    axios
-      .get(
-        `https://newsapi.org/v2/everything?q=${state.query}&pageSize=5&page=${state.page}&apiKey=${process.env.VUE_APP_API_KEY}`
-      )
-      .then((response) => {
-        commit('FETCH_NEWS', [...state.news, ...response.data.articles]);
-      })
-      .catch((error) => {
-        console.log(error.message);
-      })
-      .finally(() => {
-        commit('SAVE_IS_LOADING');
+        // set isLoading to false
+        commit('SET_IS_LOADING');
       });
   },
   saveCurrentNews({ commit, state }, param) {
-    commit('SAVE_CURRENT_NEWS', state.news[param]);
+    commit('SET_CURRENT_NEWS', state.news[param]);
   },
   saveCategory({ commit }, param) {
-    commit('SAVE_CATEGORY', param);
+    commit('SET_CATEGORY', param);
+    commit('SET_QUERY', '');
+    commit('SET_NEWS', []);
   },
   saveQuery({ commit }, param) {
-    commit('SAVE_QUERY', param);
-  },
-  deleteCategory({ commit }) {
-    commit('DELETE_CATEGORY');
-  },
-  deleteQuery({ commit }) {
-    commit('DELETE_QUERY');
+    commit('SET_QUERY', param);
+    commit('SET_CATEGORY', '');
+    commit('SET_NEWS', []);
   },
   saveIsDark({ commit }, param) {
-    commit('SAVE_IS_DARK', param);
+    commit('SET_IS_DARK', param);
   },
 };
 

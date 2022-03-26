@@ -15,6 +15,12 @@ const routes = [
         path: '',
         name: 'home',
         component: HomeView,
+        meta: {
+          scrollPos: {
+            x: 0,
+            y: 0,
+          },
+        },
       },
       {
         path: ':slug',
@@ -25,13 +31,15 @@ const routes = [
   },
 ];
 
+const scrollBehavior = (to, from, savedPosition) => {
+  return savedPosition || to.meta?.scrollPos || { x: 0, y: 0 };
+};
+
 const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
   routes,
-  scrollBehavior() {
-    return { y: 0 };
-  },
+  scrollBehavior,
 });
 
 export default router;
