@@ -101,15 +101,19 @@ const actions = {
   saveCurrentNews({ commit, state }, param) {
     commit('SET_CURRENT_NEWS', state.news[param]);
   },
-  saveCategory({ commit }, param) {
-    commit('SET_CATEGORY', param);
-    commit('SET_QUERY', '');
-    commit('SET_NEWS', []);
+  saveCategory({ commit, state }, param) {
+    if (state.category !== param) {
+      commit('SET_CATEGORY', param);
+      commit('SET_QUERY', '');
+      commit('SET_NEWS', []);
+    }
   },
-  saveQuery({ commit }, param) {
-    commit('SET_QUERY', param);
-    commit('SET_CATEGORY', '');
-    commit('SET_NEWS', []);
+  saveQuery({ commit, state }, param) {
+    if (state.query !== param) {
+      commit('SET_QUERY', param);
+      commit('SET_CATEGORY', '');
+      commit('SET_NEWS', []);
+    }
   },
   saveIsDark({ commit }, param) {
     commit('SET_IS_DARK', param);

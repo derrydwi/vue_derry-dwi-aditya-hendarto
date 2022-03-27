@@ -2,7 +2,7 @@
   <div class="h-100 w-full flex items-center justify-center font-sans">
     <div v-if="!isLoading">
       <div
-        class="py-5 mx-auto"
+        class="py-3 md:py-5 mx-auto"
         v-for="(news, index) in newsList"
         :key="news.url"
       >
@@ -14,11 +14,11 @@
               max-w-3xl
               overflow-hidden
               bg-white
-              lg:rounded-lg
               md:rounded-lg
               sm:rounded-none
-              drop-shadow-xl
-              dark:bg-gray-800
+              md:drop-shadow-xl
+              dark:bg-gray-900
+              md:dark:bg-gray-800
             "
           >
             <img
@@ -27,7 +27,7 @@
               alt="Article"
             />
 
-            <div class="p-6">
+            <div class="px-4 py-3 md:p-6">
               <div>
                 <span class="text-xs text-gray-600 dark:text-gray-300">{{
                   dateTime(news.publishedAt)
@@ -67,7 +67,7 @@
           </div>
         </button>
       </div>
-      <div class="flex mb-5">
+      <div class="mt-5 md:mt-0 flex mb-5">
         <button
           @click="$emit('load-more')"
           class="
