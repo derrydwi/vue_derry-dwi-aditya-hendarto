@@ -31,18 +31,18 @@ export const sisaBagi = (variabelSatu, variabelDua) => {
   return variabelSatu % variabelDua;
 };
 
-export const luasPersegi = (variabelSatu, variabelDua) => {
-  return variabelSatu * variabelDua;
+export const luasPersegi = (panjang, lebar) => {
+  return panjang * lebar;
 };
 
-export const luasLingkaran = (variabelSatu, variabelDua) => {
-  return variabelSatu * variabelDua ** 2;
+export const luasLingkaran = (PHI, jariJari) => {
+  return PHI * jariJari ** 2;
 };
 
-export const luasKubus = (variabelSatu, variabelDua, variabelTiga) => {
-  return 2 * variabelSatu * variabelDua * variabelTiga;
+export const luasKubus = (JUMLAH_SISI, panjang, lebar) => {
+  return JUMLAH_SISI * panjang * lebar;
 };
 
-export const volumeKubus = (variabelSatu, variabelDua, variabelTiga) => {
-  return variabelSatu * variabelDua * variabelTiga;
+export const volumeKubus = (panjang, lebar, tinggi) => {
+  return panjang * lebar * tinggi;
 };

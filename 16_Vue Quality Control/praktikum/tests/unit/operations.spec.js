@@ -76,7 +76,7 @@ describe('Melakukan Perhitungan Rata-rata', () => {
   });
 });
 
-// Sisa bagi
+// Sisa Bagi
 describe('Melakukan Perhitungan Sisa bagi', () => {
   test('Sisa bagi dua bilangan positif', () => {
     expect(sisaBagi(2, 4)).toBe(2);
@@ -91,52 +91,52 @@ describe('Melakukan Perhitungan Sisa bagi', () => {
 
 // Luas Persegi
 describe('Melakukan Perhitungan Luas Persegi', () => {
-  test('Luas Persegi dua bilangan positif', () => {
-    expect(luasPersegi(2, 4)).toBe(8);
+  test('Luas Persegi pertama', () => {
+    expect(luasPersegi(2, 2)).toBe(4);
   });
-  test('Luas Persegi dua bilangan negatif', () => {
-    expect(luasPersegi(-10, -2)).toBe(20);
+  test('Luas Persegi kedua', () => {
+    expect(luasPersegi(10, 10)).toBe(100);
   });
-  test('Luas Persegi bilangan positif dan negatif', () => {
-    expect(luasPersegi(22, -4)).toBe(-88);
+  test('Luas Persegi ketiga', () => {
+    expect(luasPersegi(22, 22)).toBe(484);
   });
 });
 
 // Luas Lingkaran
 describe('Melakukan Perhitungan Luas Lingkaran', () => {
-  test('Luas Lingkaran dengan phi 22/7', () => {
-    expect(luasLingkaran(22 / 7, 8)).toBe(201.14285714285714);
+  test('Luas Lingkaran pertama', () => {
+    expect(luasLingkaran(3.14, 7)).toBe(153.86);
   });
-  test('Luas Lingkaran dengan phi 3.14', () => {
+  test('Luas Lingkaran kedua', () => {
     expect(luasLingkaran(3.14, 17)).toBe(907.46);
   });
-  test('Luas Lingkaran dengan phi 22/7', () => {
-    expect(luasLingkaran(22 / 7, 16)).toBe(804.5714285714286);
+  test('Luas Lingkaran ketiga', () => {
+    expect(luasLingkaran(3.14, 12)).toBe(452.16);
   });
 });
 
 // Luas Kubus
 describe('Melakukan Perhitungan Luas Kubus', () => {
   test('Luas Kubus pertama', () => {
-    expect(luasKubus(2, 4, 6)).toBe(96);
+    expect(luasKubus(6, 8, 8)).toBe(384);
   });
   test('Luas Kubus kedua', () => {
-    expect(luasKubus(10, 2, 4)).toBe(160);
+    expect(luasKubus(6, 3, 3)).toBe(54);
   });
   test('Luas Kubus ketiga', () => {
-    expect(luasKubus(22, 8, 4)).toBe(1408);
+    expect(luasKubus(6, 7, 7)).toBe(294);
   });
 });
 
 // Volume Kubus
 describe('Melakukan Perhitungan Volume Kubus', () => {
   test('Volume Kubus pertama', () => {
-    expect(volumeKubus(2, 4, 6)).toBe(48);
+    expect(volumeKubus(8, 8, 8)).toBe(512);
   });
   test('Volume Kubus kedua', () => {
-    expect(volumeKubus(10, 2, 4)).toBe(80);
+    expect(volumeKubus(12, 12, 12)).toBe(1728);
   });
   test('Volume Kubus ketiga', () => {
-    expect(volumeKubus(22, 8, 4)).toBe(704);
+    expect(volumeKubus(9, 9, 9)).toBe(729);
   });
 });
