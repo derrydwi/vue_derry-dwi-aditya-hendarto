@@ -8,6 +8,7 @@ const state = () => ({
   category: 'general',
   query: '',
   isDrawer: true,
+  isDark: true,
   isLoading: false,
 });
 
@@ -56,6 +57,9 @@ const mutations = {
   },
   SET_IS_DRAWER(state) {
     state.isDrawer = !state.isDrawer;
+  },
+  SET_IS_DARK(state) {
+    state.isDark = !state.isDark;
   },
   SET_IS_LOADING(state) {
     state.isLoading = !state.isLoading;
@@ -114,6 +118,9 @@ const actions = {
       commit('SET_CATEGORY', '');
       commit('SET_NEWS', []);
     }
+  },
+  saveIsDark({ commit }) {
+    commit('SET_IS_DARK');
   },
   saveIsDrawer({ commit }) {
     commit('SET_IS_DRAWER');

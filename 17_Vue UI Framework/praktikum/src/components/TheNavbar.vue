@@ -139,7 +139,12 @@
     </svg>
     <v-toolbar-title class="ms-2 text-h6">News App</v-toolbar-title>
     <v-spacer />
-    <v-switch v-model="$vuetify.theme.dark" inset class="mt-6"></v-switch>
+    <v-switch
+      v-model="darkMode"
+      @change="darkModeToggle"
+      inset
+      class="mt-6"
+    ></v-switch>
     <div style="width: 200px">
       <v-text-field
         v-model="query"
@@ -158,8 +163,12 @@
 <script>
 export default {
   name: "TheNavbar",
+  props: {
+    isDark: Boolean,
+  },
   data() {
     return {
+      darkMode: false,
       query: "",
     };
   },
@@ -172,6 +181,9 @@ export default {
     navigateTo() {
       this.$route.path !== "/" && this.$router.push({ name: "home" });
     },
+    darkModeToggle() {
+      this.$store.dispatch("news/saveIsDark");
+    },
     drawerToggle() {
       this.$store.dispatch("news/saveIsDrawer");
     },
@@ -181,6 +193,7 @@ export default {
     },
   },
   mounted() {
+    this.darkMode = this.isDark;
     this.query = this.queryStore;
   },
   watch: {

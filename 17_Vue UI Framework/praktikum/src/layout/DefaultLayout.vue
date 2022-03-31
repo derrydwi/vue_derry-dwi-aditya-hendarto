@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <SideMenu />
-    <TheNavbar />
+    <TheNavbar :is-dark="isDark" />
     <v-main>
       <v-container fluid>
         <router-view></router-view>
@@ -22,6 +22,19 @@ export default {
     SideMenu,
     TheNavbar,
     TheFooter,
+  },
+  computed: {
+    isDark() {
+      return this.$store.state.news.isDark;
+    },
+  },
+  mounted() {
+    this.$vuetify.theme.dark = this.isDark;
+  },
+  watch: {
+    isDark(value) {
+      this.$vuetify.theme.dark = value;
+    },
   },
 };
 </script>
