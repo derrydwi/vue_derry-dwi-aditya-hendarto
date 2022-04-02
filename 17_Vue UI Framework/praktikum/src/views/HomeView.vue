@@ -29,13 +29,22 @@ export default {
       return this.$store.getters["news/getCategory"];
     },
     title() {
-      return this.query ? `Result of "${this.query}"` : `${this.category} News`;
+      if (this.query) {
+        return `Result of "${this.query}"`;
+      } else if (this.category) {
+        return `${this.category} News`;
+      } else {
+        return `News From ${this.source}`;
+      }
     },
     info() {
       return this.$store.getters["news/getInfo"];
     },
     newsList() {
       return this.$store.getters["news/getNews"];
+    },
+    source() {
+      return this.$store.getters["news/getSource"];
     },
     query() {
       return this.$store.getters["news/getQuery"];
@@ -48,10 +57,17 @@ export default {
         loadMore: loadMore,
       });
     },
+    fetchSources() {
+      this.$store.dispatch("news/fetchSources");
+    },
     loadMore() {
-      this.query
-        ? this.fetchNews("search", true)
-        : this.fetchNews("category", true);
+      if (this.query) {
+        this.fetchNews("search", true);
+      } else if (this.category) {
+        this.fetchNews("category", true);
+      } else {
+        this.fetchNews("source", true);
+      }
     },
     saveDetail(index) {
       this.$store.dispatch("news/saveCurrentNews", index);
@@ -61,6 +77,7 @@ export default {
     if (this.query && !this.newsList.length) {
       this.fetchNews("search", false);
     } else if (!this.newsList.length) {
+      this.fetchSources();
       this.fetchNews("category", false);
     }
   },
@@ -74,6 +91,12 @@ export default {
     category() {
       if (this.category) {
         this.fetchNews("category", false);
+        window.scrollTo(0, 0);
+      }
+    },
+    source() {
+      if (this.source) {
+        this.fetchNews("source", false);
         window.scrollTo(0, 0);
       }
     },
