@@ -1,7 +1,12 @@
 <template>
   <v-container>
-    <v-alert type="error"
-      ><span class="font-weight-bold">Error! </span>{{ info }}
+    <v-alert v-if="info.news" type="error"
+      ><span class="font-weight-bold">Error Fetching News!</span>
+      {{ info.news }}
+    </v-alert>
+    <v-alert v-if="info.sources" type="error"
+      ><span class="font-weight-bold">Error Fetching Sources!</span>
+      {{ info.sources }}
     </v-alert>
   </v-container>
 </template>
@@ -10,7 +15,7 @@
 export default {
   name: "BaseError",
   props: {
-    info: String,
+    info: Object,
   },
 };
 </script>

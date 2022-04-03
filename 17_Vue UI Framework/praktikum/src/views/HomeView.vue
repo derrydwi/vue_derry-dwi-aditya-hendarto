@@ -1,15 +1,16 @@
 <template>
-  <div v-if="!info">
+  <v-container v-if="!info.news">
+    <BaseError v-if="info.sources" :info="info" />
     <BaseHeading :text="title" />
     <NewsCard
       :news-list="newsList"
       @save-detail="saveDetail"
       @load-more="loadMore"
     />
-  </div>
-  <div v-else>
+  </v-container>
+  <v-container v-else>
     <BaseError :info="info" />
-  </div>
+  </v-container>
 </template>
 
 <script>

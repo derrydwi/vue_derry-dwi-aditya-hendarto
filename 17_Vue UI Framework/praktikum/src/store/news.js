@@ -3,7 +3,7 @@ import axios from 'axios';
 const state = () => ({
   news: [],
   sources: [],
-  info: '',
+  info: {},
   page: 1,
   currentNews: {},
   category: 'general',
@@ -125,18 +125,18 @@ const actions = {
           ? commit('SET_NEWS', [...state.news, ...response.data.articles])
           : commit('SET_NEWS', response.data.articles);
         // reset info
-        commit('SET_INFO', '');
+        commit('SET_INFO', { ...state.info, news: '' });
       })
       .catch((error) => {
         // add erorr message
-        commit('SET_INFO', error.message);
+        commit('SET_INFO', { ...state.info, news: error.message });
       })
       .finally(() => {
         // set isLoading to false
         commit('SET_IS_LOADING');
       });
   },
-  fetchSources({ commit }) {
+  fetchSources({ commit, state }) {
     axios
       .get('https://newsapi.org/v2/top-headlines/sources', {
         params: {
@@ -144,14 +144,11 @@ const actions = {
         },
       })
       .then((response) => {
-        // check if loadMore param have a value
         commit('SET_SOURCES', response.data.sources);
-        // reset info
-        commit('SET_INFO', '');
+        commit('SET_INFO', { ...state.info, sources: '' });
       })
       .catch((error) => {
-        // add erorr message
-        commit('SET_INFO', error.message);
+        commit('SET_INFO', { ...state.info, sources: error.message });
       });
   },
   saveCurrentNews({ commit, state }, param) {
