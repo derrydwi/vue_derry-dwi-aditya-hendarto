@@ -1,5 +1,5 @@
 <template>
-  <v-footer app>
+  <v-footer>
     <v-row justify="center" no-gutters>
       <span
         >Made with <v-icon color="red">mdi-heart</v-icon> by

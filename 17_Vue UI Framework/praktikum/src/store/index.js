@@ -6,7 +6,7 @@ import news from './news';
 Vue.use(Vuex);
 
 const persistedDataState = createPersistedState({
-  paths: ['news.currentNews', 'news.isDark'],
+  paths: ['news.currentNews', 'news.sources', 'news.isDark'],
 });
 
 export default new Vuex.Store({

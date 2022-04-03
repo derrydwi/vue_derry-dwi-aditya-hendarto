@@ -1,7 +1,9 @@
 <template>
-  <v-alert type="error"
-    ><span class="font-weight-bold">Error! </span>{{ info }}
-  </v-alert>
+  <v-container>
+    <v-alert type="error"
+      ><span class="font-weight-bold">Error! </span>{{ info }}
+    </v-alert>
+  </v-container>
 </template>
 
 <script>

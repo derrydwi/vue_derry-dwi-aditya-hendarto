@@ -1,5 +1,9 @@
 <template>
-  <h1 class="text-center text-capitalize my-4">{{ text }}</h1>
+  <h1
+    class="text-center text-capitalize font-weight-bold text-h5 text-md-h4 my-4"
+  >
+    {{ text }}
+  </h1>
 </template>
 
 <script>

@@ -1,19 +1,19 @@
 <template>
-  <v-container class="detail">
+  <v-container class="detail" fluid>
     <BaseHeading :text="news.title" class="mx-auto" />
-    <v-btn @click="back" class="mb-4"
-      ><v-icon class="mr-2">mdi-arrow-left</v-icon>Back</v-btn
+    <v-btn @click="back" class="mb-4" icon elevation="2"
+      ><v-icon>mdi-arrow-left</v-icon></v-btn
     >
     <v-img
-      class="mx-auto mb-4"
-      width="80%"
+      class="mx-md-16 mx-auto mb-4"
+      max-height="500px"
       position="center center"
       :src="news.urlToImage"
       :alt="news.title"
     />
     <p class="mb-4">{{ dateTime }}</p>
     <p class="mb-4">{{ news.content }}</p>
-    <v-row justify="center" class="mb-4">
+    <v-row justify="center" class="mt-2 mb-4">
       <v-btn :href="news.url" target="_blank" color="primary">
         <v-icon class="mr-2">mdi-eye-outline</v-icon>Read More</v-btn
       >

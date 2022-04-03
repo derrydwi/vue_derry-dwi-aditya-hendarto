@@ -139,24 +139,25 @@
     </svg>
     <v-toolbar-title class="ms-2 text-h6">News App</v-toolbar-title>
     <v-spacer />
-    <v-switch
-      v-model="darkMode"
-      @change="darkModeToggle"
-      inset
-      class="mt-6"
-    ></v-switch>
-    <div style="width: 200px">
-      <v-text-field
-        v-model="query"
-        @keyup.enter="search"
-        label="Search"
-        prepend-inner-icon="mdi-magnify"
-        class="mt-7"
-        density="compact"
-        clearable
-        solo
-      ></v-text-field>
-    </div>
+    <v-btn icon @click="darkModeToggle">
+      <v-icon>mdi-brightness-{{ isDark ? "3" : "7" }}</v-icon>
+    </v-btn>
+    <v-text-field
+      v-if="isSearch"
+      v-model="query"
+      @blur="!query && searchToggle"
+      @keyup.enter="search"
+      label="Search"
+      prepend-inner-icon="mdi-magnify"
+      hide-details="auto"
+      style="max-width: 200px"
+      autofocus
+      single-line
+      clearable
+    ></v-text-field>
+    <v-btn v-else @click="searchToggle" icon
+      ><v-icon>mdi-magnify</v-icon></v-btn
+    >
   </v-app-bar>
 </template>
 
@@ -168,7 +169,7 @@ export default {
   },
   data() {
     return {
-      darkMode: false,
+      isSearch: false,
       query: "",
     };
   },
@@ -187,18 +188,23 @@ export default {
     drawerToggle() {
       this.$store.dispatch("news/saveIsDrawer");
     },
+    searchToggle() {
+      this.isSearch = !this.isSearch;
+    },
     search() {
       this.$store.dispatch("news/saveQuery", this.query);
       this.navigateTo();
     },
   },
   mounted() {
-    this.darkMode = this.isDark;
     this.query = this.queryStore;
   },
   watch: {
     queryStore(value) {
       this.query = value;
+      if (!this.query) {
+        this.isSearch = false;
+      }
     },
   },
 };

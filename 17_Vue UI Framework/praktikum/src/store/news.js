@@ -8,7 +8,7 @@ const state = () => ({
   currentNews: {},
   category: 'general',
   query: '',
-  source: '',
+  source: {},
   isDrawer: true,
   isDark: true,
   isLoading: false,
@@ -108,7 +108,7 @@ const actions = {
       baseUrl = 'https://newsapi.org/v2/top-headlines';
       params = {
         apiKey: process.env.VUE_APP_API_KEY,
-        sources: state.source,
+        sources: state.source.id,
         pageSize: 5,
         page: state.page,
       };

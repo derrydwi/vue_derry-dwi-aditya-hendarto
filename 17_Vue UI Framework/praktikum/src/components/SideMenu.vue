@@ -13,7 +13,7 @@
       <v-list-item
         v-for="source in sources"
         :key="source.id"
-        @click="changeSources(source.id)"
+        @click="changeSources({ id: source.id, name: source.name })"
       >
         <v-list-item-title v-text="source.name" class="text-capitalize" />
       </v-list-item>

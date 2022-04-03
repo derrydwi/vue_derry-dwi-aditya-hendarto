@@ -29,13 +29,9 @@ export default {
       return this.$store.getters["news/getCategory"];
     },
     title() {
-      if (this.query) {
-        return `Result of "${this.query}"`;
-      } else if (this.category) {
-        return `${this.category} News`;
-      } else {
-        return `News From ${this.source}`;
-      }
+      return this.query
+        ? `Result of "${this.query}"`
+        : `${this.category || this.source.name} News`;
     },
     info() {
       return this.$store.getters["news/getInfo"];
@@ -45,6 +41,9 @@ export default {
     },
     source() {
       return this.$store.getters["news/getSource"];
+    },
+    sources() {
+      return this.$store.getters["news/getSources"];
     },
     query() {
       return this.$store.getters["news/getQuery"];
@@ -77,9 +76,9 @@ export default {
     if (this.query && !this.newsList.length) {
       this.fetchNews("search", false);
     } else if (!this.newsList.length) {
-      this.fetchSources();
       this.fetchNews("category", false);
     }
+    !this.sources.length && this.fetchSources();
   },
   watch: {
     query() {
