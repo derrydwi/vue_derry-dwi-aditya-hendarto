@@ -7,7 +7,12 @@
       width="800"
     >
       <div @click="saveDetail(index, news.title)" style="cursor: pointer">
-        <v-img max-height="350px" :src="news.urlToImage" cover />
+        <v-img
+          max-height="350px"
+          lazy-src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs="
+          :src="news.urlToImage"
+          cover
+        />
         <v-card-text class="mb-0 pb-0">{{
           dateTime(news.publishedAt)
         }}</v-card-text>
