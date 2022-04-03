@@ -1,6 +1,12 @@
 <template>
   <h1
-    class="text-center text-capitalize font-weight-bold text-h5 text-md-h4 my-4"
+    class="
+      text-center text-capitalize
+      font-weight-bold
+      text-h5 text-md-h4
+      mt-4
+      mb-8
+    "
   >
     {{ text }}
   </h1>
