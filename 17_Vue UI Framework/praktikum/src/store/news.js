@@ -104,7 +104,7 @@ const actions = {
         pageSize: 5,
         page: state.page,
       };
-    } else {
+    } else if (param.type === 'source') {
       baseUrl = 'https://newsapi.org/v2/top-headlines';
       params = {
         apiKey: process.env.VUE_APP_API_KEY,

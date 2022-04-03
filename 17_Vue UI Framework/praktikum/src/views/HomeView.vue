@@ -59,12 +59,22 @@ export default {
     fetchSources() {
       this.$store.dispatch("news/fetchSources");
     },
+    initialFetch() {
+      if (this.query && !this.newsList.length) {
+        this.fetchNews("search", false);
+      } else if (this.category && !this.newsList.length) {
+        this.fetchNews("category", false);
+      } else if (this.source && !this.newsList.length) {
+        this.fetchNews("source", false);
+      }
+      !this.sources.length && this.fetchSources();
+    },
     loadMore() {
       if (this.query) {
         this.fetchNews("search", true);
       } else if (this.category) {
         this.fetchNews("category", true);
-      } else {
+      } else if (this.source) {
         this.fetchNews("source", true);
       }
     },
@@ -73,12 +83,7 @@ export default {
     },
   },
   mounted() {
-    if (this.query && !this.newsList.length) {
-      this.fetchNews("search", false);
-    } else if (!this.newsList.length) {
-      this.fetchNews("category", false);
-    }
-    !this.sources.length && this.fetchSources();
+    this.initialFetch();
   },
   watch: {
     query() {

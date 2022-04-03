@@ -7,7 +7,7 @@
       width="800"
     >
       <div @click="saveDetail(index, news.title)" style="cursor: pointer">
-        <v-img max-height="350px" v-bind:src="news.urlToImage" cover />
+        <v-img max-height="350px" :src="news.urlToImage" cover />
         <v-card-text class="mb-0 pb-0">{{
           dateTime(news.publishedAt)
         }}</v-card-text>
@@ -98,6 +98,7 @@ export default {
       this.$router.push({
         name: "detail",
         params: {
+          title: this.newsList[index].title,
           slug: generateSlug(title),
         },
       });
