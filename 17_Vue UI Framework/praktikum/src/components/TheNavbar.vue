@@ -1,5 +1,5 @@
 <template>
-  <v-app-bar app>
+  <v-app-bar app clipped-left>
     <v-app-bar-nav-icon @click="drawerToggle"></v-app-bar-nav-icon>
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -139,13 +139,13 @@
     </svg>
     <v-toolbar-title class="ms-2 text-h6">News App</v-toolbar-title>
     <v-spacer />
-    <v-btn icon @click="darkModeToggle">
-      <v-icon>mdi-brightness-{{ isDark ? "3" : "7" }}</v-icon>
+    <v-btn @click="darkModeToggle" icon>
+      <v-icon>mdi-brightness-{{ isDark ? "2" : "7" }}</v-icon>
     </v-btn>
     <v-text-field
       v-if="isSearch"
       v-model="query"
-      @blur="!query && searchToggle"
+      @blur="!query && searchToggle()"
       @keyup.enter="search"
       label="Search"
       prepend-inner-icon="mdi-magnify"

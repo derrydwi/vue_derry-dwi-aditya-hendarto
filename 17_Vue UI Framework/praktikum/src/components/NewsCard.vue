@@ -50,7 +50,7 @@
         </v-container>
       </v-card-actions>
     </v-card>
-    <v-row justify="center" class="mt-4 mb-2">
+    <v-row justify="center" class="mt-8 mb-2">
       <v-btn @click="$emit('load-more')">
         <v-progress-circular
           v-if="isLoading"
@@ -58,7 +58,7 @@
           size="24"
           class="mr-2"
         />
-        <v-icon v-else class="mr-2">mdi-dots-horizontal</v-icon>Load More</v-btn
+        <v-icon v-else class="mr-2">mdi-arrow-down</v-icon>Load More</v-btn
       >
     </v-row>
   </v-flex>

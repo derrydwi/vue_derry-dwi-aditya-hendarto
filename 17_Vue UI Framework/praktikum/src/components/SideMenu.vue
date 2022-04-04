@@ -1,22 +1,36 @@
 <template>
-  <v-navigation-drawer app :value="isDrawer">
+  <v-navigation-drawer app clipped :value="isDrawer">
     <v-list>
-      <v-subheader>CATEGORY</v-subheader>
-      <v-list-item
-        v-for="category in categories"
-        :key="category"
-        @click="changeCategory(category)"
-      >
-        <v-list-item-title v-text="category" class="text-capitalize" />
-      </v-list-item>
-      <v-subheader>SOURCES</v-subheader>
-      <v-list-item
-        v-for="source in sources"
-        :key="source.id"
-        @click="changeSources({ id: source.id, name: source.name })"
-      >
-        <v-list-item-title v-text="source.name" class="text-capitalize" />
-      </v-list-item>
+      <v-list-group prepend-icon="mdi-view-dashboard" no-action>
+        <template v-slot:activator>
+          <v-list-item-title>Category</v-list-item-title>
+        </template>
+        <v-list-item
+          v-for="category in categories"
+          :key="category"
+          @click="changeCategory(category)"
+        >
+          <v-list-item-title
+            v-text="category"
+            class="text-capitalize"
+          ></v-list-item-title>
+        </v-list-item>
+      </v-list-group>
+      <v-list-group prepend-icon="mdi-newspaper-variant" no-action>
+        <template v-slot:activator>
+          <v-list-item-title>Sources</v-list-item-title>
+        </template>
+        <v-list-item
+          v-for="source in sources"
+          :key="source.id"
+          @click="changeSources({ id: source.id, name: source.name })"
+        >
+          <v-list-item-title
+            v-text="source.name"
+            class="text-capitalize"
+          ></v-list-item-title>
+        </v-list-item>
+      </v-list-group>
     </v-list>
   </v-navigation-drawer>
 </template>
