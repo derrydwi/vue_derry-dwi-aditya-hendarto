@@ -8,7 +8,7 @@
     >
       <div @click="saveDetail(index, news.title)" style="cursor: pointer">
         <v-img
-          max-height="350px"
+          max-height="350"
           lazy-src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs="
           :src="news.urlToImage"
           cover
@@ -24,13 +24,13 @@
           <p>{{ news.author }}</p>
         </v-card-text>
       </div>
-      <v-card-actions class="my-0 py-0">
-        <v-container>
+      <v-card-actions class="my-0 py-0 px-4">
+        <v-container class="px-0">
           <v-row>
-            <v-col cols="12" md="4" class="text-start text-md-start">
+            <v-col cols="6" md="4" class="text-start text-md-start">
               <v-chip>{{ news.source.name }}</v-chip>
             </v-col>
-            <v-col cols="6" md="4" class="text-start text-md-center">
+            <v-col cols="6" md="4" class="text-start text-md-center my-auto">
               <v-btn
                 v-for="icon in icons"
                 :key="icon"
@@ -41,8 +41,12 @@
                 <v-icon>{{ icon }}</v-icon>
               </v-btn>
             </v-col>
-            <v-col cols="6" md="4" class="text-center text-md-end">
-              <v-btn :href="news.url" target="_blank" color="primary"
+            <v-col cols="12" md="4" class="text-center text-md-end">
+              <v-btn
+                :block="$vuetify.breakpoint.xsOnly"
+                :href="news.url"
+                target="_blank"
+                color="primary"
                 ><v-icon class="mr-2">mdi-eye-outline</v-icon>Read More</v-btn
               >
             </v-col>
