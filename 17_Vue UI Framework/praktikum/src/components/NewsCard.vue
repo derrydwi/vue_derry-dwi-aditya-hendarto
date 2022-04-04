@@ -30,20 +30,20 @@
             <v-col cols="6" md="4" class="text-start text-md-start">
               <v-chip>{{ news.source.name }}</v-chip>
             </v-col>
-            <v-col cols="6" md="4" class="text-start text-md-center my-auto">
+            <v-col cols="6" md="4" class="text-end text-md-center my-auto">
               <v-btn
                 v-for="icon in icons"
                 :key="icon"
                 icon
                 small
-                class="mx-md-2"
+                class="mx-sm-2"
               >
                 <v-icon>{{ icon }}</v-icon>
               </v-btn>
             </v-col>
             <v-col cols="12" md="4" class="text-center text-md-end">
               <v-btn
-                :block="$vuetify.breakpoint.xsOnly"
+                :block="$vuetify.breakpoint.smAndDown"
                 :href="news.url"
                 target="_blank"
                 color="primary"
