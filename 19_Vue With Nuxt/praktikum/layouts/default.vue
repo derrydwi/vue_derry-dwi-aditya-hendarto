@@ -4,7 +4,7 @@
     <TheNavbar :is-dark="isDark" />
     <v-main>
       <v-container fluid>
-        <router-view></router-view>
+        <Nuxt />
       </v-container>
     </v-main>
     <TheFooter />

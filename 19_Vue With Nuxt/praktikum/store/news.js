@@ -142,6 +142,12 @@ const actions = {
         commit('SET_INFO', { ...state.info, sources: error.message })
       })
   },
+  saveNews({ commit }, param) {
+    commit('SET_NEWS', param)
+  },
+  saveInfo({ commit }, param) {
+    commit('SET_INFO', param)
+  },
   saveCurrentNews({ commit, state }, param) {
     commit('SET_CURRENT_NEWS', state.news[param])
   },

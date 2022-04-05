@@ -25,6 +25,27 @@ export default {
     BaseHeading,
     NewsCard,
   },
+  asyncData({ $axios, store }) {
+    return $axios
+      .get('https://api-newsapps.ga/v2/top-headlines', {
+        params: {
+          country: 'us',
+          category: 'general',
+          pageSize: 5,
+          page: 1,
+        },
+      })
+      .then((response) => {
+        store.dispatch('news/saveInfo', { ...store.state.info, news: '' })
+        store.dispatch('news/saveNews', response.data.articles)
+      })
+      .catch((error) => {
+        store.dispatch('news/saveInfo', {
+          ...store.state.info,
+          news: error.message,
+        })
+      })
+  },
   computed: {
     category() {
       return this.$store.getters['news/getCategory']
