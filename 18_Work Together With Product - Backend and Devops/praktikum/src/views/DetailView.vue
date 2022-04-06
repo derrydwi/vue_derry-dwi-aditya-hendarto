@@ -37,10 +37,19 @@ export default {
     dateTime() {
       return generateDateTime(this.news.publishedAt);
     },
+    title() {
+      return `${process.env.VUE_APP_TITLE} | ${this.news.title}`;
+    },
+  },
+  mounted() {
+    this.setTitle();
   },
   methods: {
     back() {
       this.$router.back();
+    },
+    setTitle() {
+      document.title = this.title;
     },
   },
 };

@@ -40,6 +40,9 @@ export default {
     newsList() {
       return this.$store.getters["news/getNews"];
     },
+    pageTitle() {
+      return `${process.env.VUE_APP_TITLE}`;
+    },
     source() {
       return this.$store.getters["news/getSource"];
     },
@@ -82,9 +85,13 @@ export default {
     saveDetail(index) {
       this.$store.dispatch("news/saveCurrentNews", index);
     },
+    setTitle() {
+      document.title = this.pageTitle;
+    },
   },
   mounted() {
     this.initialFetch();
+    this.setTitle();
   },
   watch: {
     query() {

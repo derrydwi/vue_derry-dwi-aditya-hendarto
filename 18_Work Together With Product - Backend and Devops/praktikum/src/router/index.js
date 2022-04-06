@@ -42,13 +42,4 @@ const router = new VueRouter({
   scrollBehavior,
 });
 
-router.beforeEach((to, from, next) => {
-  let title = process.env.VUE_APP_TITLE;
-  if (to.params.title) {
-    title += ` | ${to.params.title}`;
-  }
-  document.title = title;
-  next();
-});
-
 export default router;
