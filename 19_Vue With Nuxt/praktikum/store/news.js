@@ -6,6 +6,7 @@ const state = () => ({
   currentNews: {},
   category: 'general',
   query: '',
+  title: '',
   source: {},
   isDrawer: true,
   isDark: true,
@@ -30,6 +31,9 @@ const getters = {
   },
   getQuery: (state) => {
     return state.query
+  },
+  getTitle: (state) => {
+    return state.title
   },
   getSource: (state) => {
     return state.source
@@ -63,6 +67,9 @@ const mutations = {
   },
   SET_QUERY(state, param) {
     state.query = param
+  },
+  SET_TITLE(state, param) {
+    state.title = param
   },
   SET_SOURCE(state, param) {
     state.source = param
@@ -147,6 +154,9 @@ const actions = {
   },
   saveInfo({ commit }, param) {
     commit('SET_INFO', param)
+  },
+  saveTitle({ commit }, param) {
+    commit('SET_TITLE', param)
   },
   saveCurrentNews({ commit, state }, param) {
     commit('SET_CURRENT_NEWS', state.news[param])

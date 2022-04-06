@@ -31,18 +31,21 @@ export default {
         .get('https://api-newsapps.ga/v2/top-headlines', {
           params: {
             country: 'us',
-            category: 'general',
+            category: store.state.news.category,
             pageSize: 5,
-            page: 1,
+            page: store.state.news.page,
           },
         })
         .then((response) => {
-          store.dispatch('news/saveInfo', { ...store.state.info, news: '' })
+          store.dispatch('news/saveInfo', {
+            ...store.state.news.info,
+            news: '',
+          })
           store.dispatch('news/saveNews', response.data.articles)
         })
         .catch((error) => {
           store.dispatch('news/saveInfo', {
-            ...store.state.info,
+            ...store.state.news.info,
             news: error.message,
           })
         })

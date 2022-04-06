@@ -29,13 +29,24 @@
 <script>
 import BaseHeading from '@/components/BaseHeading.vue'
 import BaseLoading from '@/components/BaseLoading.vue'
-import { generateDateTime } from '@/utils/formatter'
+import { generateTitle, generateDateTime } from '@/utils/formatter'
 
 export default {
   name: 'DetailView',
   components: {
     BaseHeading,
     BaseLoading,
+  },
+  fetch() {
+    return this.$store.dispatch(
+      'news/saveTitle',
+      generateTitle(this.$route.params.slug)
+    )
+  },
+  head() {
+    return {
+      title: `News Apps Nuxt | ${this.$store.state.news.title}`,
+    }
   },
   computed: {
     news() {
@@ -45,15 +56,9 @@ export default {
       return generateDateTime(this.news.publishedAt)
     },
   },
-  mounted() {
-    this.setTitle()
-  },
   methods: {
     back() {
       this.$router.back()
-    },
-    setTitle() {
-      document.title = `News Apps Nuxt | ${this.news.title}`
     },
   },
 }
