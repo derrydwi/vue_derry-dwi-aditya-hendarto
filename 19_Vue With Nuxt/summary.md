@@ -181,10 +181,11 @@ Berikut kode hasil dari praktikum ini:
   - [nuxt.config.js](./praktikum/nuxt.config.js)
 - app
   - [router.scrollBehavior.js](./praktikum/app/router.scrollBehavior.js)
+- common
+  - [api.vue](./praktikum/common/api.js)
 - components
   - [BaseError.vue](./praktikum/components/BaseError.vue)
   - [BaseHeading.vue](./praktikum/components/BaseHeading.vue)
-  - [BaseLoading.vue](./praktikum/components/BaseLoading.vue)
   - [NewsCard.vue](./praktikum/components/NewsCard.vue)
   - [SideMenu.vue](./praktikum/components/SideMenu.vue)
   - [TheFooter.vue](./praktikum/components/TheFooter.vue)
@@ -193,10 +194,17 @@ Berikut kode hasil dari praktikum ini:
   - [default.vue](./praktikum/layouts/default.vue)
   - [error.vue](./praktikum/layouts/error.vue)
 - pages
-  - [\_slug.vue](./praktikum/pages/_slug.vue)
   - [index.vue](./praktikum/pages/index.vue)
+  - category
+    - [\_category.vue](./praktikum/pages/category/_category.vue)
+  - detail
+    - [\_slug.vue](./praktikum/pages/detail/_slug.vue)
+  - search
+    - [index.vue](./praktikum/pages/search/index.vue)
+  - source
+    - [\_source.vue](./praktikum/pages/source/_source.vue)
 - plugins
-  - [persistedState.client.js](./praktikum/plugins/persistedState.client.js)
+  - [persistedState.js](./praktikum/plugins/persistedState.js)
 - store
   - [news.js](./praktikum/store/news.js)
 - utils
@@ -212,8 +220,6 @@ Output:
 
 ![HasilPraktikum.gif](./screenshots/HasilPraktikum.gif)
 
-![PWAOnMobile-1.png](./screenshots/PWAOnMobile-1.png)
-
-![PWAOnMobile-2.png](./screenshots/PWAOnMobile-2.png)
-
-![PWAOnMobile-3.png](./screenshots/PWAOnMobile-3.png)
+|                                                       |                                                       |                                                       |                                                       |
+| :---------------------------------------------------: | :---------------------------------------------------: | :---------------------------------------------------: | :---------------------------------------------------: |
+| ![PWAOnMobile-1.png](./screenshots/PWAOnMobile-1.png) | ![PWAOnMobile-2.png](./screenshots/PWAOnMobile-2.png) | ![PWAOnMobile-3.png](./screenshots/PWAOnMobile-3.png) | ![PWAOnMobile-4.png](./screenshots/PWAOnMobile-4.png) |
