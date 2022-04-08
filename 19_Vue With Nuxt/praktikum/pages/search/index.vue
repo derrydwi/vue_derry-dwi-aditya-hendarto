@@ -1,10 +1,9 @@
 <template>
-  <v-container v-if="!info.news">
-    <BaseError v-if="info.sources" :info="info" />
+  <v-container v-if="!info">
     <BaseHeading :text="title" />
     <NewsCard
-      :current-page="page"
       :news-list="newsList"
+      :page="page"
       @save-detail="saveDetail"
       @change-page="changePage"
     />
@@ -26,43 +25,16 @@ export default {
     BaseHeading,
     NewsCard,
   },
-  asyncData({ $axios, store, route }) {
-    const pageNumber = Number(route.query.page) || 1
-    if (
-      store.state.news.news.type === route.query.query &&
-      store.state.news.news.page === pageNumber
-    )
-      return
-    return $axios
-      .get('https://api-newsapps.ga/v2/everything', {
-        params: {
-          q: route.query.query,
-          pageSize: 5,
-          page: pageNumber,
-        },
-      })
-      .then((response) => {
-        store.dispatch('news/saveInfo', {
-          ...store.state.news.info,
-          news: '',
-        })
-        store.dispatch('news/saveNews', {
-          type: route.query.query,
-          page: pageNumber,
-          news: response.data.articles,
-        })
-        store.dispatch('news/saveNewsLength', response.data.totalResults)
-      })
-      .catch((error) => {
-        store.dispatch('news/saveInfo', {
-          ...store.state.news.info,
-          news: error.message,
-        })
-      })
+  asyncData({ store, route }) {
+    return store.dispatch('news/fetchNews', {
+      mode: 'search',
+      type: route.query.query,
+      page: route.query.page,
+    })
   },
   head() {
     return {
-      title: this.$route.query.query,
+      title: `Result of "${this.$route.query.query}"`,
     }
   },
   computed: {
@@ -73,27 +45,18 @@ export default {
       return this.$store.getters['news/getInfo']
     },
     newsList() {
-      return this.$store.getters['news/getNews'].news
+      return this.$store.getters['news/getNewsList']
     },
-    route() {
-      return this.$route.query
-    },
-    page: {
-      get() {
-        return Number(this.$route.query.page) || 1
-      },
-      set() {},
+    page() {
+      return parseInt(this.$route.query.page) || 1
     },
   },
   watch: {
-    route() {
+    '$route.query'() {
       this.$nuxt.refresh()
     },
   },
   methods: {
-    saveDetail(index) {
-      this.$store.dispatch('news/saveCurrentNews', index)
-    },
     changePage(page) {
       this.$router.push({
         path: this.$route.path,
@@ -102,6 +65,9 @@ export default {
           page,
         },
       })
+    },
+    saveDetail(index) {
+      this.$store.dispatch('news/saveCurrentNews', index)
     },
   },
 }

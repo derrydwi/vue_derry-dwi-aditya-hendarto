@@ -56,7 +56,7 @@
     </v-card>
     <v-row justify="center" class="mt-8 mb-2">
       <v-pagination
-        v-model="page"
+        :value="page"
         :length="paginationLength"
         @input="changePage"
       ></v-pagination>
@@ -65,7 +65,11 @@
 </template>
 
 <script>
-import { generateSlug, generateDateTime } from '@/utils/formatter'
+import {
+  generateSlug,
+  generateDateTime,
+  generatePaginationLength,
+} from '@/utils/formatter'
 
 export default {
   name: 'NewsCard',
@@ -75,6 +79,10 @@ export default {
       default() {
         return []
       },
+    },
+    page: {
+      type: Number,
+      default: 1,
     },
   },
   data() {
@@ -93,13 +101,7 @@ export default {
       return this.$store.getters['news/getNewsLength']
     },
     paginationLength() {
-      return Math.min(Math.max(parseInt(Math.ceil(this.newsLength / 5)), 1), 10)
-    },
-    page: {
-      get() {
-        return Number(this.$route.query.page) || 1
-      },
-      set() {},
+      return generatePaginationLength(this.newsLength)
     },
   },
   methods: {

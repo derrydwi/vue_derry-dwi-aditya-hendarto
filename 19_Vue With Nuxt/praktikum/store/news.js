@@ -1,9 +1,7 @@
 const state = () => ({
   news: {},
-  newsLength: 0,
   currentNews: {},
-  title: '',
-  info: {},
+  info: '',
   isDark: true,
   isDrawer: true,
 })
@@ -12,14 +10,14 @@ const getters = {
   getNews: (state) => {
     return state.news
   },
+  getNewsList: (state) => {
+    return state.news.newsList
+  },
   getNewsLength: (state) => {
-    return state.newsLength
+    return state.news.total
   },
   getCurrentNews: (state) => {
     return state.currentNews
-  },
-  getTitle: (state) => {
-    return state.title
   },
   getInfo: (state) => {
     return state.info
@@ -36,14 +34,8 @@ const mutations = {
   SET_NEWS(state, param) {
     state.news = param
   },
-  SET_NEWS_LENGTH(state, param) {
-    state.newsLength = param
-  },
   SET_CURRENT_NEWS(state, param) {
     state.currentNews = param
-  },
-  SET_TITLE(state, param) {
-    state.title = param
   },
   SET_INFO(state, param) {
     state.info = param
@@ -57,17 +49,57 @@ const mutations = {
 }
 
 const actions = {
+  fetchNews({ commit, state }, { mode, type, page }) {
+    // when user wanna fetch the same data
+    if (state.news.type === type && state.news.page === page) return
+
+    // determine the request & params to be used
+    let url, params
+    if (mode === 'category') {
+      url = 'https://api-newsapps.ga/v2/top-headlines'
+      params = {
+        country: 'us',
+        category: type,
+        pageSize: 5,
+        page,
+      }
+    } else if (mode === 'search') {
+      url = 'https://api-newsapps.ga/v2/everything'
+      params = {
+        q: type,
+        pageSize: 5,
+        page,
+      }
+    } else if (mode === 'source') {
+      url = 'https://api-newsapps.ga/v2/top-headlines'
+      params = {
+        sources: type,
+        pageSize: 5,
+        page,
+      }
+    }
+
+    // fetch data
+    return this.$axios
+      .get(url, { params })
+      .then((response) => {
+        commit('SET_NEWS', {
+          type,
+          page,
+          total: response.data.totalResults,
+          newsList: response.data.articles,
+        })
+        commit('SET_INFO', '')
+      })
+      .catch((error) => {
+        commit('SET_INFO', error.message)
+      })
+  },
   saveNews({ commit }, param) {
     commit('SET_NEWS', param)
   },
-  saveNewsLength({ commit }, param) {
-    commit('SET_NEWS_LENGTH', param)
-  },
   saveCurrentNews({ commit, state }, param) {
-    commit('SET_CURRENT_NEWS', state.news.news[param])
-  },
-  saveTitle({ commit }, param) {
-    commit('SET_TITLE', param)
+    commit('SET_CURRENT_NEWS', state.news.newsList[param])
   },
   saveInfo({ commit }, param) {
     commit('SET_INFO', param)

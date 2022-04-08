@@ -53,15 +53,9 @@ export default {
   },
   methods: {
     navigateTo({ type, path }) {
-      if (type === 'category') {
-        this.$router.push({
-          path: `/category/${path}`,
-        })
-      } else if (type === 'source') {
-        this.$router.push({
-          path: `/source/${path}`,
-        })
-      }
+      this.$router.push({
+        path: `/${type}/${path}`,
+      })
     },
   },
 }

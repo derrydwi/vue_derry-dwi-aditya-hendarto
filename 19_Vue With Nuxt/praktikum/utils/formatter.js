@@ -13,12 +13,10 @@ export const generateSlug = (title) => {
     .replace(/ +/g, '-')
 }
 
-export const generateTitle = (slug) => {
-  return slug.replace(/-/g, ' ').replace(/\b[a-z]/g, function () {
-    return arguments[0].toUpperCase()
-  })
-}
-
 export const generateDateTime = (dateTime) => {
   return new Date(dateTime).toUTCString().substring(0, 22)
+}
+
+export const generatePaginationLength = (newsLength) => {
+  return Math.min(Math.max(parseInt(Math.ceil(newsLength / 5)), 1), 10)
 }

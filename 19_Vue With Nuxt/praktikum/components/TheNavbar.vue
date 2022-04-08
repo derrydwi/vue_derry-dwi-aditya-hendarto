@@ -140,7 +140,7 @@
     <v-toolbar-title class="ms-2 text-h6">News App</v-toolbar-title>
     <v-spacer />
     <v-btn icon @click="darkModeToggle">
-      <v-icon>mdi-brightness-{{ isDark ? '2' : '7' }}</v-icon>
+      <v-icon>{{ darkModeIcon }}</v-icon>
     </v-btn>
     <v-text-field
       v-if="isSearch"
@@ -172,6 +172,11 @@ export default {
       isSearch: false,
       query: '',
     }
+  },
+  computed: {
+    darkModeIcon() {
+      return this.isDark ? 'mdi-brightness-2' : 'mdi-brightness-7'
+    },
   },
   watch: {
     '$route.path'(value) {

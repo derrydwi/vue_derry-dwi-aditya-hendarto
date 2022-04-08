@@ -1,12 +1,8 @@
 <template>
   <v-container>
-    <v-alert v-if="info.news" type="error"
+    <v-alert type="error"
       ><span class="font-weight-bold">Error Fetching News!</span>
-      {{ info.news }}
-    </v-alert>
-    <v-alert v-if="info.sources" type="error"
-      ><span class="font-weight-bold">Error Fetching Sources!</span>
-      {{ info.sources }}
+      {{ info }}
     </v-alert>
   </v-container>
 </template>
@@ -16,10 +12,8 @@ export default {
   name: 'BaseError',
   props: {
     info: {
-      type: Object,
-      default() {
-        return { news: '', sources: '' }
-      },
+      type: String,
+      default: '',
     },
   },
 }

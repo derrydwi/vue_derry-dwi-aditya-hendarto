@@ -1,10 +1,9 @@
 <template>
-  <v-container v-if="!info.news">
-    <BaseError v-if="info.sources" :info="info" />
+  <v-container v-if="!info">
     <BaseHeading :text="title" />
     <NewsCard
-      :current-page="page"
       :news-list="newsList"
+      :page="page"
       @save-detail="saveDetail"
       @change-page="changePage"
     />
@@ -18,6 +17,7 @@
 import BaseError from '@/components/BaseError.vue'
 import BaseHeading from '@/components/BaseHeading.vue'
 import NewsCard from '@/components/NewsCard.vue'
+import { sources } from '~/common/api'
 
 export default {
   name: 'SourceView',
@@ -26,74 +26,43 @@ export default {
     BaseHeading,
     NewsCard,
   },
-  asyncData({ $axios, store, route }) {
-    const pageNumber = Number(route.query.page) || 1
-    if (
-      store.state.news.news.type === route.params.source &&
-      store.state.news.news.page === pageNumber
-    )
-      return
-    return $axios
-      .get('https://api-newsapps.ga/v2/top-headlines', {
-        params: {
-          sources: route.params.source,
-          pageSize: 5,
-          page: pageNumber,
-        },
-      })
-      .then((response) => {
-        store.dispatch('news/saveInfo', {
-          ...store.state.news.info,
-          news: '',
-        })
-        store.dispatch('news/saveNews', {
-          type: route.params.source,
-          page: pageNumber,
-          news: response.data.articles,
-        })
-        store.dispatch('news/saveNewsLength', response.data.totalResults)
-      })
-      .catch((error) => {
-        store.dispatch('news/saveInfo', {
-          ...store.state.news.info,
-          news: error.message,
-        })
-      })
+  asyncData({ store, route }) {
+    return store.dispatch('news/fetchNews', {
+      mode: 'source',
+      type: route.params.source,
+      page: route.query.page,
+    })
   },
   head() {
     return {
-      title: this.$route.params.source,
+      title: sources[this.sourceIndex].name,
     }
   },
   computed: {
     title() {
-      return `${this.$route.params.source} News`
+      return `${sources[this.sourceIndex].name} News`
     },
     info() {
       return this.$store.getters['news/getInfo']
     },
     newsList() {
-      return this.$store.getters['news/getNews'].news
+      return this.$store.getters['news/getNewsList']
     },
-    route() {
-      return this.$route.query
+    sourceIndex() {
+      return sources.findIndex(
+        (source) => source.id === this.$route.params.source
+      )
     },
-    page: {
-      get() {
-        return Number(this.$route.query.page) || 1
-      },
-      set() {},
+    page() {
+      return parseInt(this.$route.query.page) || 1
     },
   },
   watch: {
-    route() {
+    '$route.query'() {
       this.$nuxt.refresh()
     },
   },
   methods: {
-    saveDetail(index) {
-      this.$store.dispatch('news/saveCurrentNews', index)
-    },
     changePage(page) {
       this.$router.push({
         path: this.$route.path,
@@ -102,6 +71,9 @@ export default {
           page,
         },
       })
+    },
+    saveDetail(index) {
+      this.$store.dispatch('news/saveCurrentNews', index)
     },
   },
 }
