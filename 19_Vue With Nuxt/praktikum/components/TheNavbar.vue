@@ -173,6 +173,14 @@ export default {
       query: '',
     }
   },
+  watch: {
+    '$route.path'(value) {
+      if (value !== '/search') {
+        this.query = ''
+        this.isSearch = false
+      }
+    },
+  },
   mounted() {
     this.query = this.$route.query.query
     if (this.query) this.isSearch = true
