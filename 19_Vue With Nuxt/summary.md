@@ -211,3 +211,9 @@ https://newsappsnuxt.herokuapp.com
 Output:
 
 ![HasilPraktikum.gif](./screenshots/HasilPraktikum.gif)
+
+![PWAOnMobile-1.png](./screenshots/PWAOnMobile-1.png)
+
+![PWAOnMobile-2.png](./screenshots/PWAOnMobile-2.png)
+
+![PWAOnMobile-3.png](./screenshots/PWAOnMobile-3.png)
