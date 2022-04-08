@@ -25,7 +25,7 @@ export default {
   },
   computed: {
     isDark() {
-      return this.$store.state.news.isDark
+      return this.$store.getters['news/getIsDark']
     },
   },
   watch: {

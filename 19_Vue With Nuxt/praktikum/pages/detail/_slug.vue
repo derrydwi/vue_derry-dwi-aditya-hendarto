@@ -45,7 +45,7 @@ export default {
   },
   head() {
     return {
-      title: `News Apps Nuxt | ${this.$store.state.news.title}`,
+      title: this.$store.state.news.title,
     }
   },
   computed: {

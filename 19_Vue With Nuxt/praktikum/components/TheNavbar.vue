@@ -173,26 +173,11 @@ export default {
       query: '',
     }
   },
-  computed: {
-    queryStore() {
-      return this.$store.getters['news/getQuery']
-    },
-  },
-  watch: {
-    queryStore(value) {
-      this.query = value
-      if (!this.query) {
-        this.isSearch = false
-      }
-    },
-  },
   mounted() {
-    this.query = this.queryStore
+    this.query = this.$route.query.query
+    if (this.query) this.isSearch = true
   },
   methods: {
-    navigateTo() {
-      this.$route.path !== '/' && this.$router.push({ path: '/' })
-    },
     darkModeToggle() {
       this.$store.dispatch('news/saveIsDark')
     },
@@ -203,8 +188,12 @@ export default {
       this.isSearch = !this.isSearch
     },
     search() {
-      this.$store.dispatch('news/saveQuery', this.query)
-      this.navigateTo()
+      this.$router.push({
+        path: `/search`,
+        query: {
+          query: this.query,
+        },
+      })
     },
   },
 }

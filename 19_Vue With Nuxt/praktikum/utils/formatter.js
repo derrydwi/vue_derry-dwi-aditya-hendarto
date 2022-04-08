@@ -1,3 +1,11 @@
+export const capitalize = (text) => {
+  const eachWord = text.split(' ')
+  for (let i = 0; i < eachWord.length; i++) {
+    eachWord[i] = eachWord[i][0].toUpperCase() + eachWord[i].substr(1)
+  }
+  return eachWord.join(' ')
+}
+
 export const generateSlug = (title) => {
   return title
     .toLowerCase()

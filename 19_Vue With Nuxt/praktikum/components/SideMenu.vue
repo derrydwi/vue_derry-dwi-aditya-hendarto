@@ -8,7 +8,7 @@
         <v-list-item
           v-for="category in categories"
           :key="category"
-          @click="changeCategory(category)"
+          @click="navigateTo({ type: 'category', path: category })"
         >
           <v-list-item-title
             class="text-capitalize"
@@ -23,7 +23,7 @@
         <v-list-item
           v-for="source in sources"
           :key="source.id"
-          @click="changeSources({ id: source.id, name: source.name })"
+          @click="navigateTo({ type: 'source', path: source.id })"
         >
           <v-list-item-title
             class="text-capitalize"
@@ -36,40 +36,32 @@
 </template>
 
 <script>
+import { categories, sources } from '~/common/api'
+
 export default {
   name: 'SideMenu',
-  data() {
-    return {
-      categories: [
-        'general',
-        'business',
-        'entertainment',
-        'health',
-        'science',
-        'sports',
-        'technology',
-      ],
-    }
-  },
   computed: {
+    categories() {
+      return categories
+    },
+    sources() {
+      return sources
+    },
     isDrawer() {
       return this.$store.getters['news/getIsDrawer']
     },
-    sources() {
-      return this.$store.getters['news/getSources']
-    },
   },
   methods: {
-    navigateTo() {
-      this.$route.path !== '/' && this.$router.push({ path: '/' })
-    },
-    changeCategory(category) {
-      this.$store.dispatch('news/saveCategory', category)
-      this.navigateTo()
-    },
-    changeSources(source) {
-      this.$store.dispatch('news/saveSource', source)
-      this.navigateTo()
+    navigateTo({ type, path }) {
+      if (type === 'category') {
+        this.$router.push({
+          path: `/category/${path}`,
+        })
+      } else if (type === 'source') {
+        this.$router.push({
+          path: `/source/${path}`,
+        })
+      }
     },
   },
 }

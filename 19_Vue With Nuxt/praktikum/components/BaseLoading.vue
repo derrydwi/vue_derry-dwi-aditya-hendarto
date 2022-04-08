@@ -15,6 +15,3 @@ export default {
   name: 'BaseLoading',
 }
 </script>
-
-<style>
-</style>

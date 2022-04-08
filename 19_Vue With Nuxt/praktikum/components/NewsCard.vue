@@ -55,29 +55,20 @@
       </v-card-actions>
     </v-card>
     <v-row justify="center" class="mt-8 mb-2">
-      <v-btn @click="$emit('load-more')">
-        <v-progress-circular
-          v-if="isLoading"
-          indeterminate
-          size="24"
-          class="mr-2"
-        />
-        <v-icon v-else class="mr-2">mdi-arrow-down</v-icon>Load More</v-btn
-      >
+      <v-pagination
+        v-model="page"
+        :length="paginationLength"
+        @input="changePage"
+      ></v-pagination>
     </v-row>
   </v-flex>
-  <BaseLoading v-else />
 </template>
 
 <script>
-import BaseLoading from '@/components/BaseLoading.vue'
 import { generateSlug, generateDateTime } from '@/utils/formatter'
 
 export default {
   name: 'NewsCard',
-  components: {
-    BaseLoading,
-  },
   props: {
     newsList: {
       type: Array,
@@ -98,8 +89,17 @@ export default {
     }
   },
   computed: {
-    isLoading() {
-      return this.$store.getters['news/getIsLoading']
+    newsLength() {
+      return this.$store.getters['news/getNewsLength']
+    },
+    paginationLength() {
+      return Math.min(Math.max(parseInt(Math.ceil(this.newsLength / 5)), 1), 10)
+    },
+    page: {
+      get() {
+        return Number(this.$route.query.page) || 1
+      },
+      set() {},
     },
   },
   methods: {
@@ -107,14 +107,14 @@ export default {
       this.$emit('save-detail', index)
       const path = generateSlug(title)
       this.$router.push({
-        path: `/${path}`,
-        params: {
-          slug: path,
-        },
+        path: `/detail/${path}`,
       })
     },
     dateTime(date) {
       return generateDateTime(date)
+    },
+    changePage(page) {
+      this.$emit('change-page', page)
     },
   },
 }
