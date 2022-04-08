@@ -57,7 +57,7 @@ export default {
       short_name: 'News Apps',
       lang: 'id',
       useWebmanifestExtension: false,
-      start_url: '',
+      start_url: '/',
       theme_color: '#5accef',
       background_color: '#000000',
     },
