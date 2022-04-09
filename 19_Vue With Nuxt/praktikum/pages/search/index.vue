@@ -19,7 +19,7 @@ import BaseHeading from '@/components/BaseHeading.vue'
 import NewsCard from '@/components/NewsCard.vue'
 
 export default {
-  name: 'SearchView',
+  name: 'SearchPage',
   components: {
     BaseError,
     BaseHeading,
@@ -27,7 +27,7 @@ export default {
   },
   asyncData({ store, route }) {
     return store.dispatch('news/fetchNews', {
-      mode: 'search',
+      mode: route.name,
       type: route.query.query,
       page: route.query.page,
     })

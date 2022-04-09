@@ -20,17 +20,17 @@ import NewsCard from '@/components/NewsCard.vue'
 import { sources } from '~/common/api'
 
 export default {
-  name: 'SourceView',
+  name: 'SourcePage',
   components: {
     BaseError,
     BaseHeading,
     NewsCard,
   },
-  asyncData({ store, route }) {
+  asyncData({ store, params, query }) {
     return store.dispatch('news/fetchNews', {
-      mode: 'source',
-      type: route.params.source,
-      page: route.query.page,
+      mode: Object.keys(params)[0],
+      type: params.source,
+      page: query.page,
     })
   },
   head() {
@@ -40,7 +40,7 @@ export default {
   },
   computed: {
     title() {
-      return `${sources[this.sourceIndex].name} News`
+      return `${sources[this.sourceIndex].name} news`
     },
     info() {
       return this.$store.getters['news/getInfo']

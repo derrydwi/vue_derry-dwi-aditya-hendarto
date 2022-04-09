@@ -11,6 +11,7 @@
           max-height="350"
           lazy-src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs="
           :src="news.urlToImage"
+          :alt="news.title"
           cover
         />
         <v-card-text class="mb-0 pb-0">{{

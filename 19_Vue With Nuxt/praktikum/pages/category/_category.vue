@@ -20,17 +20,17 @@ import NewsCard from '@/components/NewsCard.vue'
 import { capitalize } from '@/utils/formatter'
 
 export default {
-  name: 'CategoryView',
+  name: 'CategoryPage',
   components: {
     BaseError,
     BaseHeading,
     NewsCard,
   },
-  asyncData({ store, route }) {
+  asyncData({ store, params, query }) {
     return store.dispatch('news/fetchNews', {
-      mode: 'category',
-      type: route.params.category,
-      page: route.query.page,
+      mode: Object.keys(params)[0],
+      type: params.category,
+      page: query.page,
     })
   },
   head() {

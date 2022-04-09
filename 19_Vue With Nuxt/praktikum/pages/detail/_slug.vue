@@ -26,7 +26,7 @@ import BaseHeading from '@/components/BaseHeading.vue'
 import { generateDateTime } from '@/utils/formatter'
 
 export default {
-  name: 'DetailView',
+  name: 'DetailPage',
   components: {
     BaseHeading,
   },
