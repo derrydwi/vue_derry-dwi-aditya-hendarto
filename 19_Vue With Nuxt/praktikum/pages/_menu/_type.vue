@@ -1,15 +1,15 @@
 <template>
-  <v-container v-if="!info">
-    <BaseHeading :text="title" />
-    <NewsCard
-      :news-list="newsList"
-      :page="page"
-      @save-detail="saveDetail"
-      @change-page="changePage"
-    />
-  </v-container>
-  <v-container v-else>
-    <BaseError :info="info" />
+  <v-container>
+    <div v-if="!info">
+      <BaseHeading :text="title" />
+      <NewsCard
+        :news-list="newsList"
+        :page="page"
+        @save-detail="saveDetail"
+        @change-page="changePage"
+      />
+    </div>
+    <BaseError v-else :info="info" />
   </v-container>
 </template>
 
@@ -17,29 +17,30 @@
 import BaseError from '@/components/BaseError.vue'
 import BaseHeading from '@/components/BaseHeading.vue'
 import NewsCard from '@/components/NewsCard.vue'
+import { capitalize } from '@/utils/formatter'
 
 export default {
-  name: 'SearchPage',
+  name: 'TypePage',
   components: {
     BaseError,
     BaseHeading,
     NewsCard,
   },
-  asyncData({ store, route }) {
+  asyncData({ store, params, query }) {
     return store.dispatch('news/fetchNews', {
-      mode: route.name,
-      type: route.query.query,
-      page: route.query.page,
+      menu: params.menu,
+      type: params.type,
+      page: query.page,
     })
   },
   head() {
     return {
-      title: `Result of "${this.$route.query.query}"`,
+      title: capitalize(this.$route.params.type),
     }
   },
   computed: {
     title() {
-      return `Result of "${this.$route.query.query}"`
+      return `${this.$route.params.type} news`
     },
     info() {
       return this.$store.getters['news/getInfo']
@@ -60,8 +61,8 @@ export default {
     changePage(page) {
       this.$router.push({
         path: this.$route.path,
+        params: this.$route.params.type,
         query: {
-          query: this.$route.query.query,
           page,
         },
       })

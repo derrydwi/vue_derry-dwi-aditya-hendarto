@@ -49,13 +49,13 @@ const mutations = {
 }
 
 const actions = {
-  fetchNews({ commit, state }, { mode, type, page }) {
+  fetchNews({ commit, state }, { menu, type, page }) {
     // when user wanna fetch the same data
     if (state.news.type === type && state.news.page === page) return
 
     // determine the request & params to be used
     let url, params
-    if (mode === 'category') {
+    if (menu === 'category') {
       url = 'https://api-newsapps.ga/v2/top-headlines'
       params = {
         country: 'us',
@@ -63,14 +63,14 @@ const actions = {
         pageSize: 5,
         page,
       }
-    } else if (mode === 'search') {
+    } else if (menu === 'search') {
       url = 'https://api-newsapps.ga/v2/everything'
       params = {
         q: type,
         pageSize: 5,
         page,
       }
-    } else if (mode === 'source') {
+    } else if (menu === 'source') {
       url = 'https://api-newsapps.ga/v2/top-headlines'
       params = {
         sources: type,
