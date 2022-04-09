@@ -2,8 +2,8 @@ const state = () => ({
   news: {},
   currentNews: {},
   info: '',
-  isDark: true,
-  isDrawer: true,
+  isDark: false,
+  isDrawer: false,
 })
 
 const getters = {

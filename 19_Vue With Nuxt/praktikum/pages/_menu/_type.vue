@@ -12,11 +12,13 @@
           :date="dateTime(news.publishedAt)"
           @save-detail="saveDetail"
         />
-        <BasePagination
-          :page="page"
-          :pagination-length="paginationLength"
-          @change-page="changePage"
-        />
+        <ClientOnly>
+          <BasePagination
+            :page="page"
+            :pagination-length="paginationLength"
+            @change-page="changePage"
+          />
+        </ClientOnly>
       </div>
       <BaseError
         v-else
