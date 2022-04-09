@@ -1,9 +1,17 @@
 <template>
   <v-container>
-    <div v-if="!info">
+    <BaseLoading v-if="$fetchState.pending" />
+    <div v-else-if="!info">
       <BaseHeading :text="title" />
       <div v-if="newsList.length">
-        <NewsCard :news-list="newsList" @save-detail="saveDetail" />
+        <NewsCard
+          v-for="(news, index) in newsList"
+          :key="index"
+          :index="index"
+          :news="news"
+          :date="dateTime(news.publishedAt)"
+          @save-detail="saveDetail"
+        />
         <BasePagination
           :page="page"
           :pagination-length="paginationLength"
@@ -24,9 +32,15 @@
 <script>
 import BaseError from '@/components/BaseError.vue'
 import BaseHeading from '@/components/BaseHeading.vue'
+import BaseLoading from '@/components/BaseLoading.vue'
 import BasePagination from '@/components/BasePagination.vue'
 import NewsCard from '@/components/NewsCard.vue'
-import { capitalize, generatePaginationLength } from '@/utils/formatter'
+import {
+  capitalize,
+  generateSlug,
+  generatePaginationLength,
+  generateDateTime,
+} from '@/utils/formatter'
 import { menus, categories, sources } from '~/common/api'
 
 export default {
@@ -34,6 +48,7 @@ export default {
   components: {
     BaseError,
     BaseHeading,
+    BaseLoading,
     BasePagination,
     NewsCard,
   },
@@ -47,11 +62,11 @@ export default {
       return findMenu && params.type
     }
   },
-  asyncData({ store, params, query }) {
-    return store.dispatch('news/fetchNews', {
-      menu: params.menu,
-      type: params.type,
-      page: query.page,
+  fetch() {
+    return this.$store.dispatch('news/fetchNews', {
+      menu: this.$route.params.menu,
+      type: this.$route.params.type,
+      page: this.$route.query.page,
     })
   },
   head() {
@@ -83,7 +98,7 @@ export default {
   },
   watch: {
     '$route.query'() {
-      this.$nuxt.refresh()
+      this.$fetch()
     },
   },
   methods: {
@@ -99,8 +114,17 @@ export default {
         },
       })
     },
-    saveDetail(index) {
+    dateTime(date) {
+      return generateDateTime(date)
+    },
+    saveDetail(index, title) {
       this.$store.dispatch('news/saveCurrentNews', index)
+      this.$router.push({
+        name: 'detail-slug',
+        params: {
+          slug: generateSlug(title),
+        },
+      })
     },
   },
 }

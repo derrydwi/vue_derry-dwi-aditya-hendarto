@@ -8,7 +8,15 @@
         <v-list-item
           v-for="category in categories"
           :key="category"
-          @click="navigateTo({ menu: menus[0], type: category })"
+          @click="
+            $router.push({
+              name: 'menu-type',
+              params: {
+                menu: menus[0],
+                type: category,
+              },
+            })
+          "
         >
           <v-list-item-title
             class="text-capitalize"
@@ -23,7 +31,15 @@
         <v-list-item
           v-for="source in sources"
           :key="source.id"
-          @click="navigateTo({ menu: menus[1], type: source.id })"
+          @click="
+            $router.push({
+              name: 'menu-type',
+              params: {
+                menu: menus[1],
+                type: source.id,
+              },
+            })
+          "
         >
           <v-list-item-title
             class="text-capitalize"
@@ -36,33 +52,30 @@
 </template>
 
 <script>
-import { menus, categories, sources } from '~/common/api'
-
 export default {
   name: 'SideMenu',
-  computed: {
-    categories() {
-      return categories
+  props: {
+    categories: {
+      type: Array,
+      default() {
+        return []
+      },
     },
-    sources() {
-      return sources
+    sources: {
+      type: Array,
+      default() {
+        return []
+      },
     },
-    isDrawer() {
-      return this.$store.getters['news/getIsDrawer']
+    isDrawer: {
+      type: Boolean,
+      default: true,
     },
-    menus() {
-      return menus
-    },
-  },
-  methods: {
-    navigateTo({ menu, type }) {
-      this.$router.push({
-        name: 'menu-type',
-        params: {
-          menu,
-          type,
-        },
-      })
+    menus: {
+      type: Array,
+      default() {
+        return []
+      },
     },
   },
 }

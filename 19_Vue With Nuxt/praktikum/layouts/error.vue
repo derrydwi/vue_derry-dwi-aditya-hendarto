@@ -6,14 +6,14 @@
         ><span class="text-h4 text--primary">{{ pageNotFound }}</span>
         <p class="mt-6">The page you were looking for does not exist.</p>
       </div>
-      <div v-else class="text-h4">{{ otherError }}</div>
+      <div v-else class="text-h4 mb-6">{{ otherError }}</div>
       <v-btn
         text
         outlined
         color="light-blue lighten-2"
         @click="$router.push({ name: 'index' })"
       >
-        Home Page
+        Go to Home Page
       </v-btn>
     </v-container>
   </v-app>

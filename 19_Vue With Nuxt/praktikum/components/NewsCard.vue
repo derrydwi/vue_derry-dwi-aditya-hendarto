@@ -1,12 +1,7 @@
 <template>
   <v-flex>
-    <v-card
-      v-for="(news, index) in newsList"
-      :key="index"
-      class="mx-auto my-3"
-      width="800"
-    >
-      <div class="card-nav" @click="saveDetail(index, news.title)">
+    <v-card class="mx-auto my-3" width="800">
+      <div class="card-nav" @click="$emit('save-detail', index, news.title)">
         <v-img
           max-height="350"
           lazy-src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs="
@@ -14,9 +9,7 @@
           :alt="news.title"
           cover
         />
-        <v-card-text class="mb-0 pb-0">{{
-          dateTime(news.publishedAt)
-        }}</v-card-text>
+        <v-card-text class="mb-0 pb-0">{{ date }}</v-card-text>
         <v-container fill-height fluid>
           <p class="headline my-0 py-0">{{ news.title }}</p>
         </v-container>
@@ -59,16 +52,22 @@
 </template>
 
 <script>
-import { generateSlug, generateDateTime } from '@/utils/formatter'
-
 export default {
   name: 'NewsCard',
   props: {
-    newsList: {
-      type: Array,
+    news: {
+      type: Object,
       default() {
-        return []
+        return {}
       },
+    },
+    index: {
+      type: Number,
+      default: 0,
+    },
+    date: {
+      type: String,
+      default: '',
     },
   },
   data() {
@@ -81,20 +80,6 @@ export default {
         'mdi-linkedin',
       ],
     }
-  },
-  methods: {
-    saveDetail(index, title) {
-      this.$emit('save-detail', index)
-      this.$router.push({
-        name: 'detail-slug',
-        params: {
-          slug: generateSlug(title),
-        },
-      })
-    },
-    dateTime(date) {
-      return generateDateTime(date)
-    },
   },
 }
 </script>

@@ -3,7 +3,7 @@
     :value="page"
     :length="paginationLength"
     class="mt-8 mb-2"
-    @input="changePage"
+    @input="$emit('change-page', page)"
   ></v-pagination>
 </template>
 
