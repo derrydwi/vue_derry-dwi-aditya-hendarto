@@ -1,10 +1,12 @@
 <template>
-  <v-pagination
-    :value="page"
-    :length="paginationLength"
-    class="mt-8 mb-2"
-    @input="changePage"
-  ></v-pagination>
+  <ClientOnly>
+    <v-pagination
+      :value="page"
+      :length="paginationLength"
+      class="mt-8 mb-2"
+      @input="changePage"
+    ></v-pagination>
+  </ClientOnly>
 </template>
 
 <script>
