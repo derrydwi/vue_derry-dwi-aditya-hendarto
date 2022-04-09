@@ -7,9 +7,6 @@ const state = () => ({
 })
 
 const getters = {
-  getNews: (state) => {
-    return state.news
-  },
   getNewsList: (state) => {
     return state.news.newsList
   },

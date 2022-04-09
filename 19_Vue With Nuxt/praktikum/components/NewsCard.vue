@@ -55,22 +55,11 @@
         </v-container>
       </v-card-actions>
     </v-card>
-    <v-row justify="center" class="mt-8 mb-2">
-      <v-pagination
-        :value="page"
-        :length="paginationLength"
-        @input="changePage"
-      ></v-pagination>
-    </v-row>
   </v-flex>
 </template>
 
 <script>
-import {
-  generateSlug,
-  generateDateTime,
-  generatePaginationLength,
-} from '@/utils/formatter'
+import { generateSlug, generateDateTime } from '@/utils/formatter'
 
 export default {
   name: 'NewsCard',
@@ -80,10 +69,6 @@ export default {
       default() {
         return []
       },
-    },
-    page: {
-      type: Number,
-      default: 1,
     },
   },
   data() {
@@ -97,14 +82,6 @@ export default {
       ],
     }
   },
-  computed: {
-    newsLength() {
-      return this.$store.getters['news/getNewsLength']
-    },
-    paginationLength() {
-      return generatePaginationLength(this.newsLength)
-    },
-  },
   methods: {
     saveDetail(index, title) {
       this.$emit('save-detail', index)
@@ -117,9 +94,6 @@ export default {
     },
     dateTime(date) {
       return generateDateTime(date)
-    },
-    changePage(page) {
-      this.$emit('change-page', page)
     },
   },
 }

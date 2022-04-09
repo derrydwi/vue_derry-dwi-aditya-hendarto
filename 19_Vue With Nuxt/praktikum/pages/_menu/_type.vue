@@ -2,14 +2,20 @@
   <v-container>
     <div v-if="!info">
       <BaseHeading :text="title" />
-      <NewsCard
-        v-if="newsList.length"
-        :news-list="newsList"
-        :page="page"
-        @save-detail="saveDetail"
-        @change-page="changePage"
+      <div v-if="newsList.length">
+        <NewsCard :news-list="newsList" @save-detail="saveDetail" />
+        <BasePagination
+          :page="page"
+          :pagination-length="paginationLength"
+          @change-page="changePage"
+        />
+      </div>
+      <BaseError
+        v-else
+        type="warning"
+        :outlined="true"
+        info="News not found!"
       />
-      <BaseError v-else type="warning" outlined="true" info="News not found!" />
     </div>
     <BaseError v-else type="error" :info="info" />
   </v-container>
@@ -18,8 +24,9 @@
 <script>
 import BaseError from '@/components/BaseError.vue'
 import BaseHeading from '@/components/BaseHeading.vue'
+import BasePagination from '@/components/BasePagination.vue'
 import NewsCard from '@/components/NewsCard.vue'
-import { capitalize } from '@/utils/formatter'
+import { capitalize, generatePaginationLength } from '@/utils/formatter'
 import { menus, categories, sources } from '~/common/api'
 
 export default {
@@ -27,6 +34,7 @@ export default {
   components: {
     BaseError,
     BaseHeading,
+    BasePagination,
     NewsCard,
   },
   validate({ params }) {
@@ -68,6 +76,9 @@ export default {
     },
     page() {
       return parseInt(this.$route.query.page) || 1
+    },
+    paginationLength() {
+      return generatePaginationLength(this.$store.getters['news/getNewsLength'])
     },
   },
   watch: {
