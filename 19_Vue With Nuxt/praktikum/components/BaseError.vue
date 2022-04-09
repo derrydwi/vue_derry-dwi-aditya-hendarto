@@ -1,7 +1,6 @@
 <template>
   <v-container>
-    <v-alert type="error"
-      ><span class="font-weight-bold">Error Fetching News!</span>
+    <v-alert :type="type" :outlined="outlined" class="font-weight-bold">
       {{ info }}
     </v-alert>
   </v-container>
@@ -12,6 +11,14 @@ export default {
   name: 'BaseError',
   props: {
     info: {
+      type: String,
+      default: '',
+    },
+    outlined: {
+      type: Boolean,
+      default: false,
+    },
+    type: {
       type: String,
       default: '',
     },

@@ -1,5 +1,5 @@
 <template>
-  <v-flex v-if="newsList.length">
+  <v-flex>
     <v-card
       v-for="(news, index) in newsList"
       :key="index"
@@ -71,6 +71,7 @@ import {
   generateDateTime,
   generatePaginationLength,
 } from '@/utils/formatter'
+import { menus } from '~/common/api'
 
 export default {
   name: 'NewsCard',
@@ -110,7 +111,7 @@ export default {
       this.$emit('save-detail', index)
       const path = generateSlug(title)
       this.$router.push({
-        path: `/detail/${path}`,
+        path: `/${menus[3]}/${path}`,
       })
     },
     dateTime(date) {

@@ -1,3 +1,5 @@
+export const menus = ['category', 'source', 'search', 'detail']
+
 export const categories = [
   'general',
   'business',

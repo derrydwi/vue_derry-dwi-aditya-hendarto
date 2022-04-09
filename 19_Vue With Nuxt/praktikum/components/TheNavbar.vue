@@ -162,6 +162,8 @@
 </template>
 
 <script>
+import { menus } from '~/common/api'
+
 export default {
   name: 'TheNavbar',
   props: {
@@ -180,7 +182,7 @@ export default {
   },
   watch: {
     '$route.path'(value) {
-      if (value !== '/search') {
+      if (value !== `/${menus[2]}`) {
         this.query = ''
         this.isSearch = false
       }
@@ -202,7 +204,7 @@ export default {
     },
     search() {
       this.$router.push({
-        path: `/search`,
+        path: `/${menus[2]}`,
         query: {
           query: this.query,
         },

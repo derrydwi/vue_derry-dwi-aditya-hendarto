@@ -3,13 +3,15 @@
     <div v-if="!info">
       <BaseHeading :text="title" />
       <NewsCard
+        v-if="newsList.length"
         :news-list="newsList"
         :page="page"
         @save-detail="saveDetail"
         @change-page="changePage"
       />
+      <BaseError v-else type="warning" outlined="true" info="News not found!" />
     </div>
-    <BaseError v-else :info="info" />
+    <BaseError v-else type="error" :info="info" />
   </v-container>
 </template>
 
@@ -18,6 +20,7 @@ import BaseError from '@/components/BaseError.vue'
 import BaseHeading from '@/components/BaseHeading.vue'
 import NewsCard from '@/components/NewsCard.vue'
 import { capitalize } from '@/utils/formatter'
+import { menus, categories, sources } from '~/common/api'
 
 export default {
   name: 'TypePage',
@@ -25,6 +28,15 @@ export default {
     BaseError,
     BaseHeading,
     NewsCard,
+  },
+  validate({ params }) {
+    const findMenu = menus.includes(params.menu)
+    if (params.menu === menus[0]) {
+      return findMenu && categories.includes(params.type)
+    } else if (params.menu === menus[1]) {
+      return findMenu && sources.some((source) => source.id === params.type)
+    }
+    return false
   },
   asyncData({ store, params, query }) {
     return store.dispatch('news/fetchNews', {
@@ -34,19 +46,24 @@ export default {
     })
   },
   head() {
-    return {
-      title: capitalize(this.$route.params.type),
-    }
+    return { title: this.title }
   },
   computed: {
-    title() {
-      return `${this.$route.params.type} news`
-    },
     info() {
       return this.$store.getters['news/getInfo']
     },
     newsList() {
       return this.$store.getters['news/getNewsList']
+    },
+    title() {
+      if (this.$route.params.menu === 'source') {
+        const index = sources.findIndex(
+          (source) => source.id === this.$route.params.type
+        )
+        return sources[index].name
+      } else {
+        return capitalize(this.$route.params.type)
+      }
     },
     page() {
       return parseInt(this.$route.query.page) || 1

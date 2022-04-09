@@ -8,7 +8,7 @@
         <v-list-item
           v-for="category in categories"
           :key="category"
-          @click="navigateTo({ type: 'category', path: category })"
+          @click="navigateTo({ type: menus[0], path: category })"
         >
           <v-list-item-title
             class="text-capitalize"
@@ -23,7 +23,7 @@
         <v-list-item
           v-for="source in sources"
           :key="source.id"
-          @click="navigateTo({ type: 'source', path: source.id })"
+          @click="navigateTo({ type: menus[1], path: source.id })"
         >
           <v-list-item-title
             class="text-capitalize"
@@ -36,7 +36,7 @@
 </template>
 
 <script>
-import { categories, sources } from '~/common/api'
+import { menus, categories, sources } from '~/common/api'
 
 export default {
   name: 'SideMenu',
@@ -49,6 +49,9 @@ export default {
     },
     isDrawer() {
       return this.$store.getters['news/getIsDrawer']
+    },
+    menus() {
+      return menus
     },
   },
   methods: {
