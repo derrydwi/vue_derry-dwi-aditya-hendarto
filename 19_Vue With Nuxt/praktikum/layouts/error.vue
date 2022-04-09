@@ -1,19 +1,28 @@
 <template>
   <v-app dark>
-    <h1 v-if="error.statusCode === 404">
-      {{ pageNotFound }}
-    </h1>
-    <h1 v-else>
-      {{ otherError }}
-    </h1>
-    <NuxtLink to="/"> Home page </NuxtLink>
+    <v-container class="text-center my-auto">
+      <div v-if="error.statusCode === 404">
+        <v-icon large class="mt-n3 mr-3">mdi-alert</v-icon
+        ><span class="text-h4 text--primary">{{ pageNotFound }}</span>
+        <p class="mt-6">The page you were looking for does not exist.</p>
+      </div>
+      <div v-else class="text-h4">{{ otherError }}</div>
+      <v-btn
+        text
+        outlined
+        color="light-blue lighten-2"
+        @click="$router.push({ name: 'index' })"
+      >
+        Home Page
+      </v-btn>
+    </v-container>
   </v-app>
 </template>
 
 <script>
 export default {
   name: 'EmptyLayout',
-  layout: 'empty',
+  layout: 'default',
   props: {
     error: {
       type: Object,
@@ -35,9 +44,3 @@ export default {
   },
 }
 </script>
-
-<style scoped>
-h1 {
-  font-size: 20px;
-}
-</style>
