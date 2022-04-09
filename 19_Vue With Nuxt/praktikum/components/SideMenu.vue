@@ -8,7 +8,7 @@
         <v-list-item
           v-for="category in categories"
           :key="category"
-          @click="navigateTo({ type: menus[0], path: category })"
+          @click="navigateTo({ menu: menus[0], type: category })"
         >
           <v-list-item-title
             class="text-capitalize"
@@ -23,7 +23,7 @@
         <v-list-item
           v-for="source in sources"
           :key="source.id"
-          @click="navigateTo({ type: menus[1], path: source.id })"
+          @click="navigateTo({ menu: menus[1], type: source.id })"
         >
           <v-list-item-title
             class="text-capitalize"
@@ -55,9 +55,13 @@ export default {
     },
   },
   methods: {
-    navigateTo({ type, path }) {
+    navigateTo({ menu, type }) {
       this.$router.push({
-        path: `/${type}/${path}`,
+        name: 'menu-type',
+        params: {
+          menu,
+          type,
+        },
       })
     },
   },

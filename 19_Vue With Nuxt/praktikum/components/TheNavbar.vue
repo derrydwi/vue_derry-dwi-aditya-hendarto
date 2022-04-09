@@ -204,9 +204,10 @@ export default {
     },
     search() {
       this.$router.push({
-        path: `/${menus[2]}`,
-        query: {
-          query: this.query,
+        name: 'menu-type',
+        params: {
+          menu: menus[2],
+          type: this.query,
         },
       })
     },

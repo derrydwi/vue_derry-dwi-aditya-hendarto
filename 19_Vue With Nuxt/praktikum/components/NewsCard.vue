@@ -71,7 +71,6 @@ import {
   generateDateTime,
   generatePaginationLength,
 } from '@/utils/formatter'
-import { menus } from '~/common/api'
 
 export default {
   name: 'NewsCard',
@@ -109,9 +108,11 @@ export default {
   methods: {
     saveDetail(index, title) {
       this.$emit('save-detail', index)
-      const path = generateSlug(title)
       this.$router.push({
-        path: `/${menus[3]}/${path}`,
+        name: 'detail-slug',
+        params: {
+          slug: generateSlug(title),
+        },
       })
     },
     dateTime(date) {

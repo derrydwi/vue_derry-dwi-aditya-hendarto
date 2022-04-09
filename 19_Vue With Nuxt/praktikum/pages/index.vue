@@ -1,10 +1,10 @@
 <script>
-import { categories } from '~/common/api'
+import { menus, categories } from '~/common/api'
 
 export default {
   name: 'RedirectorPage',
   asyncData({ redirect }) {
-    redirect(`/category/${categories[0]}`)
+    redirect(`/${menus[0]}/${categories[0]}`)
   },
 }
 </script>

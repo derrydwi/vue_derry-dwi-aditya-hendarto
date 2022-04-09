@@ -35,8 +35,9 @@ export default {
       return findMenu && categories.includes(params.type)
     } else if (params.menu === menus[1]) {
       return findMenu && sources.some((source) => source.id === params.type)
+    } else if (params.menu === menus[2]) {
+      return findMenu && params.type
     }
-    return false
   },
   asyncData({ store, params, query }) {
     return store.dispatch('news/fetchNews', {
@@ -56,11 +57,11 @@ export default {
       return this.$store.getters['news/getNewsList']
     },
     title() {
-      if (this.$route.params.menu === 'source') {
-        const index = sources.findIndex(
-          (source) => source.id === this.$route.params.type
-        )
-        return sources[index].name
+      if (this.$route.params.menu === menus[1]) {
+        return sources.find((source) => source.id === this.$route.params.type)
+          .name
+      } else if (this.$route.params.menu === menus[2]) {
+        return `Result of "${this.$route.params.type}"`
       } else {
         return capitalize(this.$route.params.type)
       }
@@ -77,8 +78,11 @@ export default {
   methods: {
     changePage(page) {
       this.$router.push({
-        path: this.$route.path,
-        params: this.$route.params.type,
+        name: 'menu-type',
+        params: {
+          menu: this.$route.params.menu,
+          type: this.$route.params.type,
+        },
         query: {
           page,
         },
