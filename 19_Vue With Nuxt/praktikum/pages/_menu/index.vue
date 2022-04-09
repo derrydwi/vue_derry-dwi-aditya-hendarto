@@ -34,7 +34,7 @@ export default {
   },
   head() {
     return {
-      title: `Result of "${this.$route.query.query}"`,
+      title: this.title,
     }
   },
   computed: {
