@@ -78,13 +78,13 @@ const actions = {
 
     // fetch data
     return this.$axios
-      .get(url, { params })
+      .$get(url, { params })
       .then((response) => {
         commit('SET_NEWS', {
           type,
           page,
-          total: response.data.totalResults,
-          newsList: response.data.articles,
+          total: response.totalResults,
+          newsList: response.articles,
         })
         commit('SET_INFO', '')
       })

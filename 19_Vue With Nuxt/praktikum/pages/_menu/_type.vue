@@ -3,7 +3,7 @@
     <BaseLoading v-if="$fetchState.pending" />
     <div v-else-if="!info">
       <BaseHeading :text="title" />
-      <div v-if="newsList.length">
+      <div v-if="newsList && newsList.length">
         <NewsCard
           v-for="(news, index) in newsList"
           :key="index"
@@ -62,8 +62,8 @@ export default {
       return findMenu && params.type
     }
   },
-  fetch() {
-    return this.$store.dispatch('news/fetchNews', {
+  async fetch() {
+    await this.$store.dispatch('news/fetchNews', {
       menu: this.$route.params.menu,
       type: this.$route.params.type,
       page: this.$route.query.page,
@@ -97,9 +97,7 @@ export default {
     },
   },
   watch: {
-    '$route.query'() {
-      this.$fetch()
-    },
+    '$route.query': '$fetch',
   },
   methods: {
     changePage(page) {
