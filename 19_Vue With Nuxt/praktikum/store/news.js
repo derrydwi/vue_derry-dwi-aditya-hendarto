@@ -3,7 +3,6 @@ const state = () => ({
   currentNews: {},
   info: '',
   isDark: false,
-  isDrawer: false,
 })
 
 const getters = {
@@ -22,9 +21,6 @@ const getters = {
   getIsDark: (state) => {
     return state.isDark
   },
-  getIsDrawer: (state) => {
-    return state.isDrawer
-  },
 }
 
 const mutations = {
@@ -39,9 +35,6 @@ const mutations = {
   },
   SET_IS_DARK(state) {
     state.isDark = !state.isDark
-  },
-  SET_IS_DRAWER(state) {
-    state.isDrawer = !state.isDrawer
   },
 }
 
@@ -103,9 +96,6 @@ const actions = {
   },
   saveIsDark({ commit }) {
     commit('SET_IS_DARK')
-  },
-  saveIsDrawer({ commit }) {
-    commit('SET_IS_DRAWER')
   },
 }
 

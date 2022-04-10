@@ -1,12 +1,17 @@
 <template>
   <v-app>
-    <SideMenu
-      :categories="categories"
-      :sources="sources"
-      :is-drawer="isDrawer"
-      :menus="menus"
-    />
-    <TheNavbar :is-dark="isDark" />
+    <v-navigation-drawer v-model="isDrawer" app clipped>
+      <v-list>
+        <BaseListGroup
+          v-for="([icon, text, list], index) in items"
+          :key="index"
+          :icon="icon"
+          :text="text"
+          :list="list"
+        />
+      </v-list>
+    </v-navigation-drawer>
+    <TheNavbar :is-dark="isDark" @drawer-toggle="drawerToggle" />
     <v-main>
       <v-container fluid>
         <Nuxt />
@@ -17,7 +22,7 @@
 </template>
 
 <script>
-import SideMenu from '@/components/SideMenu.vue'
+import BaseListGroup from '@/components/BaseListGroup.vue'
 import TheNavbar from '@/components/TheNavbar.vue'
 import TheFooter from '@/components/TheFooter.vue'
 import { menus, categories, sources } from '~/common/api'
@@ -25,25 +30,22 @@ import { menus, categories, sources } from '~/common/api'
 export default {
   name: 'DefaultLayout',
   components: {
-    SideMenu,
+    BaseListGroup,
     TheNavbar,
     TheFooter,
   },
+  data() {
+    return {
+      isDrawer: false,
+      items: [
+        ['mdi-view-dashboard', menus[0], categories],
+        ['mdi-newspaper-variant', menus[1], sources],
+      ],
+    }
+  },
   computed: {
-    categories() {
-      return categories
-    },
-    sources() {
-      return sources
-    },
     isDark() {
       return this.$store.getters['news/getIsDark']
-    },
-    isDrawer() {
-      return this.$store.getters['news/getIsDrawer']
-    },
-    menus() {
-      return menus
     },
   },
   watch: {
@@ -53,6 +55,11 @@ export default {
   },
   mounted() {
     this.$vuetify.theme.dark = this.isDark
+  },
+  methods: {
+    drawerToggle() {
+      this.isDrawer = !this.isDrawer
+    },
   },
 }
 </script>

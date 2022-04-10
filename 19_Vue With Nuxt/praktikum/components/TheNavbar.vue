@@ -1,6 +1,6 @@
 <template>
   <v-app-bar app clipped-left>
-    <v-app-bar-nav-icon @click="drawerToggle"></v-app-bar-nav-icon>
+    <v-app-bar-nav-icon @click="$emit('drawer-toggle')"></v-app-bar-nav-icon>
     <svg
       xmlns="http://www.w3.org/2000/svg"
       x="0px"
@@ -167,7 +167,14 @@ import { menus } from '~/common/api'
 export default {
   name: 'TheNavbar',
   props: {
-    isDark: Boolean,
+    isDark: {
+      type: Boolean,
+      default: false,
+    },
+    isDrawer: {
+      type: Boolean,
+      default: false,
+    },
   },
   data() {
     return {
@@ -181,7 +188,7 @@ export default {
     },
   },
   watch: {
-    '$route.path'(value) {
+    '$route.params.menu'(value) {
       if (value !== `/${menus[2]}`) {
         this.query = ''
         this.isSearch = false
@@ -189,15 +196,16 @@ export default {
     },
   },
   mounted() {
-    this.query = this.$route.query.query
-    if (this.query) this.isSearch = true
+    if (this.$route.params.menu === menus[2]) {
+      this.query = this.$route.params.type
+    }
+    if (this.query) {
+      this.isSearch = true
+    }
   },
   methods: {
     darkModeToggle() {
       this.$store.dispatch('news/saveIsDark')
-    },
-    drawerToggle() {
-      this.$store.dispatch('news/saveIsDrawer')
     },
     searchToggle() {
       this.isSearch = !this.isSearch

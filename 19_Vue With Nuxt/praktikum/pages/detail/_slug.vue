@@ -1,7 +1,6 @@
 <template>
   <v-container fluid>
-    <BaseLoading v-if="$fetchState.pending" />
-    <div v-else>
+    <div>
       <BaseHeading :text="news.title" class="mx-auto" />
       <v-btn class="mb-4" icon elevation="2" @click="back"
         ><v-icon>mdi-arrow-left</v-icon></v-btn
