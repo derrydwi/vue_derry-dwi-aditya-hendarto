@@ -6,9 +6,9 @@
         <v-skeleton-loader
           v-for="index in 5"
           :key="index"
-          class="mx-auto mb-n12"
-          width="800"
-          height="600"
+          class="mx-auto my-3"
+          max-width="800"
+          max-height="600"
           type="image@2, list-item, list-item-three-line"
         ></v-skeleton-loader>
       </div>

@@ -11,6 +11,7 @@
         position="center center"
         :src="news.urlToImage"
         :alt="news.title"
+        cover
       />
       <p class="mb-4">{{ dateTime }}</p>
       <p class="mb-4">{{ news.content }}</p>

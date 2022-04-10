@@ -4,15 +4,15 @@
       <div class="card-nav" @click="$emit('save-detail', index, news.title)">
         <v-skeleton-loader
           v-show="!loaded"
-          width="800"
+          max-width="800"
           max-height="350"
-          type="image@2, list-item, list-item-three-line"
+          type="image@2"
         ></v-skeleton-loader>
         <img
           v-show="loaded"
           height="350px"
           width="100%"
-          style="object-fit: cover"
+          class="img-loaded"
           :src="news.urlToImage"
           :alt="news.title"
           @load="loaded = true"
@@ -96,5 +96,9 @@ export default {
 <style scoped>
 .card-nav {
   cursor: pointer;
+}
+
+.img-loaded {
+  object-fit: cover;
 }
 </style>
