@@ -2,12 +2,20 @@
   <v-flex>
     <v-card class="mx-auto my-3" width="800">
       <div class="card-nav" @click="$emit('save-detail', index, news.title)">
-        <v-img
+        <v-skeleton-loader
+          v-show="!loaded"
+          width="800"
           max-height="350"
-          lazy-src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs="
+          type="image@2, list-item, list-item-three-line"
+        ></v-skeleton-loader>
+        <img
+          v-show="loaded"
+          height="350px"
+          width="100%"
+          style="object-fit: cover"
           :src="news.urlToImage"
           :alt="news.title"
-          cover
+          @load="loaded = true"
         />
         <v-card-text class="mb-0 pb-0">{{ date }}</v-card-text>
         <v-container fill-height fluid>
@@ -79,6 +87,7 @@ export default {
         'mdi-google-plus',
         'mdi-linkedin',
       ],
+      loaded: false,
     }
   },
 }

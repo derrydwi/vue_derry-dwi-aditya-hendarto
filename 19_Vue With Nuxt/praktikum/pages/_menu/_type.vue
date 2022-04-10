@@ -1,9 +1,18 @@
 <template>
   <v-container>
-    <BaseLoading v-if="$fetchState.pending" />
-    <div v-else-if="!info">
+    <div v-if="!info">
       <BaseHeading :text="title" />
-      <div v-if="newsList && newsList.length">
+      <div v-if="$fetchState.pending">
+        <v-skeleton-loader
+          v-for="index in 5"
+          :key="index"
+          class="mx-auto mb-n12"
+          width="800"
+          height="600"
+          type="image@2, list-item, list-item-three-line"
+        ></v-skeleton-loader>
+      </div>
+      <div v-else-if="newsList && newsList.length">
         <NewsCard
           v-for="(news, index) in newsList"
           :key="index"
@@ -32,7 +41,6 @@
 <script>
 import BaseError from '@/components/BaseError.vue'
 import BaseHeading from '@/components/BaseHeading.vue'
-import BaseLoading from '@/components/BaseLoading.vue'
 import BasePagination from '@/components/BasePagination.vue'
 import NewsCard from '@/components/NewsCard.vue'
 import {
@@ -48,7 +56,6 @@ export default {
   components: {
     BaseError,
     BaseHeading,
-    BaseLoading,
     BasePagination,
     NewsCard,
   },
