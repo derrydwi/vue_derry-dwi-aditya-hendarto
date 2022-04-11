@@ -140,8 +140,9 @@ Cara Kerja atau Syarat yang harus dipenuhi untuk membuat aplikasi PWA:
 - Service Workers
 - Disajikan melalui protokol HTTPS
 
+package.json
+
 ```json
-// package.json
 {
   "dependencies": {
     "@nuxtjs/axios": "^5.13.6",
@@ -153,8 +154,9 @@ Cara Kerja atau Syarat yang harus dipenuhi untuk membuat aplikasi PWA:
 }
 ```
 
+nuxt.config.js;
+
 ```javascript
-// nuxt.config.js;
 export default {
   pwa: {
     manifest: {
