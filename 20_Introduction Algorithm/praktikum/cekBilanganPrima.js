@@ -1,8 +1,8 @@
 const cekBilanganPrima = (number) => {
   if (isNaN(number)) {
     return 'input harus berupa angka';
-  } else if (number < 2 || number > 50) {
-    return 'input harus berada di antara 2 s/d 50';
+  } else if (number < 2) {
+    return 'input harus bernilai lebih dari 1';
   }
 
   for (let i = 2; i < number; i++) {
