@@ -1,0 +1,17 @@
+mutation MyMutation {
+  insert_kampus_merdeka_keterangan(
+    objects: [
+      {id: 5, id_anggota: 3, pelajaran: "Sistem Informasi", nilai: 90, status: true},
+      {id: 6, id_anggota: 3, pelajaran: "React", nilai: 55, status: false},
+  	]
+  ) {
+    affected_rows
+    returning {
+      id
+      id_anggota
+      nilai
+      pelajaran
+      status
+    }
+  }
+}
