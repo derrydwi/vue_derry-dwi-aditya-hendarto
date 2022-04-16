@@ -8,7 +8,7 @@
         </p>
 
         <div class="flex mt-3 sm:mt-0">
-          <p class="text-sm text-gray-400">Built with NuxtJS & Tailwind CSS</p>
+          <p class="text-sm text-gray-400">Built with NuxtJS & Tailwind CSS.</p>
         </div>
       </div>
     </div>

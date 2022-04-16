@@ -16,7 +16,8 @@
           class="
             w-full
             py-4
-            lg:pt-9 lg:pb-4
+            pt-9
+            lg:pb-4
             dark:border-gray-800
             lg:w-4/5 lg:border-l
             dark:bg-gray-900

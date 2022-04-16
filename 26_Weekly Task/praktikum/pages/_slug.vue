@@ -33,7 +33,7 @@
           hover:bg-gray-100
           focus:ring-4 focus:ring-gray-200
           rounded-md
-          text-sm
+          text-sm text-right
           transition
           ease-in-out
           duration-100

@@ -33,8 +33,7 @@
         class="
           pt-16
           px-1
-          pl-3
-          lg:pl-0 lg:pt-2
+          lg:pt-2
           overflow-y-auto
           font-medium
           text-base
@@ -46,9 +45,9 @@
         aria-label="Docs navigation"
       >
         <ul class="p-4 lg:py-8 lg:pl-0 lg:pr-8">
-          <li class="mb-4 lg:hidden">
+          <li class="mb-4">
             <div class="w-full relative flex flex-col justify-between">
-              <div class="w-full relative">
+              <div class="w-full relative mx-1">
                 <label for="search" class="sr-only">Search</label>
                 <div class="relative">
                   <div
@@ -77,32 +76,28 @@
                     </svg>
                   </div>
                   <input
-                    id="search"
-                    placeholder='Search the docs (Press "/" to focus)'
+                    v-model="query"
                     type="search"
-                    autocomplete="off"
-                    value=""
                     class="
                       block
-                      w-full
+                      p-2
                       pl-10
-                      pr-3
-                      py-2
-                      truncate
-                      leading-5
-                      placeholder-gray-500
-                      border border-transparent
-                      text-gray-700
+                      w-full
+                      text-gray-900
+                      bg-gray-50
+                      rounded-lg
+                      border border-gray-300
+                      sm:text-sm
+                      focus:ring-blue-500 focus:border-blue-500
+                      dark:bg-gray-700
+                      dark:border-gray-600
+                      dark:placeholder-gray-400
                       dark:text-white
-                      dark-focus:text-white
-                      focus:border-gray-300
-                      dark-focus:border-gray-700
-                      rounded-md
-                      focus:outline-none focus:bg-white
-                      dark-focus:bg-gray-900
-                      bg-gray-200
-                      dark:bg-gray-800
+                      dark:focus:ring-blue-500
+                      dark:focus:border-blue-500
                     "
+                    placeholder="Search..."
+                    autocomplete="off"
                   />
                 </div>
               </div>
@@ -165,6 +160,10 @@
               </div>
             </ul>
           </li>
+          <div class="flex justify-between">
+            <BaseProfile class="lg:hidden p-3" />
+            <BaseColorMode class="block lg:hidden p-3" />
+          </div>
         </ul>
       </nav>
     </div>
@@ -183,8 +182,13 @@ export default {
     this.getContentList()
   },
   computed: {
-    query() {
-      return this.$store.getters['summary/getQuery']
+    query: {
+      get() {
+        return this.$store.getters['summary/getQuery']
+      },
+      set(value) {
+        return this.$store.dispatch('summary/saveQuery', value)
+      },
     },
   },
   watch: {

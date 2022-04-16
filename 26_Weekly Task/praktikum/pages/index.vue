@@ -13,7 +13,7 @@
           name: 'slug',
           params: { slug: '2-version-control-and-branch-management' },
         }"
-        >Lihat materi pertama.</NuxtLink
+        >lihat materi pertama.</NuxtLink
       >
     </p>
   </div>
