@@ -101,22 +101,6 @@
                   />
                 </div>
               </div>
-              <ul
-                class="
-                  z-10
-                  absolute
-                  w-full
-                  flex-1
-                  top-0
-                  bg-white
-                  dark:bg-gray-900
-                  rounded-md
-                  border border-gray-300
-                  dark:border-gray-700
-                  overflow-hidden
-                "
-                style="margin-top: 37px; display: none"
-              ></ul>
             </div>
           </li>
           <li class="mb-4 active">

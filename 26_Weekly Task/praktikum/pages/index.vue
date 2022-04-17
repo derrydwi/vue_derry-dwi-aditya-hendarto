@@ -1,5 +1,5 @@
 <template>
-  <div class="prose lg:px-8 max-w-none mx-auto dark:prose-invert">
+  <div class="prose lg:px-8 max-w-none mx-auto dark:prose-invert h-screen">
     <h1 class="text-center mb-24">Selamat Datang 👋</h1>
     <p>
       Website ini berisikan rangkuman materi serta hasil praktikum selama
