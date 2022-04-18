@@ -97,18 +97,23 @@ Output:
 - Jawaban No 1
 
   - Lakukan pendefinisian foreign key
+
     ![foreignkey-keterangan.id_anggota-to-anggota.id.png](./screenshots/foreignkey-keterangan.id_anggota-to-anggota.id.png)
 
   - Buat table relationship one-to-one
+
     ![one-to-one.png](./screenshots/one-to-one.png)
 
   - Hasil relasi id_anggota pada tabel keterangan dengan nama pada tabel anggota
+
     ![keterangan.id_anggota-to-anggota.nama.png](./screenshots/keterangan.id_anggota-to-anggota.nama.png)
 
 - Jawaban No 2
 
   - Buat table relationship one-to-many
+
     ![one-to-many.png](./screenshots/one-to-many.png)
 
   - Hasil relasi id pada tabel anggota dengan pelajaran pada tabel keterangan
+
     ![anggota.id-to-keterangan.pelajaran.png](./screenshots/anggota.id-to-keterangan.pelajaran.png)
