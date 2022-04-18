@@ -12,7 +12,7 @@ Terdapat 3 jenis relasi database yakni:
   Contoh: Satu user twitter hanya memiliki satu foto profil
 - One-to-many
   Contoh: Satu user twitter bisa memiliki banyak tweets
-- Many-to-one
+- Many-to-many
   Contoh: Satu user twitter bisa memiliki banyak follower user, 1 user bisa di follow banyak user
 
 ### Relatioship Database & SQL Statement
