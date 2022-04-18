@@ -9,10 +9,15 @@ Secara garis besar berikut adalah sub topik yang saya pelajari dari materi ini:
 Terdapat 3 jenis relasi database yakni:
 
 - One-to-one
+
   Contoh: Satu user twitter hanya memiliki satu foto profil
+
 - One-to-many
+
   Contoh: Satu user twitter bisa memiliki banyak tweets
+
 - Many-to-many
+
   Contoh: Satu user twitter bisa memiliki banyak follower user, 1 user bisa di follow banyak user
 
 ### Relatioship Database & SQL Statement
@@ -22,45 +27,55 @@ Untuk mengimplementasikan relatioship database diperlukan Relational Database Ma
 Perintah dalam SQL dibagi menjadi 3 yakni:
 
 - Data Definition Language (DDL)
+
   Perintah DDL diantaranya adalah:
+
   - CREATE
   - DROP
   - ALTER
   - RENAME
   - TRUNCATE
+
 - Data Manipulation Language (DML)
+
   Perintah DML diantaranya adalah:
+
   - INSERT
   - SELECT
   - UPDATE
   - DELETE
+
 - Data Control Language (DCL)
+
   Perintah DCL diantaranya adalah:
 
   - GRANT
   - REVOKE
 
-  Adapun DML statement diantaranya adalah:
+Adapun DML statement diantaranya adalah:
 
-  - LIKE / BETWEEN
-  - AND / OR
-  - ORDER BY
-  - LIMIT
+- LIKE / BETWEEN
+- AND / OR
+- ORDER BY
+- LIMIT
 
 Join merupakan sebuah klausa untuk mengkombinasikan record dari dua atau lebih tabel.
 
 Terdapat 3 jenis join pada relational database yakni:
 
 - INNER
+
   Mengembalikan baris-baris dari dua tabel atau lebih yang memenuhi syarat
+
 - LEFT
+
   Mengembalikan seluruh baris dari tabel disebelah kiri yang dikenai kondisi ON dan hanya baris dari tabel disebelah kanan yang memenuhi kondisi join.
+
 - RIGHT
+
   Mengembalikan seluruh baris dari tabel disebelah kanan yang dikenai kondisi ON dan hanya baris dari tabel disebelah kiri yang memenuhi kondisi join.
 
-Fungsi agregasi merupakan fungsi dimana nilai beberapa baris dikelompokkan bersama untuk membentuk nilai ringkasan tunggal.
-
-Fungsi tersebut diantaranya adalah:
+Fungsi agregasi merupakan fungsi dimana nilai beberapa baris dikelompokkan bersama untuk membentuk nilai ringkasan tunggal. Fungsi tersebut diantaranya adalah:
 
 - MIN
 - MAX
