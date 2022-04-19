@@ -251,4 +251,29 @@ Anda dapat berlangganan lebih banyak data dengan komponen ApolloSubscribeToMore 
 
 Berikut kode hasil dari praktikum ini:
 
+- App
+  - [App.vue](./praktikum/src/App.vue)
+- Components
+  - [BaseButton.vue](./praktikum/src/components/BaseButton.vue)
+  - [BaseHeading.vue](./praktikum/src/components/BaseHeading.vue)
+  - [BaseMessage.vue](./praktikum/src/components/BaseMessage.vue)
+  - [TodoListInput.vue](./praktikum/src/components/TodoListInput.vue)
+  - [TodoListItem.vue](./praktikum/src/components/TodoListItem.vue)
+- Layout
+  - [DefaultLayout.vue](./praktikum/src/layout/DefaultLayout.vue)
+- Router
+  - [index.js](./praktikum/src/router/index.js)
+- Store
+  - [index.js](./praktikum/src/store/index.js)
+  - [todo.js](./praktikum/src/store/todo.js)
+- Views
+  - [DetailView.vue](./praktikum/src/views/DetailView.vue)
+  - [HomeView.vue](./praktikum/src/views/HomeView.vue)
+
 Output:
+
+- ![HasilPraktikum1.png](./screenshots/HasilPraktikum1.png)
+
+- ![HasilPraktikum2.png](./screenshots/HasilPraktikum2.png)
+
+- ![HasilPraktikum3.png](./screenshots/HasilPraktikum3.png)
