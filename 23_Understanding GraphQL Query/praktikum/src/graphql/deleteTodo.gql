@@ -1,0 +1,5 @@
+mutation deleteTodo($id: Int!) {
+  delete_kampus_merdeka_todolist_by_pk(id: $id) {
+    id
+  }
+}
