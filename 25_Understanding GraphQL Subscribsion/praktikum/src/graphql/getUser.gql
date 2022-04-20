@@ -1,0 +1,6 @@
+query getUser {
+  kampus_merdeka_user {
+    id
+    nama
+  }
+}

@@ -1,0 +1,10 @@
+mutation addTodo($body: String!, $description: String!, $id_user: Int!) {
+  insert_kampus_merdeka_todolist_one(
+    object: { body: $body, description: $description, id_user: $id_user }
+  ) {
+    id
+    body
+    description
+    id_user
+  }
+}
