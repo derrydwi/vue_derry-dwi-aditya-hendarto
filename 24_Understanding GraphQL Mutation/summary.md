@@ -248,9 +248,10 @@ Anda dapat berlangganan lebih banyak data dengan komponen ApolloSubscribeToMore 
 
 ## Task
 
-1. Hubungkan project react yang ada di atas dengan GraphQL
-2. Lakukan query pada database kalian. Sehingga, ketika aplikasi pertama kali dibuka, aplikasi kalian langsung melakukan fetch data dan menampilkannya pada layar.
-3. Buatlah fitur melakukan query berdasarkan inputan dari user. sehingga, dapat menampilkan data sesuai dengan input berdasarkan id.
+1. Dengan menggunakan project react yang telah kalian buat di task: GraphQL query. Lakukan mutation pada project tersebut
+2. Buatlah fitur submit pada tabel todo kalian
+3. Buatlah fitur delete pada table todo kalian
+4. Buatlah fitur edit pada table todo kalian
 
 Berikut kode hasil dari praktikum ini:
 
