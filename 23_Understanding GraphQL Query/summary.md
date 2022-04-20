@@ -251,29 +251,36 @@ Anda dapat berlangganan lebih banyak data dengan komponen ApolloSubscribeToMore 
 
 Berikut kode hasil dari praktikum ini:
 
-- App
+- [vue.config.js](./praktikum/vue.config.js)
+- src
+  - [main.js](./praktikum/src/main.js)
   - [App.vue](./praktikum/src/App.vue)
-- Components
-  - [BaseButton.vue](./praktikum/src/components/BaseButton.vue)
-  - [BaseHeading.vue](./praktikum/src/components/BaseHeading.vue)
-  - [BaseMessage.vue](./praktikum/src/components/BaseMessage.vue)
-  - [TodoListInput.vue](./praktikum/src/components/TodoListInput.vue)
-  - [TodoListItem.vue](./praktikum/src/components/TodoListItem.vue)
-- Layout
-  - [DefaultLayout.vue](./praktikum/src/layout/DefaultLayout.vue)
-- Router
-  - [index.js](./praktikum/src/router/index.js)
-- Store
-  - [index.js](./praktikum/src/store/index.js)
-  - [todo.js](./praktikum/src/store/todo.js)
-- Views
-  - [DetailView.vue](./praktikum/src/views/DetailView.vue)
-  - [HomeView.vue](./praktikum/src/views/HomeView.vue)
+  - components
+    - [HelloWorld.vue](./praktikum/src/components/HelloWorld.vue)
+    - [TodoListItem.vue](./praktikum/src/components/TodoListItem.vue)
+  - graphql
+    - [addTodo.gql](./praktikum/src/graphql/addTodo.gql)
+    - [deleteTodo.gql](./praktikum/src/graphql/deleteTodo.gql)
+    - [getTodo.gql](./praktikum/src/graphql/getTodo.gql)
+    - [getUser.gql](./praktikum/src/graphql/getUser.gql)
+    - [subscriptionTodo.gql](./praktikum/src/graphql/subscriptionTodo.gql)
+    - [updateTodo.gql](./praktikum/src/graphql/updateTodo.gql)
+  - router
+    - [index.js](./praktikum/src/router/index.js)
+  - views
+    - [HomeView.vue](./praktikum/src/views/HomeView.vue)
+    - [TodoView.vue](./praktikum/src/views/TodoView.vue)
 
 Output:
 
-- ![HasilPraktikum1.png](./screenshots/HasilPraktikum1.png)
+- User Derry
 
-- ![HasilPraktikum2.png](./screenshots/HasilPraktikum2.png)
+  ![HasilPraktikum1.png](./screenshots/HasilPraktikum1.png)
 
-- ![HasilPraktikum3.png](./screenshots/HasilPraktikum3.png)
+- User Budi
+
+  ![HasilPraktikum2.png](./screenshots/HasilPraktikum2.png)
+
+- User Sita
+
+  ![HasilPraktikum3.png](./screenshots/HasilPraktikum3.png)

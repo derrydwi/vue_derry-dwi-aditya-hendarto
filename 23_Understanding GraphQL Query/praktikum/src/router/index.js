@@ -1,27 +1,20 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import DefaultLayout from '../layout/DefaultLayout';
 import HomeView from '../views/HomeView.vue';
-import DetailView from '../views/DetailView.vue';
+import TodoView from '../views/TodoView.vue';
 
 Vue.use(VueRouter);
 
 const routes = [
   {
     path: '/',
-    component: DefaultLayout,
-    children: [
-      {
-        path: '',
-        name: 'home',
-        component: HomeView,
-      },
-      {
-        path: ':id',
-        name: 'detail',
-        component: DetailView,
-      },
-    ],
+    name: 'home',
+    component: HomeView,
+  },
+  {
+    path: '/todo',
+    name: 'todo',
+    component: TodoView,
   },
 ];
 

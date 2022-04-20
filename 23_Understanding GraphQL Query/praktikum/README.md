@@ -1,4 +1,4 @@
-# praktikum
+# 23-graphql-starter
 
 ## Project setup
 ```

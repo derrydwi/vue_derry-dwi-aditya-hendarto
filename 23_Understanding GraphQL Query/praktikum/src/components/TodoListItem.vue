@@ -1,41 +1,51 @@
 <template>
-  <div class="todo-list-item">
-    <div class="list">
-      <div v-if="editMode" class="todo-edit">
-        <div class="index-column">{{ index + 1 }}.</div>
-        <input
-          v-model="editedTodo"
-          @keyup.enter="editTodo"
-          type="text"
-          class="edit-column"
-        />
-      </div>
-      <div v-else class="todo">
-        <router-link
-          :to="{ name: 'detail', params: { id: todoItem.id } }"
-          class="todo-link"
-          >{{ index + 1 }}. {{ todoItem.body }}</router-link
-        >
-      </div>
-      <button @click="deleteTodo" class="action">Delete</button>
-      <button @click="editHandler" class="action">Edit</button>
+  <div class="todo list">
+    <div v-if="editMode" class="todo-edit">
+      <input v-model="editedTodo" type="text" class="edit-column" />
     </div>
-    <BaseMessage
-      v-if="isEmpty"
-      text="Input edit todo tidak boleh kosong!"
-      class="error-empty"
-    />
+    <div v-else class="content">
+      <h3>{{ todoItem.body }}</h3>
+    </div>
+    <ApolloMutation
+      :mutation="require('../graphql/deleteTodo.gql')"
+      :variables="{
+        id: todoItem.id,
+      }"
+      class="content"
+    >
+      <template v-slot="{ mutate, loading, error }">
+        <i
+          class="far fa-times-circle fa-2x"
+          :style="[loading ? { color: 'grey' } : { color: 'red' }]"
+          @click="mutate()"
+        ></i>
+        <p v-if="error">An error occurred: {{ error }}</p>
+      </template>
+    </ApolloMutation>
+    <ApolloMutation
+      :mutation="require('../graphql/updateTodo.gql')"
+      :variables="{
+        id: todoItem.id,
+        body: editedTodo,
+      }"
+      @done="changeEditMode"
+      class="content"
+    >
+      <template v-slot="{ mutate, loading, error }">
+        <i
+          class="far fa-edit fa-2x"
+          :style="[loading ? { color: 'grey' } : { color: 'red' }]"
+          @click="editMode ? mutate() : changeEditMode()"
+        ></i>
+        <p v-if="error">An error occurred: {{ error }}</p>
+      </template>
+    </ApolloMutation>
   </div>
 </template>
 
 <script>
-import BaseMessage from "@/components/BaseMessage.vue";
-
 export default {
   name: "TodoListItem",
-  components: {
-    BaseMessage,
-  },
   props: {
     index: Number,
     todoItem: Object,
@@ -44,7 +54,6 @@ export default {
     return {
       editedTodo: "",
       editMode: false,
-      isEmpty: false,
     };
   },
   mounted() {
@@ -59,58 +68,62 @@ export default {
     changeEditMode() {
       this.editMode = !this.editMode;
     },
-    deleteTodo() {
-      this.$emit("delete-todo", this.todoItem.id);
-    },
-    editHandler() {
-      this.editMode ? this.editTodo() : this.changeEditMode();
-    },
-    editTodo() {
-      this.isEmpty = !this.editedTodo;
-      if (!this.isEmpty) {
-        this.$emit("edit-todo", this.todoItem.id, this.editedTodo);
-        this.changeEditMode();
-      }
-    },
   },
 };
 </script>
 
 <style scoped>
-.list {
-  display: flex;
-  margin: 20px 0;
-}
-
 .todo {
-  width: 80%;
-}
-
-.todo-link {
-  display: block;
-  text-decoration: none;
-  color: black;
-}
-
-.action {
-  width: 10%;
-  margin: 0 10px;
-}
-
-.todo-edit {
+  margin-bottom: 20px;
   display: flex;
-  width: 80%;
+  flex-direction: row;
+  align-items: center;
 }
 
-.index-column {
-  width: 2%;
+button {
+  margin-top: 10px;
+  padding: 10px;
+  background-color: rgb(180, 199, 211);
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  font-weight: bold;
+  outline: none;
 }
 
-.edit-column {
-  width: 98%;
+input {
+  display: block;
+  margin: auto;
+  border-top-style: hidden;
+  border-right-style: hidden;
+  border-left-style: hidden;
+  border-bottom-style: groove;
+  outline: none;
+  font-size: 1.3em;
+  padding: 15px 0;
+  text-align: center;
 }
 
-.error-empty {
+h3 {
+  margin: 0px;
+  padding: 0px;
+}
+
+.list {
+  list-style-type: none;
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 15px 0;
+  background-color: rgb(216, 216, 216);
+}
+
+.content {
+  flex: 1;
+}
+
+i {
+  cursor: pointer;
   color: red;
 }
 </style>

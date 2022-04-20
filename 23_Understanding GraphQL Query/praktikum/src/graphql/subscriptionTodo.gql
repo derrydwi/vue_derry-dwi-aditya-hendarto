@@ -1,0 +1,17 @@
+subscription MySubscription {
+  kampus_merdeka_todolist {
+    id
+    body
+    description
+    id_user
+  }
+}
+
+# subscription MySubscription($_eq: Int!) {
+#   kampus_merdeka_todolist(where: { id_user: { _eq: $_eq } }) {
+#     id
+#     body
+#     description
+#     id_user
+#   }
+# }
