@@ -1,0 +1,11 @@
+mutation updateTodo($id: Int!, $body: String!) {
+  update_kampus_merdeka_todolist_by_pk(
+    pk_columns: { id: $id }
+    _set: { body: $body }
+  ) {
+    id
+    body
+    description
+    id_user
+  }
+}
